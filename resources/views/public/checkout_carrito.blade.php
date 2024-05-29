@@ -389,7 +389,7 @@
             })
 
 
-            if (entrgaLocal) {
+            if (isLocal) {
               $('#contenedorEnvios').html(entrgaLocal);
             } else {
               $('#contenedorEnvios').html(htmlContent);
