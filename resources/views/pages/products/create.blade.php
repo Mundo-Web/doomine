@@ -774,8 +774,8 @@
 
                 </div>
               </div>
-              
-              
+
+
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
                 @foreach ($valorAtributo as $item)
                   @if ($item->attribute_id == 2)
@@ -815,7 +815,7 @@
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
                 <div class="md:col-span-5 mt-2 ">
                   <div class=" flex items-end justify-between gap-2 ">
-                    <label for="AddCombinacion">Combinaciones </label>
+                    <label for="">Combinaciones </label>
                     <button type="button" id="AddCombinacion"
                       class="text-blue-500 hover:underline focus:outline-none font-medium">
                       Agregar Combinacion
@@ -1092,9 +1092,13 @@
       })
 
       $(document).on('click', '.eliminarConvinacion', function(e) {
-        console.log(e.target.value)
 
-        $(`#${e.target.value}`).remove()
+        e.preventDefault()
+
+        let targetButton = e.target.closest('button.eliminarConvinacion');
+        $(`#${targetButton.value}`).remove()
+
+
 
       })
 
@@ -1296,6 +1300,19 @@
 
       initializeAllDropzones();
 
+    })
+  </script>
+  <script>
+    $(document).submit(function() {
+      Swal.fire({
+
+        icon: "success",
+        title: `Guardando informacion, por favor Espere...`,
+        showConfirmButton: false,
+        timer: 10000
+
+      });
+      console.log('realizando guardado')
     })
   </script>
 
