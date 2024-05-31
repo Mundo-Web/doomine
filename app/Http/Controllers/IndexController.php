@@ -23,7 +23,9 @@ use App\Models\DetalleOrden;
 use App\Models\ImagenProducto;
 use App\Models\Liquidacion;
 use App\Models\Ordenes;
+use App\Models\PolyticsCondition;
 use App\Models\Specifications;
+use App\Models\TermsAndCondition;
 use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
@@ -805,5 +807,15 @@ class IndexController extends Controller
         'color' => $value['color']['valor']
       ]);
     }
+  }
+
+  public function politicasDevolucion(){
+    $politicDev = PolyticsCondition::first();
+     return view('public.politicasdeenvio', compact('politicDev'));
+  }
+
+  public function TerminosyCondiciones(){
+    $termsAndCondicitions = TermsAndCondition::first();
+     return view('public.terminosycondiciones', compact('termsAndCondicitions'));
   }
 }

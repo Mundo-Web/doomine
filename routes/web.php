@@ -30,6 +30,7 @@ use App\Http\Controllers\LogosClientController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\PolyticsConditionController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
@@ -38,6 +39,7 @@ use App\Http\Controllers\StrengthController;
 use App\Http\Controllers\ValoresAtributosController;
 
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\TermsAndConditionController;
 use App\Models\AboutUs;
 use App\Models\Price;
 
@@ -87,6 +89,12 @@ Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('p
 Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
 Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('prices.calculeEnvio');
 
+Route::get('/politicas-de-devolucion', [IndexController::class, 'politicasDevolucion'])->name('politicas_dev');
+Route::get('/terminos-y-condiciones', [IndexController::class, 'TerminosyCondiciones'])->name('terms_condition');
+
+
+
+
 
 
 
@@ -97,6 +105,12 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/dashboard/analytics', [DashboardController::class, 'analytics'])->name('analytics');
         Route::get('/dashboard/fintech', [DashboardController::class, 'fintech'])->name('fintech');
+
+        Route::resource('/politicas-de-devolucion', PolyticsConditionController::class);
+
+        Route::resource('/terminos-y-condiciones', TermsAndConditionController::class);
+
+
 
         //messages
         Route::resource('/mensajes', MessageController::class);
