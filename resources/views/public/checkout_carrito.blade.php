@@ -373,16 +373,16 @@
 
               } else {
                 htmlContent += `
-              <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-                      <input type="radio" id="bordered-radio-2" name="bordered-radio" value="${envio.price}"
-                          class="background-radius w-5 h-5" />
-                      <label for="bordered-radio-2"
-                          class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
-                          <span>${envio.local == 1 ? 'Entrega local': 'Envio Courier'}</span>
-                          <span>S/ ${envio.price}</span>
-                      </label>
-                  </div>
-            `
+                  <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                          <input type="radio" id="bordered-radio-2" name="bordered-radio" value="${envio.price}"
+                              class="background-radius w-5 h-5" />
+                          <label for="bordered-radio-2"
+                              class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
+                              <span>${envio.local == 1 ? 'Entrega local': 'Envio Courier'}</span>
+                              <span>S/ ${envio.price}</span>
+                          </label>
+                      </div>
+                `
               }
 
 
