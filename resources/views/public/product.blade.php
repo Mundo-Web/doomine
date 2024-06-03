@@ -387,7 +387,7 @@
                     </p>
                     <div class="flex font-boldDisplay text-black items-center gap-2">
                       <p class="text-text14 md:text-text16">s/60.00</p>
-                      <p class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
+                      <p class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay ">
                         s/120.00
                       </p>
                     </div>
@@ -730,7 +730,7 @@
                   </div>
 
                   <div class="order-1 lg:order-2">
-                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray ">
                       Polos
                     </p>
                   </div>
@@ -738,7 +738,7 @@
 
                                 <div
                                     class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack h-auto">
                                         -20%
                                     </p>
                                 </div>
@@ -813,7 +813,7 @@
           if (element.type_imagen == 'primary') {
             html += `
                           <div class="flex flex-col gap-5 relative ">
-                            <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class="w-full object-cover" />
+                            <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class=" w-full h-72 md:h-96  object-cover" />
                           </div>
                       `;
           }
@@ -821,7 +821,7 @@
           if (element.type_imagen == 'secondary') {
             html += `
                       <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}"
-                            class="w-full object-cover " />`;
+                            class="w-full h-72 md:h-96 object-cover" />`;
           }
         });
         return html;

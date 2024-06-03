@@ -248,11 +248,11 @@ class ProductsController extends Controller
       //code...
       [$first, $code] = explode(';base64,', $file);
 
+      // $manager = new ImageManager(new Driver());
+      // $img = $manager->read($code);
+      // $img->coverDown(1000, 1500, 'center');
       $imageData = base64_decode($code);
 
-      $manager = new ImageManager(new Driver());
-      $img = $manager->read($imageData);
-      $img->coverDown(1000, 1500, 'center');
 
       $routeImg = 'storage/images/gallery/';
       $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
@@ -262,7 +262,7 @@ class ProductsController extends Controller
         mkdir($routeImg, 0777, true);
       }
       // Guardar los datos binarios en un archivo
-      file_put_contents($routeImg . $nombreImagen, $img);
+      file_put_contents($routeImg . $nombreImagen, $imageData);
       $dataGalerie['name_imagen'] = $routeImg . $nombreImagen;
       $dataGalerie['product_id'] = $producto_id;
       $dataGalerie['type_imagen'] = 'secondary';
