@@ -738,7 +738,7 @@
 
                                 <div
                                     class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack h-auto">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack h-128">
                                         -20%
                                     </p>
                                 </div>
