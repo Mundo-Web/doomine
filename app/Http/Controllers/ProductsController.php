@@ -76,11 +76,7 @@ class ProductsController extends Controller
       $request->merge(['descuento' => 0]);
       $data['descuento'];
     }
-    
-
-
-
-
+ 
     // $valorprecio = $request->input('precio') - 0.1;
 
     try {
@@ -252,10 +248,11 @@ class ProductsController extends Controller
       //code...
       [$first, $code] = explode(';base64,', $file);
 
-
-
       $imageData = base64_decode($code);
 
+      $manager = new ImageManager(new Driver());
+      $img = $manager->read($imageData);
+      $img->coverDown(1000, 1500, 'center');
 
       $routeImg = 'storage/images/gallery/';
       $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
@@ -265,7 +262,7 @@ class ProductsController extends Controller
         mkdir($routeImg, 0777, true);
       }
       // Guardar los datos binarios en un archivo
-      file_put_contents($routeImg . $nombreImagen, $imageData);
+      file_put_contents($routeImg . $nombreImagen, $img);
       $dataGalerie['name_imagen'] = $routeImg . $nombreImagen;
       $dataGalerie['product_id'] = $producto_id;
       $dataGalerie['type_imagen'] = 'secondary';
