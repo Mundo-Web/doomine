@@ -593,8 +593,8 @@ class IndexController extends Controller
   public function liquidacion()
   {
     try {
-      $liquidacion = Products::where('status', '=', 1)->where('visible', '=', 1)->where('liquidacion', '=', 1)->paginate(16);
-
+      $liquidacion = Products::where('status', '=', 1)->where('visible', '=', 1)->where('liquidacion', '=', 1)->with('tags')->with('images')->paginate(16);
+  
       return view('public.liquidacion', compact('liquidacion'));
     } catch (\Throwable $th) {
     }
