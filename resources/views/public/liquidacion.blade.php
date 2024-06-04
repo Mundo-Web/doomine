@@ -52,7 +52,7 @@
                             {{-- <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" /> --}}
                             @foreach ($item->images as $image)
                                 @if($image->caratula == 1)
-                                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full" />
+                                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full hover:scale-110 transition-all duration-300" />
                                 @endif
                             @endforeach
                             <div class="addProduct text-center flex justify-center">
