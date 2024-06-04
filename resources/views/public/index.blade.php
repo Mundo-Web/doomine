@@ -182,14 +182,14 @@
             New Arrivals
           </h3>
           <div>
-            <a href="{{ route('catalogo', 0) }}"
+            <a href="{{ route('novedades', 0) }}"
               class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
               /</a>
           </div>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-          @foreach ($newarrival as $item)
+          @foreach ($newarrival->take(4) as $item)
             
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
@@ -310,7 +310,7 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4  gap-5">
-          @foreach ($destacados as $item)
+          @foreach ($destacados->take(4) as $item)
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
                 @foreach ($item->images as $image)
