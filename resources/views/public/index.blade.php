@@ -280,7 +280,7 @@
                 </p>
 
                 <div class="flex justify-center items-center pt-10">
-                  <a href="{{ $item->link1 }}"
+                  <a href="{{route('liquidacion') }}"
                     class="font-boldItalicDisplay text-text16 md:text-text24 xl:text-text32 uppercase">/
                     {{ $item->botontext1 }} /</a>
                 </div>
@@ -302,11 +302,11 @@
           <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">
             Lo más pedido
           </h3>
-          <div>
+          {{-- <div>
             <a href="{{ route('catalogo', 0) }}"
               class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
               /</a>
-          </div>
+          </div> --}}
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4  gap-5">
