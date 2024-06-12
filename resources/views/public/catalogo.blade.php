@@ -1,4 +1,5 @@
 @extends('components.public.matrix')
+@section('title', 'Catalogo | ' . config('app.name', 'Laravel'))
 
 @section('css_importados')
 
@@ -113,15 +114,15 @@
                   </div>
                 </a> --}}
                 <div class="flex justify-start gap-2 items-center w-full">
-                  <input type="checkbox"  value="{{ $item->id }}" class="changeCategory"
-                         id="categoria_{{ $item->id }}">
-                  <label for="categoria_{{ $item->id }}" 
-                         class="font-boldDisplay flex justify-start gap-2 items-center w-full">
-                      {{ $item->name }}
+                  <input type="checkbox" value="{{ $item->id }}" class="changeCategory"
+                    id="categoria_{{ $item->id }}">
+                  <label for="categoria_{{ $item->id }}"
+                    class="font-boldDisplay flex justify-start gap-2 items-center w-full">
+                    {{ $item->name }}
                   </label>
-              </div>
+                </div>
               @endforeach
-              
+
             </div>
 
             <div>
@@ -154,40 +155,35 @@
                                                     font-normal @endif">Todos
                             los precios</a> --}}
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="0_50" class="changePrice"
-                              id="price_0_50">  
+                            <input type="checkbox" value="0_50" class="changePrice" id="price_0_50">
                             <label for="price_0_50" class="cursor-pointer">
                               S/0 - S/50
                             </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="50.01_100" class="changePrice"
-                              id="price_51_100">  
+                            <input type="checkbox" value="50.01_100" class="changePrice" id="price_51_100">
                             <label for="price_51_100" class="cursor-pointer">
                               S/50 - S/100
                             </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="100.01_150" class="changePrice"
-                              id="price_101_150">  
+                            <input type="checkbox" value="100.01_150" class="changePrice" id="price_101_150">
                             <label for="price_101_150" class="cursor-pointer">
                               S/100 - S/150
                             </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="150.01_200" class="changePrice"
-                            id="price_151_200">  
+                            <input type="checkbox" value="150.01_200" class="changePrice" id="price_151_200">
                             <label for="price_151_200" class="cursor-pointer">
                               S/150 - S/200
                             </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="200.01_100000" class="changePrice"
-                            id="price_200_more">  
+                            <input type="checkbox" value="200.01_100000" class="changePrice" id="price_200_more">
                             <label for="price_200_more" class="cursor-pointer">
                               S/200 - Más
                             </label>
@@ -201,111 +197,105 @@
             </div>
             @foreach ($atributos as $item)
               @php
-                   $nametypeatributo = $item->typeAttribute->name
+                $nametypeatributo = $item->typeAttribute->name;
               @endphp
-              @if ($nametypeatributo === "Color")
-                 
-              <div>
-                <div class="relative">
-                  <div class="mx-auto">
-                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                      <details class="group">
-                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                          <span class="font-boldDisplay text-text20 text-[#151515]">
-                            {{ $item->titulo  }}
-                          </span>
-                          <span class="transition group-open:rotate-180">
-                            <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                                fill="black" />
-                              <path
-                                d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                                fill="black" />
-                            </svg>
-                          </span>
-                        </summary>
-  
-                        <div class="group-open:animate-fadeIn mt-5">
-                          <div
-                            class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 place-items-center">
-                            @foreach ($item->attributeValues as $valores)
-                            
-                            <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full" data-val="0"
-                              style="background-color:{{ $valores->color }};">
-                              <span class="block w-12 h-12 rounded-full transition"><span class="hidden">{{ $valores->valor }}</span></span>
-                            </a>
-                            
-                            {{-- <div class="relative">
+              @if ($nametypeatributo === 'Color')
+                <div>
+                  <div class="relative">
+                    <div class="mx-auto">
+                      <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                        <details class="group">
+                          <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                            <span class="font-boldDisplay text-text20 text-[#151515]">
+                              {{ $item->titulo }}
+                            </span>
+                            <span class="transition group-open:rotate-180">
+                              <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                  fill="black" />
+                                <path
+                                  d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                  fill="black" />
+                              </svg>
+                            </span>
+                          </summary>
+
+                          <div class="group-open:animate-fadeIn mt-5">
+                            <div
+                              class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 place-items-center">
+                              @foreach ($item->attributeValues as $valores)
+                                <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full"
+                                  data-val="0" style="background-color:{{ $valores->color }};">
+                                  <span class="block w-12 h-12 rounded-full transition"><span
+                                      class="hidden">{{ $valores->valor }}</span></span>
+                                </a>
+
+                                {{-- <div class="relative">
                               <input type="checkbox" name="{{ $item->titulo }}[]" value="{{ $valores->valor }}" 
                                      id="color_{{ $valores->id }}" class="hidden colores">
                               <label for="color_{{ $valores->id }}" 
                                      style="background-color: {{ $valores->color }};" 
                                      class="block w-12 h-12 rounded-full cursor-pointer border-2 transition labelcolor"></label>
                             </div> --}}
-                            @endforeach
+                              @endforeach
+                            </div>
                           </div>
-                        </div>
-                      </details>
+                        </details>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-                 
-              @else 
+              @else
+                <div>
+                  <div class="relative">
+                    <div class="mx-auto">
+                      <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                        <details class="group">
+                          <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                            <span class="font-boldDisplay text-text20 text-[#151515]">
+                              {{ $item->titulo }}
+                            </span>
+                            <span class="transition group-open:rotate-180">
+                              <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                  fill="black" />
+                                <path
+                                  d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                  fill="black" />
+                              </svg>
+                            </span>
+                          </summary>
 
-              <div>
-                <div class="relative">
-                  <div class="mx-auto">
-                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                      <details class="group">
-                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                          <span class="font-boldDisplay text-text20 text-[#151515]">
-                            {{ $item->titulo  }}
-                          </span>
-                          <span class="transition group-open:rotate-180">
-                            <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                                fill="black" />
-                              <path
-                                d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                                fill="black" />
-                            </svg>
-                          </span>
-                        </summary>
-  
-                        <div class="group-open:animate-fadeIn mt-5">
-                          <div class="flex flex-col gap-2 text-text18 xl:text-text20">
-                            @foreach ($item->attributeValues as $valores)
+                          <div class="group-open:animate-fadeIn mt-5">
+                            <div class="flex flex-col gap-2 text-text18 xl:text-text20">
+                              @foreach ($item->attributeValues as $valores)
                                 <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
                                   {{-- <a href="?{{$item->titulo}}={{$valores->valor}}"
                                     class="cursor-pointer">
                                     {{$valores->valor}}
                                   </a> --}}
-                                    <input type="checkbox"  value="{{ $valores->id }}" class="changeTallas"
-                                           id="talla_{{ $valores->id }}">
-                                    <label for="talla_{{ $valores->id }}" 
-                                           class="font-boldDisplay flex justify-start gap-2 items-center w-full">
-                                          {{ $valores->valor }}
-                                    </label>
+                                  <input type="checkbox" value="{{ $valores->id }}" class="changeTallas"
+                                    id="talla_{{ $valores->id }}">
+                                  <label for="talla_{{ $valores->id }}"
+                                    class="font-boldDisplay flex justify-start gap-2 items-center w-full">
+                                    {{ $valores->valor }}
+                                  </label>
                                 </div>
-
-                               
-                            @endforeach  
+                              @endforeach
+                            </div>
                           </div>
-                        </div>
-                      </details>
+                        </details>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
               @endif
             @endforeach
-          
+
             <div>
               <div class="relative">
                 <div class="mx-auto">
@@ -327,18 +317,18 @@
                           </svg>
                         </span>
                       </summary>
-                     
+
                       <div class="group-open:animate-fadeIn mt-5">
                         <div class="flex flex-col gap-2 text-text18 xl:text-text22">
-                         
+
                           @foreach ($colecciones as $item)
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="collection_{{ $item->id }}" value="{{ $item->id }}"
-                              class="w-4 h-4 accent-[#000000] cursor-pointer changeCollection" />
-                            <label for="collection_{{ $item->id }}" class="cursor-pointer">
-                              {{$item->name}}
-                            </label>
-                          </div>
+                            <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                              <input type="checkbox" id="collection_{{ $item->id }}" value="{{ $item->id }}"
+                                class="w-4 h-4 accent-[#000000] cursor-pointer changeCollection" />
+                              <label for="collection_{{ $item->id }}" class="cursor-pointer">
+                                {{ $item->name }}
+                              </label>
+                            </div>
                           @endforeach
 
                         </div>
@@ -366,19 +356,19 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Listado de productos- -->
       <div id="getProductAjax" class="grid gap-10">
-        @include('public._listproduct') 
+        @include('public._listproduct')
       </div>
     </div>
     <div class="flex justify-center items-center">
-      <a href="javascript:;" 
-          @if(empty($page)) style="display:none;" @endif data-page={{$page}}
-          class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
-          Cargar más modelos
+      <a href="javascript:;" @if (empty($page)) style="display:none;" @endif
+        data-page={{ $page }}
+        class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
+        Cargar más modelos
       </a>
-  </div>
+    </div>
     <section>
       <div>
         <img src="{{ asset('images/img/catalogo_1.png') }}" alt="doomine" class="w-full h-full hidden md:block" />
@@ -472,37 +462,37 @@
   <script>
     $(document).ready(function() {
       function updateCategoriesField() {
-          var selectedCategories = [];
-          $('.changeCategory:checked').each(function() {
-              selectedCategories.push($(this).val());
-          });
-          $('#get_categories').val(selectedCategories.join(','));
+        var selectedCategories = [];
+        $('.changeCategory:checked').each(function() {
+          selectedCategories.push($(this).val());
+        });
+        $('#get_categories').val(selectedCategories.join(','));
       }
       updateCategoriesField();
       $('.changeCategory').on('change', function() {
-          updateCategoriesField();
-          FilterForm();
+        updateCategoriesField();
+        FilterForm();
       });
-   
+
       function updatePriceField() {
-          var selectedPrice = [];
-          $('.changePrice:checked').each(function() {
-              selectedPrice.push($(this).val());
-          });
-          $('#get_precios').val(selectedPrice.join(','));
+        var selectedPrice = [];
+        $('.changePrice:checked').each(function() {
+          selectedPrice.push($(this).val());
+        });
+        $('#get_precios').val(selectedPrice.join(','));
       }
       updatePriceField();
       $('.changePrice').on('change', function() {
-         updatePriceField();
-         FilterForm();
+        updatePriceField();
+        FilterForm();
       });
 
       function updateTallaField() {
-          var selectedTallas = [];
-          $('.changeTallas:checked').each(function() {
-              selectedTallas.push($(this).val());
-          });
-          $('#get_tallas').val(selectedTallas.join(','));
+        var selectedTallas = [];
+        $('.changeTallas:checked').each(function() {
+          selectedTallas.push($(this).val());
+        });
+        $('#get_tallas').val(selectedTallas.join(','));
       }
       updateTallaField();
       $('.changeTallas').on('change', function() {
@@ -511,11 +501,11 @@
       });
 
       function updateCollectionField() {
-          var selectedCollection = [];
-          $('.changeCollection:checked').each(function() {
-            selectedCollection.push($(this).val());
-          });
-          $('#get_colecciones').val(selectedCollection.join(','));
+        var selectedCollection = [];
+        $('.changeCollection:checked').each(function() {
+          selectedCollection.push($(this).val());
+        });
+        $('#get_colecciones').val(selectedCollection.join(','));
       }
       updateCollectionField();
       $('.changeCollection').on('change', function() {
@@ -523,88 +513,86 @@
         FilterForm();
       });
 
-      
+
       $('.colores').on('change', function() {
-          if ($(this).is(':checked')) {
-              $('.labelcolor').addClass('border-black');
-          } else {
-              $('.labelcolor').removeClass('border-black');
-          }
+        if ($(this).is(':checked')) {
+          $('.labelcolor').addClass('border-black');
+        } else {
+          $('.labelcolor').removeClass('border-black');
+        }
       });
 
       $('.colores:checked').each(function() {
-          $(this).next('labelcolor').addClass('border-black');
+        $(this).next('labelcolor').addClass('border-black');
       });
 
 
-      $('.changeColor').click(function(){
+      $('.changeColor').click(function() {
         var id = $(this).attr('id');
         var status = $(this).attr('data-val');
-        if(status  == 0){
+        if (status == 0) {
           $(this).attr('data-val', 1);
           $(this).addClass('active-color');
-        }else{
+        } else {
           $(this).attr('data-val', 0);
           $(this).removeClass('active-color');
         }
 
         var ids = '';
-        $('.changeColor').each(function(){
+        $('.changeColor').each(function() {
           var status = $(this).attr('data-val');
-          if(status == 1){
+          if (status == 1) {
             var id = $(this).attr('id');
-            ids += id+',';
+            ids += id + ',';
           }
         });
         $('#get_colores').val(ids);
         FilterForm();
       });
 
-      function FilterForm(){
+      function FilterForm() {
         $.ajax({
-                url: '{{ route('catalogo_filtro_ajax') }}',
-                method: 'POST',
-                data: $('#FilterForm').serialize(),
-                dataType: "json",
-                success: function(response) {
-                 
-                  $('#getProductAjax').html(response.success);
-                  $('.cargarMas').attr('data-page',response.page);
-                  
-                  if (response.page == 0) {
-                    $('.cargarMas').hide();
-                  } else {
-                    $('.cargarMas').show();
-                  }
-                  // $('.pagination').html(response.pagination)
-                },
-                error: function(error) {
-                }
+          url: '{{ route('catalogo_filtro_ajax') }}',
+          method: 'POST',
+          data: $('#FilterForm').serialize(),
+          dataType: "json",
+          success: function(response) {
+
+            $('#getProductAjax').html(response.success);
+            $('.cargarMas').attr('data-page', response.page);
+
+            if (response.page == 0) {
+              $('.cargarMas').hide();
+            } else {
+              $('.cargarMas').show();
+            }
+            // $('.pagination').html(response.pagination)
+          },
+          error: function(error) {}
         });
       }
-      
+
 
       $('body').delegate('.cargarMas', 'click', function() {
-          var page = $(this).attr('data-page');
-          $('.cargarMas').html('Cargando...');
-          $.ajax({
-                url: "{{ route('catalogo_filtro_ajax') }}?page="+page,
-                method: 'POST',
-                data: $('#FilterForm').serialize(),
-                dataType: "json",
-                success: function(response) {
-                 
-                  $('#getProductAjax').append(response.success);
-                  $('.cargarMas').attr('data-page',response.page);
-                  $('.cargarMas').html('Cargar más modelos');
-                  if (response.page == 0) {
-                    $('.cargarMas').hide();
-                  } else {
-                    $('.cargarMas').show();
-                  }
-                },
-                error: function(error) {
-                }
+        var page = $(this).attr('data-page');
+        $('.cargarMas').html('Cargando...');
+        $.ajax({
+          url: "{{ route('catalogo_filtro_ajax') }}?page=" + page,
+          method: 'POST',
+          data: $('#FilterForm').serialize(),
+          dataType: "json",
+          success: function(response) {
+
+            $('#getProductAjax').append(response.success);
+            $('.cargarMas').attr('data-page', response.page);
+            $('.cargarMas').html('Cargar más modelos');
+            if (response.page == 0) {
+              $('.cargarMas').hide();
+            } else {
+              $('.cargarMas').show();
+            }
+          },
+          error: function(error) {}
         });
       })
     });

@@ -1,4 +1,5 @@
 @extends('components.public.matrix')
+@section('title', 'Contactanos | ' . config('app.name', 'Laravel'))
 
 @section('css_importados')
 
@@ -175,7 +176,7 @@
     }
 
     $('#formContactos').submit(function(event) {
-    
+
       event.preventDefault();
       let formDataArray = $(this).serializeArray();
 
