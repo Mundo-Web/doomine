@@ -351,7 +351,6 @@
 
   <script>
     $('#pagarProductos').on('click', function(e) {
-      console.log('pagando servicio');
       e.preventDefault()
 
       let url = window.location.href;
@@ -360,15 +359,12 @@
 
       let firstPurchase = params.get('first')
       let formDataArray = $('#formHome').serializeArray();
-      console.log(formDataArray)
       let mensaje = 'El campo'
       let mensajeFinal = ' No pueden estar vacios'
       let hasEmptyFields = false
 
-      console.log(firstPurchase)
 
       if (firstPurchase == 'false') {
-        console.log('no es primera compra debe llenar todos los datos ');
         formDataArray.forEach(function(item) {
           if (item.value.trim() === '') {
             switch (item.name) {
@@ -478,7 +474,6 @@
 
 
     function deleteOnCarBtn(id, operacion) {
-      console.log('Elimino un elemento del cvarrio');
       const prodRepetido = articulosCarrito.map(item => {
         if (item.id === id && item.cantidad > 0) {
           item.cantidad -= Number(1);
@@ -594,7 +589,6 @@
 
       let itemsCarrito = $('#itemsCarrito')
       let itemsCarritoPago = $('#itemsCarritoPago')
-      console.log(articulosCarrito)
 
       articulosCarrito.forEach(element => {
 
@@ -751,7 +745,6 @@
         return obj
       })
 
-      console.log(carritoCheck)
       Local.set("carrito", carritoCheck)
       checkedRadio = true
 
@@ -761,7 +754,6 @@
     });
     $("#btnSiguiente").on('click', function(e) {
 
-      console.log(checkedRadio)
       if (!checkedRadio) {
         e.preventDefault()
         Swal.fire({
@@ -779,6 +771,35 @@
 
   <script src="{{ asset('js/storage.extend.js') }}"></script>
 
+  <script>
+    function pintarCantidad() {
+      let carritoCantidad = Local.get('carrito')
+
+
+      if (typeof carritoCantidad !== 'undefined' && carritoCantidad !== null) {
+        // La variable carritoCantidad está definida y no es null
+        let total = carritoCantidad.length
+        if (total == 0) {
+
+          $('#imgCantidad').attr('hidden', true);
+
+
+        } else {
+          $('#imgCantidad').attr('hidden', false);
+
+          $('#spanCantidad').text(total)
+
+        }
+
+
+      } else {
+
+        $('#imgCantidad').attr('hidden', true);
+      }
+
+    }
+    pintarCantidad()
+  </script>
 
 @stop
 

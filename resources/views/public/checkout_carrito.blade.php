@@ -402,6 +402,37 @@
 
     })
   </script>
+  <script>
+    function pintarCantidad() {
+      let carritoCantidad = Local.get('carrito')
+
+      console.log('header exito', carritoCantidad)
+
+      if (typeof carritoCantidad !== 'undefined' && carritoCantidad !== null) {
+        console.log('diferente a nulo')
+        // La variable carritoCantidad está definida y no es null
+        let total = carritoCantidad.length
+        if (total == 0) {
+
+          $('#imgCantidad').attr('hidden', true);
+
+
+        } else {
+          $('#imgCantidad').attr('hidden', false);
+
+          $('#spanCantidad').text(total)
+
+        }
+
+
+      } else {
+
+        $('#imgCantidad').attr('hidden', true);
+      }
+
+    }
+    pintarCantidad()
+  </script>
 
   <script>
     let articulosCarrito = [];

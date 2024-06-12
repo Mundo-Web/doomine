@@ -48,6 +48,7 @@ let articulosCarrito = [];
       Local.set('carrito', articulosCarrito)
       limpiarHTML()
       PintarCarrito()
+      
 
 
     }
@@ -84,6 +85,7 @@ let articulosCarrito = [];
       Local.set('carrito', articulosCarrito)
       limpiarHTML()
       PintarCarrito()
+      pintarCantidad()
     }
 
   
@@ -267,6 +269,7 @@ let articulosCarrito = [];
           limpiarHTML()
           PintarCarrito()
           mostrarTotalItems()
+          pintarCantidad()
 
           Swal.fire({
 
@@ -287,3 +290,33 @@ let articulosCarrito = [];
 
       // articulosCarrito = {...articulosCarrito , detalleProducto }
     })
+
+    function pintarCantidad() {
+      let carritoCantidad = Local.get('carrito')
+      
+      console.log('header exito', carritoCantidad)
+
+      if (typeof carritoCantidad !== 'undefined' && carritoCantidad !== null) {
+        console.log('diferente a nulo')
+        // La variable carritoCantidad está definida y no es null
+       let total = carritoCantidad.length
+        if (total == 0) {
+
+          $('#imgCantidad').attr('hidden', true);
+
+
+        } else {
+          $('#imgCantidad').attr('hidden', false);
+
+          $('#spanCantidad').text(total)
+
+        }
+
+
+      } else {
+
+        $('#imgCantidad').attr('hidden', true);
+      }
+
+    }
+    pintarCantidad()

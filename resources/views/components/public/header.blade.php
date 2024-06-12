@@ -192,6 +192,7 @@
           @endif
         </div>
 
+
         <div>
           <label for="check">
             <img src="{{ asset('images/svg/bag.svg') }}" alt="doomine" class="cursor-pointer" />
@@ -239,6 +240,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="flex justify-center items-center font-moderat_700 relative ">
+          <img id="imgCantidad" src="{{ asset('images/svg/image_10.svg') }}" alt="bag">
+          <span id="spanCantidad" class="text-white absolute"></span>
         </div>
       </div>
     </div>
