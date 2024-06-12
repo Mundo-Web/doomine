@@ -182,21 +182,21 @@
             New Arrivals
           </h3>
           <div>
-            <a href="{{ route('catalogo', 0) }}"
+            <a href="{{ route('novedades', 0) }}"
               class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
               /</a>
           </div>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-          @foreach ($newarrival as $item)
+          @foreach ($newarrival->take(4) as $item)
             
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
                 {{-- <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" /> --}}
                 @foreach ($item->images as $image)
                   @if($image->caratula == 1)
-                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full" />
+                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full hover:scale-110 transition-all duration-300" />
                   @endif
                 @endforeach
                 
@@ -280,7 +280,7 @@
                 </p>
 
                 <div class="flex justify-center items-center pt-10">
-                  <a href="{{ $item->link1 }}"
+                  <a href="{{route('liquidacion') }}"
                     class="font-boldItalicDisplay text-text16 md:text-text24 xl:text-text32 uppercase">/
                     {{ $item->botontext1 }} /</a>
                 </div>
@@ -302,20 +302,20 @@
           <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">
             Lo más pedido
           </h3>
-          <div>
+          {{-- <div>
             <a href="{{ route('catalogo', 0) }}"
               class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
               /</a>
-          </div>
+          </div> --}}
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4  gap-5">
-          @foreach ($destacados as $item)
+          @foreach ($destacados->take(4) as $item)
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
                 @foreach ($item->images as $image)
                   @if($image->caratula == 1)
-                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full" />
+                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full hover:scale-110 transition-all duration-300" />
                   @endif
                 @endforeach
 

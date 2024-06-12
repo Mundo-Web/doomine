@@ -76,11 +76,7 @@ class ProductsController extends Controller
       $request->merge(['descuento' => 0]);
       $data['descuento'];
     }
-    
-
-
-
-
+ 
     // $valorprecio = $request->input('precio') - 0.1;
 
     try {
@@ -252,8 +248,9 @@ class ProductsController extends Controller
       //code...
       [$first, $code] = explode(';base64,', $file);
 
-
-
+      // $manager = new ImageManager(new Driver());
+      // $img = $manager->read($code);
+      // $img->coverDown(1000, 1500, 'center');
       $imageData = base64_decode($code);
 
 
