@@ -1,11 +1,14 @@
 <header>
   <div class="bg-bgBlack font-medium text-text14 xl:text-text18 italic">
-    <p class="text-textWhite py-5 text-center">
-      Regístrate y obtén un 20% de descuento en tu primer pedido.
-      <a href="{{ route('register') }}" class="underline font-bold">
-        Regístrate ahora
-      </a>
-    </p>
+    @if ($generalinfo->is_active_discount)
+      <p class="text-textWhite py-5 text-center">
+        Regístrate y obtén un 20% de descuento en tu primer pedido.
+        <a href="{{ route('register') }}" class="underline font-bold">
+          Regístrate ahora
+        </a>
+      </p>
+    @endif
+
   </div>
   <div
     class="grid grid-cols-8 md:grid-cols-12 grid-rows-2 xl:grid-cols-12 xl:grid-rows-1 w-11/12 mx-auto my-10 gap-5 xl:gap-0">

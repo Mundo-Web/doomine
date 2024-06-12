@@ -37,8 +37,10 @@ class AppServiceProvider extends ServiceProvider
             // Obtener los datos del footer
             $submenucategorias = Category::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             $submenucolecciones = Collection::all();
+            $generalinfo = General::first();
             // Pasar los datos a la vista
             $view->with('submenucategorias', $submenucategorias)
+                    ->with('generalinfo', $generalinfo)
                  ->with('submenucolecciones', $submenucolecciones);
         });
 
