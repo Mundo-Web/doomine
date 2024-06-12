@@ -3,16 +3,16 @@
     <div class="flex justify-start mt-10">
       <div class="flex flex-col gap-4 w-full md:w-6/12">
         <p class="font-regularDisplay text-text18 xl:text-text24 text-textBlack">
-          ¡Compra segura y rápida! Aceptamos tarjetas Visa, MasterCard y American Express para tu comodidad y
-          tranquilidad. Compra fácil y sin preocupaciones.
+          ¡Compra segura y rápida! Aceptamos todas las tarjetas de crédito y débito para tu comodidad y tranquilidad.
+          Compra fácil y sin preocupaciones.
         </p>
 
         <div class="flex gap-1">
           <img src="{{ asset('images/img/pago_1.png') }}" alt="visa" />
           <img src="{{ asset('images/img/pago_2.png') }}" alt="mastercad" />
-          <img src="{{ asset('images/img/pago_3.png') }}" alt="PayPal" />
+          {{-- <img src="{{ asset('images/img/pago_3.png') }}" alt="PayPal" />
           <img src="{{ asset('images/img/pago_4.png') }}" alt="apple Pay" />
-          <img src="{{ asset('images/img/pago_5.png') }}" alt="google Pay" />
+          <img src="{{ asset('images/img/pago_5.png') }}" alt="google Pay" /> --}}
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
           <a href="{{ route('catalogo', 0) }}">Categorías</a>
           <a href="{{ route('coleccion', 0) }}">Colecciones</a>
           <a href="{{ route('novedades') }}">New Arrivals</a>
-          <a href="{{ route('contacto') }}">Visítanos</a>
+          <a href="{{ route('contacto') }}">Contáctanos</a>
         </div>
       </div>
 
