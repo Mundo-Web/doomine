@@ -97,13 +97,21 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             @foreach ($category->take(1) as $index => $item)
               <div class="col-span-1 md:col-span-2 row-span-1  flex flex-col justify-between">
-                @if ($item->name_image)
-                  <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
-                    class="w-full h-[270px] md:h-[500px] object-cover" />
-                @else
-                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                    class="w-full h-[270px] md:h-[500px] object-cover" />
-                @endif
+                <div class="product_container">
+                  @if ($item->name_image)
+                    <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
+                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                  @else
+                    <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                  @endif
+                  <div class="addProduct text-center flex justify-center">
+                    <a href="{{ route('catalogo', $item->id) }}"
+                      class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 2lg:px-5 flex-initial w-32 md:w-36 2lg:py-3 2lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
+                      Ver Categoria
+                    </a>
+                  </div>
+                </div>
                 <div class="flex flex-col justify-center text-black italic">
                   <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                     Categoría
@@ -121,13 +129,21 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             @foreach ($category->take(2) as $index => $item)
               <div class="col-span-1 row-span-1  flex flex-col justify-between">
-                @if ($item->name_image)
-                  <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
-                    class="w-full h-[270px] md:h-[500px] object-cover" />
-                @else
-                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                    class="w-full h-[270px] md:h-[500px] object-cover" />
-                @endif
+                <div class="product_container">
+                  @if ($item->name_image)
+                    <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
+                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                  @else
+                    <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                  @endif
+                  <div class="addProduct text-center flex justify-center">
+                    <a href="{{ route('catalogo', $item->id) }}"
+                      class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 2lg:px-5 flex-initial w-32 md:w-36 2lg:py-3 2lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
+                      Ver Categoria
+                    </a>
+                  </div>
+                </div>
                 <div class="flex flex-col justify-center text-black italic">
                   <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                     Categoría
@@ -146,13 +162,21 @@
             @foreach ($category->take(3) as $index => $item)
               <div
                 class="col-span-1 @if ($loop->iteration == 2) row-span-2 @else row-span-1 @endif flex flex-col justify-between">
-                @if ($item->name_image)
-                  <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
-                    class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
-                @else
-                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                    class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
-                @endif
+                <div class="product_container">
+                  @if ($item->name_image)
+                    <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
+                      class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                  @else
+                    <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                      class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                  @endif
+                  <div class="addProduct text-center flex justify-center">
+                    <a href="{{ route('catalogo', $item->id) }}"
+                      class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 2lg:px-5 flex-initial w-32 md:w-36 2lg:py-3 2lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
+                      Ver Categoria
+                    </a>
+                  </div>
+                </div>
                 <div class="flex flex-col justify-center text-black italic">
                   <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                     Categoría
@@ -190,16 +214,16 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
           @foreach ($newarrival->take(4) as $item)
-            
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
                 {{-- <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" /> --}}
                 @foreach ($item->images as $image)
-                  @if($image->caratula == 1)
-                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full hover:scale-110 transition-all duration-300" />
+                  @if ($image->caratula == 1)
+                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
+                      class="w-full h-full hover:scale-110 transition-all duration-300" />
                   @endif
                 @endforeach
-                
+
                 <div class="addProduct text-center flex justify-center">
                   <a href="{{ route('producto', $item->id) }}"
                     class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 lg:px-5 flex-initial w-32 md:w-36 lg:py-3 lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
@@ -243,7 +267,7 @@
 
               <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
                 <div class="flex gap-3 flex-wrap">
-                  @if(!is_null($item->tags))
+                  @if (!is_null($item->tags))
                     @foreach ($item->tags as $tag)
                       <div class="bg-white  rounded-md py-1 px-2">
                         <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
@@ -280,7 +304,7 @@
                 </p>
 
                 <div class="flex justify-center items-center pt-10">
-                  <a href="{{route('liquidacion') }}"
+                  <a href="{{ route('liquidacion') }}"
                     class="font-boldItalicDisplay text-text16 md:text-text24 xl:text-text32 uppercase">/
                     {{ $item->botontext1 }} /</a>
                 </div>
@@ -314,8 +338,9 @@
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
                 @foreach ($item->images as $image)
-                  @if($image->caratula == 1)
-                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full hover:scale-110 transition-all duration-300" />
+                  @if ($image->caratula == 1)
+                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
+                      class="w-full h-full hover:scale-110 transition-all duration-300" />
                   @endif
                 @endforeach
 
