@@ -102,12 +102,16 @@
               <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
                 Selecciona color:
               </p>
-              <div class="flex gap-5 justify-start items-center">
+              <div class="flex gap-5 justify-start items-center ">
                 {{-- @foreach ($colors as $item) --}}
                 @foreach ($colors as $index => $item)
-                  <div id="colorItem" style="background-color: {{ $item->color }}"
-                    class="colors w-14 h-14 rounded-[50%] cursor-pointer transition {{ $index == 0 ? 'color' : '' }}"
-                    data-id="{{ $item->id }}" data-productid="{{ $item->product_id }}"></div>
+                  <div class="flex flex-col  items-center">
+                    <span>{{ $item->valor }}</span>
+                    <div id="colorItem" style="background-color: {{ $item->color }}"
+                      class="colors w-14 h-14 rounded-[50%] cursor-pointer transition {{ $index == 0 ? 'color' : '' }}"
+                      data-id="{{ $item->id }}" data-productid="{{ $item->product_id }}"></div>
+
+                  </div>
                 @endforeach
               </div>
             @endif
