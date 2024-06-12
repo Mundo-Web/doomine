@@ -252,7 +252,8 @@
   <!-- whatsapp -->
   <div class="flex justify-end relative">
     <div class="fixed bottom-[36px] z-[10] right-[15px] md:right-[25px]">
-      <a href="#" class="">
+      <a href="https://api.whatsapp.com/send?phone={{ $generalinfo->whatsapp }}&text={{ $generalinfo->mensaje_whatsapp }}"
+        class="">
         <img src="{{ asset('images/img/WhatsApp.png') }}" alt="whatsapp" class="w-20" />
       </a>
     </div>
