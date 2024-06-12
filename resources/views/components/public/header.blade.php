@@ -14,7 +14,7 @@
     class="grid grid-cols-8 md:grid-cols-12 grid-rows-2 xl:grid-cols-12 xl:grid-rows-1 w-11/12 mx-auto my-10 gap-5 xl:gap-0">
     <div class="col-span-5 md:col-span-9 xl:col-span-2 order-1 xl:order-1 flex items-center">
       <a href="{{ route('index') }}">
-        <img src="{{ asset('images/img/logo.png') }}" alt="doomine" />
+        <img src="{{ asset('images/img/logo3x.png') }}" alt="doomine" />
       </a>
     </div>
 
