@@ -54,6 +54,11 @@
     border-color: #74A68D;
     border-radius: 92px;
   }
+
+  .kr-card-form {
+
+    min-width: 300px !important;
+  }
 </style>
 
 
@@ -261,7 +266,8 @@
                     <div class="pt-10">
                       <a id="pagarProductos"
                         class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] 
-                        inline-block text-center border-none">Pagar</a>
+                        inline-block text-center border-none">Validar
+                        Datos</a>
 
                     </div>
 
