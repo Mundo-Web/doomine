@@ -362,11 +362,11 @@
 
         <img src="{{ asset('images/img/mobile_foto.png') }}" alt="doomine" class="w-full h-full block md:hidden" />
       </div>
-
+      {{-- 
       <p class="font-regularDisplay text-text20 md:text-text24 text-textBlack text-center w-full md:w-2/3 mx-auto">
         Suspendisse vitae leo porta sem vestibulum venenatis. Ut ut eleifend
         tellus, vel dapibus lectus. Aenean faucibus nisi eget massa fringilla.
-      </p>
+      </p> --}}
     </section>
 
     {{-- <section class="w-11/12 mx-auto flex flex-col gap-10 mb-24">

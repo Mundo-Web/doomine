@@ -133,8 +133,12 @@
       <div>
         <img src="{{ asset('images/svg/lupa.svg') }}" alt="search" />
       </div>
-      <input type="text" placeholder="Buscar"
+      <input type="text" placeholder="Buscar" id="buscarProducto2"
         class="w-full xl:max-w-sm outline-none bg-[#F5F5F5] font-medium text-text16 border-x-0 border-y-0  border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[0px]" />
+      <div id="resultados2" class="bg-white p-[1px] rounded-xl  overflow-y-auto max-h-[300px] shadow-2xl"
+        style="  position: absolute; z-index: 10;
+  top: 226px;"></div>
+
     </div>
 
     <div class="col-span-2 md:col-span-2 xl:col-span-3 order-2 xl:order-4 flex justify-end">
@@ -323,6 +327,53 @@
           $('#resultados').empty();
         }
       });
+
+
+
+      $('#buscarProducto2').keyup(function() {
+
+        let query = $(this).val().trim();
+
+        if (query !== '') {
+          $.ajax({
+            url: '{{ route('buscar') }}',
+            method: 'GET',
+            data: {
+              query: query
+            },
+            success: function(data) {
+              var resultsHtml = '';
+              var url = '{{ asset('') }}';
+              console.log(data)
+              data.forEach(function(result) {
+                resultsHtml +=
+                  `
+                <a href="/producto/${result.id}">
+                    <div class="w-full flex flex-row py-3 px-5 hover:bg-slate-200">
+                        <div class="w-[10%]">
+                            <img class="w-14 rounded-md" src="${url}${result?.images[0]?.name_imagen ?? result.imagen}" />
+                        </div>
+                        <div class="flex flex-col justify-center w-[70%]">
+                            <h2 class="text-left">${result.producto}</h2>
+                            <p class="text-text12 text-left">Categoría</p>
+                        </div>
+                        <div class="flex flex-col justify-center w-[10%]">
+                            <p class="text-right">S/${result.precio}</p>
+                            <p class="text-text12 text-right line-through text-slate-500">S/${result.descuento}</p>
+                        </div>
+                    </div>
+                </a>
+            `;
+              });
+
+              $('#resultados2').append(resultsHtml);
+            }
+          });
+        } else {
+          $('#resultados2').empty();
+        }
+      });
+
     });
   </script>
 
