@@ -349,13 +349,25 @@
                           class="background-radius w-5 h-5" />
                       <label for="bordered-radio-2"
                           class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
-                          <span> Recojo en tienda </span>
-                          <span>S/ 00.00</span>
+                          <span> Recojo GRATIS en tienda </span>
+                          <span>S/. 0.00</span>
                       </label>
                   </div>`
 
             let isLocal = false
 
+
+            if (EnviosDisponibles.length == 0) {
+              let mes = `No hay opcion de envio para este destino`
+              $('#contenedorEnvios').html(mes)
+              Swal.fire({
+                icon: "warning",
+                title: "Opss ",
+                text: mes
+              });
+
+              return
+            }
             EnviosDisponibles.forEach(envio => {
               if (envio.local == 1) {
                 isLocal = true
@@ -365,7 +377,7 @@
                                 class="background-radius w-5 h-5" />
                             <label for="bordered-radio-2"
                                 class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
-                                <span>${envio.local == 1 ? 'Entrega local': 'Envio Courier'}</span>
+                                <span>${envio.local == 1 ? 'Envio a domicilio': 'Envio Courier'}</span>
                                 <span>S/ ${envio.price}</span>
                             </label>
                         </div>
@@ -378,7 +390,7 @@
                               class="background-radius w-5 h-5" />
                           <label for="bordered-radio-2"
                               class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
-                              <span>${envio.local == 1 ? 'Entrega local': 'Envio Courier'}</span>
+                              <span>${envio.local == 1 ? 'Envio a domicilio': 'Envio Courier'}</span>
                               <span>S/ ${envio.price}</span>
                           </label>
                       </div>
