@@ -15,4 +15,24 @@
 }
 
 
+.container-enlarge span {
+  position: absolute;
+  top: -9999em;
+  left: -9999em;
+  
+
+  
+}
+
+.container-enlarge:hover span {
+  position: fixed;
+  top: 230px;
+  left: 695px;
+  width: 600px;
+  z-index: 10;
+  transition: 0.9ms;
+ @apply animate-fade-up  ;
+}
+
+
 

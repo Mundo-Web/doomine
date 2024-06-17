@@ -1,6 +1,7 @@
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 const plugin = require('tailwindcss/plugin');
+const animated = require('tailwindcss-animated')
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -172,6 +173,7 @@ export default {
                 modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
             });
         }),
+        animated
       
     ],
 };
