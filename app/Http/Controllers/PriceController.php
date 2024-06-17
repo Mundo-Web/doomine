@@ -112,14 +112,25 @@ class PriceController extends Controller
     public function edit(Price $price)
     {
         //
+        
+        // $price = Price::where('id', = , 'prioce')
+        $departamentos = DB::table('departments')->get() ;
+       $distritos = DB::table('districts')
+        ->where('id', '=', $price->distrito_id)
+        ->get();
+        //distrito
+
+        return view('pages.prices.edit', compact('price', 'departamentos', 'distritos'));
     }
 
-    /**
+    /**update
      * Update the specified resource in storage.
      */
-    public function update(UpdatePriceRequest $request, Price $price)
+    public function update(Request $request, string $id)
     {
         //
+        Price::find($id)->update($request->all());
+        return redirect()->route('prices.index')->with('success', 'Servicio creado exitosamente.');
     }
 
     /**

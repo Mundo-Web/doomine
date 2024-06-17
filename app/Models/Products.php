@@ -151,7 +151,7 @@ class Products extends Model
           ->with('tags')
           ->groupBy('products.id')
           ->orderBy('products.id', 'desc')
-          ->paginate(9);
+          ->paginate(8);
 
     return $return;
 
