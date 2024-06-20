@@ -336,7 +336,7 @@
             html += ` <div >
                         <div class="container-enlarge">
                           <img class="w-full h-72 md:h-96 object-cover" src="{{ asset('${element.name_imagen}') }}">
-                          <span><img class="w-full h-72 md:h-96 object-cover animate-fade-up" src="{{ asset('${element.name_imagen}') }}"></span>
+                          <span><img class="w-full h-72 md:h-75dvh object-cover " src="{{ asset('${element.name_imagen}') }}"></span>
                         </div>
                       </div>
                       `;

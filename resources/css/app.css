@@ -26,11 +26,14 @@
 
 .container-enlarge:hover span {
   position: fixed;
-  top: 230px;
-  left: 695px;
-  width: 600px;
+  top: 15%;
+  left: 50%;
+  width: 45%;
+  height: 600px;
+
   z-index: 10;
   transition: 0.9ms;
+  /* transform: translateY(-75%);  */
  @apply animate-fade-up  ;
 }
 
