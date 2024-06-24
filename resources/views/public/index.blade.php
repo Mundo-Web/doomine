@@ -17,13 +17,14 @@
       @foreach ($slider as $item)
         <section>
           <div class="w-full md:w-11/12 mx-auto relative z-0">
-            <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="grid grid-cols-1 md:grid-cols-2" data-aos="fade-up" data-aos-offset="150">
               <div class="flex justify-center items-center">
                 <img src="{{ asset($item->url_image . $item->name_image) }}" alt="domine summer" class="w-full h-full" />
               </div>
 
               <div class="hidden md:flex justify-center items-center">
-                <img src="{{ asset($item->url_image2 . $item->name_image2) }}" alt="domine summer" class="w-full h-full" />
+                <img src="{{ asset($item->url_image2 . $item->name_image2) }}" alt="domine summer"
+                  class="w-full h-full" />
               </div>
             </div>
 
@@ -200,7 +201,8 @@
                 <div class="p-5 text-xl font-bold">No tienes productos visibles</div>
             </div> --}}
     @else
-      <section class="w-11/12 mx-auto flex flex-col gap-10" id="new_arrivals" data-aos="fade-up" data-aos-offset="150">
+      <section class="w-11/12 mx-auto flex flex-col gap-10" id="new_arrivals" data-aos="fade-up"
+        data-aos-offset="150">
         <div class="flex justify-between items-center uppercase">
           <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">
             New Arrivals
