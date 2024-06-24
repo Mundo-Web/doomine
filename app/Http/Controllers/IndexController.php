@@ -623,6 +623,13 @@ class IndexController extends Controller
 
     return response()->json($resultados);
   }
+
+  public function librodereclamaciones()
+  {
+    $departamentofiltro = DB::select('select * from departments where active = ? order by 2', [1]);
+    $general = General::all()->first();
+    return view('public.librodereclamaciones', compact('departamentofiltro', 'general'));
+  }
   //  --------------------------------------------
   /**
    * Show the form for creating a new resource.

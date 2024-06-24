@@ -28,7 +28,7 @@
             </div>
 
             <div class="absolute inset-0 flex items-center justify-center text-textWhite">
-              <div class="flex flex-col w-full md:w-2/3 lg:w-1/2">
+              <div class="flex flex-col w-full md:w-2/3 lg:w-1/2" data-aos="zoom-out-right">
                 <p
                   class="font-mediumDisplay text-text16 md:text-text20 lg:text-text24 xl:text-text36 italic leading-none w-5/6 mx-auto md:w-full md:mx-0">
                   {{ $item->subtitle }}
@@ -81,7 +81,7 @@
                 <div class="p-5 text-xl font-bold">No tienes categorías visibles</div>
             </div> --}}
     @else
-      <section class="w-11/12 mx-auto flex flex-col gap-10">
+      <section class="w-11/12 mx-auto flex flex-col gap-10" data-aos="fade-up" data-aos-offset="150">
         <div class="flex justify-between items-center uppercase">
           <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28">
             Categorías
@@ -97,7 +97,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             @foreach ($category->take(1) as $index => $item)
               <div class="col-span-1 md:col-span-2 row-span-1  flex flex-col justify-between">
-                <div class="product_container">
+                <div class="product_container " data-aos="fade-up" data-aos-offset="150">
                   @if ($item->name_image)
                     <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
                       class="w-full h-[270px] md:h-[500px] object-cover" />
@@ -129,7 +129,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             @foreach ($category->take(2) as $index => $item)
               <div class="col-span-1 row-span-1  flex flex-col justify-between">
-                <div class="product_container">
+                <div class="product_container" data-aos="fade-up" data-aos-offset="150">
                   @if ($item->name_image)
                     <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
                       class="w-full h-[270px] md:h-[500px] object-cover" />
@@ -162,7 +162,7 @@
             @foreach ($category->take(3) as $index => $item)
               <div
                 class="col-span-1 @if ($loop->iteration == 2) row-span-2 @else row-span-1 @endif flex flex-col justify-between">
-                <div class="product_container">
+                <div class="product_container" data-aos="fade-up" data-aos-offset="150">
                   @if ($item->name_image)
                     <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
                       class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
@@ -200,7 +200,7 @@
                 <div class="p-5 text-xl font-bold">No tienes productos visibles</div>
             </div> --}}
     @else
-      <section class="w-11/12 mx-auto flex flex-col gap-10" id="new_arrivals">
+      <section class="w-11/12 mx-auto flex flex-col gap-10" id="new_arrivals" data-aos="fade-up" data-aos-offset="150">
         <div class="flex justify-between items-center uppercase">
           <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">
             New Arrivals
@@ -212,7 +212,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5" data-aos="fade-up" data-aos-offset="150">
           @foreach ($newarrival->take(4) as $item)
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
@@ -286,7 +286,7 @@
     @if ($liquidacion->isEmpty())
     @else
       @foreach ($liquidacion as $item)
-        <section class="w-11/12 mx-auto flex flex-col gap-10">
+        <section class="w-11/12 mx-auto flex flex-col gap-10" data-aos="fade-up" data-aos-offset="150">
           <div class="relative">
             <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name_image }}"
               class="w-full h-full hidden md:block" />
@@ -321,7 +321,7 @@
                <div class="p-5 text-xl font-bold">No tienes productos visibles</div>
            </div> --}}
     @else
-      <section class="w-11/12 mx-auto flex flex-col gap-10">
+      <section class="w-11/12 mx-auto flex flex-col gap-10" data-aos="fade-up" data-aos-offset="150">
         <div class="flex justify-between items-center uppercase">
           <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">
             Lo más pedido

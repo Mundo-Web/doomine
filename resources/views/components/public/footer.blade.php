@@ -77,6 +77,8 @@
 
           <a href="/terminos-y-condiciones">Términos y condiciones</a>
           <a href="/politicas-de-devolucion">Política de privacidad</a>
+          <a href="/libro-de-reclamaciones">Libro de
+            Reclamaciones</a>
         </div>
       </div>
 

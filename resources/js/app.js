@@ -13,6 +13,14 @@ import 'aos/dist/aos.css'
 import Aos from 'aos';
 Aos.init();
 
+// Reference from published scripts
+// require('./vendor/livewire-ui/modal');
+// Reference from vendor
+// require('../../vendor/livewire-ui/modal/resources/js/modal');
+
+// import './vendor/livewire-ui/modal'
+// import '../../vendor/livewire-ui/modal/resources/js/modal'
+
 
 
 

@@ -1,4 +1,5 @@
 <x-app-layout>
+
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
     <section class="py-4 border-b border-slate-100 dark:border-slate-700">
@@ -33,6 +34,8 @@
                 <th>Stock</th>
                 {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
+                <th>Galeria</th>
+
                 <th>Lo más pedido</th>
                 <th>Novedad</th>
                 <th>Liquidacion</th>
@@ -42,7 +45,7 @@
             </thead>
             <tbody>
 
-              @foreach ($products as $item)
+              @foreach ($products as $index => $item)
                 <tr>
                   <td>{{ $item->producto }}</td>
                   {{-- <td>{{ $item->extract }}</td> --}}
@@ -60,6 +63,15 @@
                     @endforeach
 
 
+                  </td>
+                  <td id="{{ $item->id }}">
+                    @if ($item->images->count() > 0)
+                      <!-- Botón para abrir el modal -->
+                      <div class="cursor-pointer bg-green-300 px-3 py-2 rounded text-white hover:bg-green-600 w-10"
+                        onclick="openModal({{ $item->images }} , '{{ config('app.url') }}')">
+                        <i class="fa-regular fa-eye"></i>
+                      </div>
+                    @endif
                   </td>
                   <td>
                     <form method="POST" action="">
@@ -151,6 +163,7 @@
                 <th>Stock</th>
                 {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
+                <th>Galeria</th>
                 <th>Lo más pedido</th>
                 <th>Novedad</th>
                 <th>Liquidacion</th>
@@ -165,15 +178,143 @@
     </div>
 
   </div>
+  {{--  <x-modal.content id="landings-modal" title="Nueva landing" btn-submit-text="Guardar" size="xl">
+    <div class="grid gap-4 grid-cols-2">
+      <div>
+
+      </div>
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Previsualizacion
+        </label>
+        <iframe class="shadow rounded-md" id="modal-previewer" src=""
+          style="width: 100%; height: 330px; border: none;"></iframe>
+      </div>
+    </div>
+  </x-modal.content> --}}
+
+
+
 
 
 
 </x-app-layout>
+
+
+<!-- Fondo oscuro -->
+<div id="modalImg" class="hidden">
+  <div class=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <!-- Modal -->
+  <div class=" fixed inset-0 z-30 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+              <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Visualizar imagenes</h3>
+              <div class="mt-2 " id="containerImg">
+                {{--  @foreach ($imagenes as $item)
+                  <img src="{{ asset($item['name_imagen']) }}" alt="{{ asset($item['name_imagen']) }}"
+                    class="w-10 h-10 object-cover">
+                @endforeach --}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <button onclick="closeModal()" type="button"
+            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 <script>
-  $('document').ready(function() {
+  function openModal(imagenes, app_url) {
+    // Aquí puedes usar los parámetros `id` y `imagenes` si necesitas personalizar el modal
+
+    let container = document.createElement('div')
+    container.classList.add('grid', 'grid-cols-1', 'md:grid-cols-4', 'gap-2', 'mt-2',
+      'justify-items-center'); // Agregar clases de grid
+
+    imagenes.forEach(element => {
+      let img = document.createElement('img');
+      img.setAttribute('src', `${app_url}/${element.name_imagen}`);
+      img.classList.add('w-32', 'h-32', 'rounded-xl', 'object-cover'); // Ajustar tamaño y estilo de imagen
+      container.appendChild(img);
+    });
+
+    $('#containerImg').html(container)
+
+    $('#modalImg').removeClass('hidden');
+
+  }
+
+  function closeModal() {
+    $('#modalImg').addClass('hidden');
+  }
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $(document).on("click", '#btngaleria', function() {
+
+      console.log(this.getAttribute('data-Image'))
+    })
 
     new DataTable('#tabladatos', {
-      responsive: true
+      //   responsive: true
+      // buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+      layout: {
+        topStart: 'buttons'
+      },
+      language: {
+        "lengthMenu": "Mostrar _MENU_ registros",
+        "zeroRecords": "No se encontraron resultados",
+        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sSearch": "Buscar:",
+        "sProcessing": "Procesando...",
+      },
+      buttons: [{
+          extend: 'excelHtml5',
+          text: '<i class="fas fa-file-excel"></i> ',
+          titleAttr: 'Exportar a Excel',
+          className: 'btn btn-success',
+        },
+        {
+          extend: 'pdfHtml5',
+          text: '<i class="fas fa-file-pdf"></i> ',
+          titleAttr: 'Exportar a PDF',
+        },
+        {
+          extend: 'csvHtml5',
+          text: '<i class="fas fa-file-csv"></i> ',
+          titleAttr: 'Imprimir',
+          className: 'btn btn-info',
+        },
+        {
+          extend: 'print',
+          text: '<i class="fa fa-print"></i> ',
+          titleAttr: 'Imprimir',
+          className: 'btn btn-info',
+        },
+        {
+          extend: 'copy',
+          text: '<i class="fas fa-copy"></i> ',
+          titleAttr: 'Copiar',
+          className: 'btn btn-success',
+        },
+      ]
     });
 
     $(".btn_swithc").on("change", function() {

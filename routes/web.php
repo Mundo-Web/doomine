@@ -28,6 +28,7 @@ use App\Http\Controllers\GalerieController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LibroReclamacionesController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PolyticsConditionController;
@@ -91,8 +92,12 @@ Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('pr
 
 Route::get('/politicas-de-devolucion', [IndexController::class, 'politicasDevolucion'])->name('politicas_dev');
 Route::get('/terminos-y-condiciones', [IndexController::class, 'TerminosyCondiciones'])->name('terms_condition');
+Route::get('/libro-de-reclamaciones', [IndexController::class, 'librodereclamaciones'] )->name('librodereclamaciones');
 
 
+Route::get('/obtenerProvincia/{departmentId}', [IndexController::class, 'obtenerProvincia'])->name('obtenerProvincia');
+Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDistritos'])->name('obtenerDistritos');
+Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
 
 
 
@@ -215,7 +220,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/orders', [PedidosController::class, 'listadoPedidos'])->name('orders');
         Route::get('/orders/{id}', [PedidosController::class, 'verPedido'])->name('verPedido');
         
-        
+        Route::post('guardarformulario', [LibroReclamacionesController::class, 'storePublic'] )->name('guardarFormReclamo');
+
+        Route::resource('/reclamo', LibroReclamacionesController::class);
+        Route::post('/reclamo/borrar', [LibroReclamacionesController::class, 'borrar'])->name('reclamo.borrar');
 
         Route::fallback(function() {
             return view('pages/utility/404');
@@ -238,9 +246,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
  Route::post('/micuenta/direccion/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
  Route::post('/micuenta/pedidos/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
 
- Route::get('/obtenerProvincia/{departmentId}', [IndexController::class, 'obtenerProvincia'])->name('obtenerProvincia');
- Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDistritos'])->name('obtenerDistritos');
- Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
+
 
  Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'] )->name('actualizarPerfil');
 
