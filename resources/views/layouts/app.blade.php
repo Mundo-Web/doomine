@@ -100,7 +100,7 @@
 
   </div>
 
-  @livewire('wire-elements-modal')
+
   @livewireScripts
   @yield('scripts_importados')
 
