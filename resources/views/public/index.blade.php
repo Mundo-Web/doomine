@@ -271,7 +271,7 @@
                 <div class="flex gap-3 flex-wrap">
                   @if (!is_null($item->tags))
                     @foreach ($item->tags as $tag)
-                      <div class="bg-white  rounded-md py-1 px-2">
+                      <div class="bg-white  rounded-md py-1 px-2 hidden">
                         <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
                           {{ $tag->name }}
                         </p>
@@ -390,7 +390,7 @@
               <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
                 <div class="flex gap-3 flex-wrap">
                   @foreach ($item->tags as $tag)
-                    <div class="bg-white  rounded-md py-1 px-2">
+                    <div class="bg-white  rounded-md py-1 px-2 hidden">
                       <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
                         {{ $tag->name }}
                       </p>
