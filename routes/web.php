@@ -63,6 +63,9 @@ Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicio
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
+Route::get('/preguntasFrecuentes', [IndexController::class, 'preguntasFrecuentes'] )->name('preguntasFrecuentes');
+
+
 
 
 /* Proceso de pago */

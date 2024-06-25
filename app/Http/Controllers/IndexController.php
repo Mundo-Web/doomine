@@ -72,6 +72,13 @@ class IndexController extends Controller
     return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
+  public function preguntasFrecuentes(){
+
+    $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
+
+    return view('public.faqs',compact('faqs'));
+  }
+
   public function coleccion($filtro)
   {
     try {
