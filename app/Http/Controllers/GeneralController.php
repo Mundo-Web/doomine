@@ -6,6 +6,7 @@ use App\Http\Requests\StoreGeneralRequest;
 use App\Http\Requests\UpdateGeneralRequest;
 use App\Models\General;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 
 class GeneralController extends Controller
@@ -98,5 +99,31 @@ class GeneralController extends Controller
   public function destroy(General $general)
   {
     //Este es el proceso que borra
+  }
+
+  public function updateJson(Request $request)
+  {
+    try {
+      // Ruta del archivo JSON
+      $route = resource_path('views/pages/general/newArrials.json');
+
+      // Leer el contenido del archivo
+      $file = File::get($route);
+      $archivoArray = json_decode($file, true);
+
+      // Actualizar valores json 
+      $archivoArray['newArribals']['FondoNum'] = $request->numFondo;
+      $archivoArray['newArribals']['titulo'] = $request->textoPrincipal;
+
+
+      // Guardar los cambios en el archivo JSON
+
+      File::put($route, json_encode($archivoArray, JSON_PRETTY_PRINT));
+
+      return response()->json(['message' => 'Json Actualizado']);
+    } catch (\Throwable $th) {
+      //throw $th;
+      return response()->json(['message' => $th], 400);
+    }
   }
 }

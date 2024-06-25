@@ -1,4 +1,15 @@
 <x-app-layout>
+
+  @php
+
+    $route = resource_path('views/pages/general/newArrials.json');
+    $file = file_get_contents($route);
+    $archivoArray = json_decode($file, true);
+
+    // Convertir el array en un objeto
+    $archivoObjeto = (object) $archivoArray;
+
+  @endphp
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
     <form action="{{ route('datosgenerales.update', $general->id) }}" method="POST">
       @csrf
@@ -434,6 +445,91 @@
           </div>
         </div>
       </div>
+      <div
+        class="mt-3 col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
+        <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
+          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">New Arrivals</h2>
+        </header>
+
+        <div class="p-3">
+
+          <div>
+
+            <div class="flex items-center justify-center">
+              <div>
+                <div>
+                  <div>
+
+                    <div class=" rounded shadow-lg p-4 px-4 ">
+                      <div class="grid gap-4 gap-y-2 text-sm grid-cols-1">
+
+                        <div class="lg:col-span-5">
+                          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+
+                            <h2 class="md:col-span-5 text-lg font-semibold text-slate-800 dark:text-white">
+                              Información de New Arrivals (Novedades)</h2>
+
+                            <div class="md:col-span-2">
+                              <label for="address">Texto Principal</label>
+                              <div class="relative mb-2 ">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                  <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
+                                    </path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
+                                    </path>
+                                  </svg>
+                                </div>
+                                <input type="text" id="textoPrincipal" name="textoPrincipal"
+                                  value="{{ $archivoObjeto->newArribals['titulo'] }}"
+                                  class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                  placeholder="name@flowbite.com">
+                              </div>
+                            </div>
+
+                            <div class="md:col-span-1">
+                              <label for="inside">Numero de fondo</label>
+                              <div class="relative mb-2">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                  <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
+                                    </path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
+                                    </path>
+                                  </svg>
+                                </div>
+                                <input type="number" id="numFondo" name="numFondo"
+                                  value="{{ $archivoObjeto->newArribals['FondoNum'] }}"
+                                  class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                  placeholder="Interior Oficina 204 - Piso 4">
+                              </div>
+                            </div>
+
+
+
+
+                            <div class="md:col-span-5 text-right mt-6">
+                              <div class="inline-flex items-end">
+                                <button id="newArrivals"
+                                  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Actualizar
+                                  datos New Arrivals </button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
 
   </div>
@@ -470,6 +566,53 @@
 
 
     });
+  </script>
+
+  <script>
+    $('#newArrivals').on('click', function(e) {
+      console.log('actualizando dato sdel json')
+      e.preventDefault()
+      // slider.updateJson
+
+      let textoPrincipal = $("#textoPrincipal").val()
+      let numFondo = $("#numFondo").val()
+
+
+      let formData = new FormData();
+      formData.append('_token', $('input[name="_token"]').val());
+      formData.append('textoPrincipal', textoPrincipal);
+      formData.append('numFondo', numFondo);
+
+
+      $.ajax({
+        url: "{{ route('newArribals.updateJson') }}",
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          Swal.fire({
+
+            icon: "success",
+            title: 'New Arribals Actualizado Correctamente',
+
+          });
+
+
+        },
+        error: function(response) {
+
+          Swal.close();
+          Swal.fire({
+            title: response.responseJSON.message,
+            icon: "error",
+          });
+
+
+
+        }
+      })
+    })
   </script>
 
 

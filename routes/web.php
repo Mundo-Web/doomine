@@ -129,6 +129,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Datos Generales
         Route::resource('/datosgenerales', GeneralController::class);
+        
+        Route::post('/datosgenerales/json', [GeneralController::class, 'updateJson'])->name('newArribals.updateJson');
+
 
         //Testimonies
         Route::resource('/testimonios', TestimonyController::class);

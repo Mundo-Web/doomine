@@ -4,24 +4,74 @@
 @section('css_importados')
 
 @stop
+@php
 
+  $route = resource_path('views/pages/general/newArrials.json');
+  $file = file_get_contents($route);
+  $archivoArray = json_decode($file, true);
+
+  // Convertir el array en un objeto
+  $archivoObjeto = (object) $archivoArray;
+
+@endphp
 
 @section('content')
+  <style>
+    .background-container {
+      position: relative;
+      width: 529px;
+      height: 378px;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-left: 10%
+        /* border: 1px solid #ccc; */
+    }
 
+    .background-text {
+      font-size: 508px;
+      color: #212121;
+      top: -59%;
+      left: -1%;
+      font-weight: 600;
+      /* Color oscuro con opacidad */
+      position: absolute;
+      z-index: 1;
+    }
+
+    .foreground-text {
+      font-size: 50px;
+      color: white;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
 
 
   <main class="bg-bgBlack -mb-12">
     <section class="uppercase italic text-white">
       <div class="w-full md:w-1/2 mx-auto text-center">
-        <div class="flex justify-center items-center relative">
-          <img src="{{ asset('images/img/anio_24.png') }}" alt="doomine" />
+        <div class="background-container">
+          <div class="background-text">{{ $archivoObjeto->newArribals['FondoNum'] }}</div>
+          <h2 class="font-boldItalicDisplay text-text40 md:text-text64 xl:text-text68 z-10">
+            {{ $archivoObjeto->newArribals['titulo'] }}
+          </h2>
+        </div>
+        {{-- <div class="flex justify-center items-center relative"> --}}
+        {{-- <img src="{{ asset('images/img/anio_24.png') }}" alt="doomine" /> --}}
+        {{-- <div class="text-container">
+            <p>24</p>
+          </div>
 
           <div class="absolute flex flex-col justify-center items-center ">
             <h2 class="font-boldItalicDisplay text-text40 md:text-text64 xl:text-text68">
               New Arrivals
             </h2>
-          </div>
-        </div>
+          </div> 
+        </div> --}}
       </div>
     </section>
 
