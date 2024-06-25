@@ -1,4 +1,4 @@
-console.log(appUrl);
+
 let articulosCarrito = [];
 
     function mostrarTotalItems() {
@@ -238,8 +238,7 @@ let articulosCarrito = [];
             talla: talla.trim()
           }
 
-          console.log(detalleProducto)
-          console.log(articulosCarrito)
+         
 
           // validar si es un color diferente y pintarlo 
           let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id && 

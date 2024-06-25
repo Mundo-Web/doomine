@@ -461,8 +461,21 @@
 
   <script>
     $(document).ready(function() {
+      let urlCatalogo = window.location.href;
+      let lastSegment = urlCatalogo.split('/').pop();
+
+      $('.changeCategory').each(function() {
+        if ($(this).val() == lastSegment) {
+          $(this).prop('checked', true);
+          return false; // Termina el bucle each después de encontrar el primer elemento coincidente
+        }
+      });
+
       function updateCategoriesField() {
+
         var selectedCategories = [];
+
+
         $('.changeCategory:checked').each(function() {
           selectedCategories.push($(this).val());
         });
