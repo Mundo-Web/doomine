@@ -380,7 +380,9 @@
 @section('scripts_importados')
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    $(document).ready(function() {
+
+
       // Captura el click de abrir
       /*  const openModal = document.querySelector(".mostrar-modal"); */
       // Captura al modal que se quiere mostrar
@@ -422,7 +424,10 @@
       function showModal(e) {
         e.preventDefault();
 
-        addCategoriaPrecio.innerHTML = showCategoriaPrecio.innerHTML;
+        if (showCategoriaPrecio) {
+          addCategoriaPrecio.innerHTML = showCategoriaPrecio.innerHTML;
+        }
+
         hiddenCategoriaPrecio.innerHTML = "";
 
         modal.classList.add("modal--show-filtro");
@@ -482,7 +487,7 @@
         $('#get_categories').val(selectedCategories.join(','));
       }
       updateCategoriesField();
-      $('.changeCategory').on('change', function() {
+      $(document).on('change', '.changeCategory', function() {
         updateCategoriesField();
         FilterForm();
       });
@@ -495,7 +500,7 @@
         $('#get_precios').val(selectedPrice.join(','));
       }
       updatePriceField();
-      $('.changePrice').on('change', function() {
+      $(document).on('change', '.changePrice', function() {
         updatePriceField();
         FilterForm();
       });
@@ -508,7 +513,7 @@
         $('#get_tallas').val(selectedTallas.join(','));
       }
       updateTallaField();
-      $('.changeTallas').on('change', function() {
+      $(document).on('change', '.changeTallas', function() {
         updateTallaField();
         FilterForm();
       });
@@ -521,13 +526,13 @@
         $('#get_colecciones').val(selectedCollection.join(','));
       }
       updateCollectionField();
-      $('.changeCollection').on('change', function() {
+      $(document).on('change', '.changeCollection', function() {
         updateCollectionField();
         FilterForm();
       });
 
 
-      $('.colores').on('change', function() {
+      $(document).on('change', '.colores', function() {
         if ($(this).is(':checked')) {
           $('.labelcolor').addClass('border-black');
         } else {

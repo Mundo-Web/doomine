@@ -442,12 +442,10 @@
 
 <script>
   $('.bag__modal').on('click', function() {
-    console.log('abriendo carrito ');
     $('.main').addClass('blur')
     $('footer').addClass('blur');
   })
   $('#closeCarrito').on('click', function() {
-    console.log('cerrando  carrito ');
 
     $('.cartContainer').addClass('hidden')
     $('#check').prop('checked', false);
