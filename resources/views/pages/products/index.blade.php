@@ -53,7 +53,24 @@
                   <td>{{ $item->precio }}</td>
                   <td>{{ $item->descuento }}</td>
                   {{-- <td>{{ $item->costo_x_art }}</td> --}}
-                  <td>{{ $item->stock }}</td>
+                  <td>
+                    @php
+                      // Declara la variable de ámbito local antes del bucle
+                      $totalStock = 0;
+                    @endphp
+
+                    @foreach ($item->combinations as $comb)
+                      @php
+                        // Suma el stock actual al total
+                        $totalStock += $comb->stock;
+                      @endphp
+
+                      <!-- Aquí puedes poner el código HTML que necesitas para cada combinación -->
+                    @endforeach
+
+                    <!-- Después del bucle, puedes usar la variable totalStock -->
+                    <p>{{ $totalStock }}</p>
+                  </td>
                   {{-- <td>{{ $item->peso }}</td> --}}
                   <td class="px-3 py-2">
                     @foreach ($item->images as $imagen)
