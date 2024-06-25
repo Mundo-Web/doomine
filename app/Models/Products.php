@@ -27,7 +27,8 @@ class Products extends Model
     'peso',
     'categoria_id',
     'collection_id',
-    'sku'
+    'sku',
+    'order'
   ];
 
 
@@ -150,7 +151,7 @@ class Products extends Model
           ->where('products.visible', '=', 1)
           ->with('tags')
           ->groupBy('products.id')
-          ->orderBy('products.id', 'desc')
+          ->orderBy('products.order', 'ASC')
           ->paginate(8);
 
     return $return;

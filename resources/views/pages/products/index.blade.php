@@ -25,6 +25,7 @@
           <table id="tabladatos" class="display text-lg" style="width:100%">
             <thead>
               <tr>
+                <th>Orden</th>
                 <th>Producto</th>
                 {{-- <th>Extracto</th> --}}
                 {{-- <th>Descripcion</th> --}}
@@ -47,6 +48,7 @@
 
               @foreach ($products as $index => $item)
                 <tr>
+                  <td>{{ $item->order }}</td>
                   <td>{{ $item->producto }}</td>
                   {{-- <td>{{ $item->extract }}</td> --}}
                   {{-- <td>{{ $item->description }}</td> --}}
@@ -171,6 +173,7 @@
             </tbody>
             <tfoot>
               <tr>
+                <th>Orden</th>
                 <th>Producto</th>
                 {{-- <th>Extracto</th> --}}
                 {{-- <th>Descripcion</th> --}}
