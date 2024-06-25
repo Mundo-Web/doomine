@@ -634,9 +634,11 @@ class IndexController extends Controller
   /**
    * Show the form for creating a new resource.
    */
-  public function create()
+  public function politicaDeCambio()
   {
-    //
+    // 
+    $politicasCambio =  DB::select('select * from politicas_de_cambio  limit 1' );
+    return view("public.politicadeCambio", compact('politicasCambio'));
   }
 
   /**

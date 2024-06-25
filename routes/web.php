@@ -31,6 +31,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LibroReclamacionesController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\PoliticasdeCambioController;
 use App\Http\Controllers\PolyticsConditionController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
@@ -98,6 +99,8 @@ Route::get('/libro-de-reclamaciones', [IndexController::class, 'librodereclamaci
 Route::get('/obtenerProvincia/{departmentId}', [IndexController::class, 'obtenerProvincia'])->name('obtenerProvincia');
 Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDistritos'])->name('obtenerDistritos');
 Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
+Route::get('/politica-cambio/', [IndexController::class, 'politicaDeCambio'])->name('politicaDeCambio');
+
 
 
 
@@ -225,12 +228,14 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/reclamo', LibroReclamacionesController::class);
         Route::post('/reclamo/borrar', [LibroReclamacionesController::class, 'borrar'])->name('reclamo.borrar');
 
+        Route::get('/politica-cambio',[PoliticasdeCambioController::class, 'index'])->name('politicadeCambio.index');
+        Route::post('/politica-cambio/guardar/{id}',[PoliticasdeCambioController::class, 'guardar'])->name('politicadeCambio.guardar');
+
         Route::fallback(function() {
             return view('pages/utility/404');
         });
         
     });
-
     
 });
 

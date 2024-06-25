@@ -16,7 +16,7 @@
 
         <div class="grid grid-cols-1 ">
 
-          {!! $politicDev->content ?? '' !!}
+          {!! $politicasCambio[0]->content ?? '' !!}
 
         </div>
       </div>
