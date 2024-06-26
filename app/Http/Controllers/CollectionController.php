@@ -108,6 +108,7 @@ class CollectionController extends Controller
         $collection->name = $request->name;
         $collection->description = $request->description;
         $collection->slug = $slug;
+        $collection->number = $request->number;
         $collection->status = 1;
         $collection->visible = 1;
 
@@ -183,6 +184,9 @@ class CollectionController extends Controller
         $collection->name = $request->name;
         $collection->description = $request->description;
         $collection->slug = $slug;
+       
+        $collection->number = $request->number;
+
 
         $collection->save();
 

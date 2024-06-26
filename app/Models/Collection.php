@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Collection extends Model
 {
     use HasFactory;
-    protected $fillable=['name','slug', 'description', 'url_image', 'name_image','destacar', 'visible', 'state'];
+    protected $fillable=['name','slug', 'description', 'url_image', 'name_image','destacar', 'visible', 'state' , 'number'];
 
     public function productos()
     {

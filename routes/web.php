@@ -22,6 +22,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\DescargarPdfController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalerieController;
@@ -129,6 +130,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Datos Generales
         Route::resource('/datosgenerales', GeneralController::class);
+        Route::post('/datosgenerales/statusBaner',[ GeneralController::class,'statusBaner'])->name('datosgenerales.statusBaner');
         
         Route::post('/datosgenerales/json', [GeneralController::class, 'updateJson'])->name('newArribals.updateJson');
 
@@ -236,6 +238,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         Route::get('/politica-cambio',[PoliticasdeCambioController::class, 'index'])->name('politicadeCambio.index');
         Route::post('/politica-cambio/guardar/{id}',[PoliticasdeCambioController::class, 'guardar'])->name('politicadeCambio.guardar');
+
+        Route::post('/descargarpdf/detalleOrdenes/{id}',[DescargarPdfController::class, '__invoke'])->name('descargarPdf.ordenes');
 
         Route::fallback(function() {
             return view('pages/utility/404');

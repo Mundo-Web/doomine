@@ -19,7 +19,7 @@
   <style>
     .background-container {
       position: relative;
-      width: 529px;
+      /* width: 529px; */
       height: 378px;
       background-color: black;
       display: flex;

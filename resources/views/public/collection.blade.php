@@ -6,13 +6,69 @@
 
 
 @section('content')
+  <style>
+    .background-container {
+      position: relative;
+      /* width: 600px; */
+      height: 360px;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-left: 10%
+        /* border: 1px solid #ccc; */
+    }
 
+    .background-text {
+      font-size: 508px;
+      color: #212121;
+
+
+      font-weight: 600;
+      /* Color oscuro con opacidad */
+      position: absolute;
+      z-index: 1;
+    }
+
+    .foreground-text {
+      font-size: 50px;
+      color: white;
+      font-weight: bold;
+      position: relative;
+      z-index: 20;
+    }
+  </style>
 
 
   <main class="bg-bgBlack -mb-12">
     <section class="uppercase italic text-white">
       <div class="w-full md:w-1/2 mx-auto text-center">
-        <div class="flex justify-center items-center relative">
+        <div class="background-container">
+          <div class="absolute flex flex-col justify-center items-center">
+            <div class="background-text">{{ $collection->number }}</div>
+
+
+            <h2 class="font-boldItalicDisplay text-text40 md:text-text64 xl:text-text68 z-10">
+              @if ($filtro == 0)
+                Colecciones
+              @else
+                {{ $collection->name }}
+              @endif
+            </h2>
+            <p class="font-regularItalicDisplay text-text16 md:text-text28 z-10">
+              @if ($filtro == 0)
+                Todas las colecciones
+              @else
+                {{ $collection->description }}
+              @endif
+            </p>
+          </div>
+
+
+        </div>
+        {{-- <div class="flex justify-center items-center relative">
+          
           <img src="{{ asset('images/img/anio_24.png') }}" alt="doomine" />
 
           <div class="absolute flex flex-col justify-center items-center">
@@ -31,28 +87,28 @@
               @endif
             </p>
           </div>
-        </div>
+        </div> --}}
       </div>
     </section>
 
     <section>
       @if ($filtro == 0)
         <div class="hidden md:block">
-          <img src="{{ asset('images/img/colection_1.png') }}" alt="colection" class="w-full h-full" />
+          <img src="{{ asset('images/img/colection_1.png') }}" alt="colection" class="w-full h-full object-cover" />
         </div>
 
         <div class="block md:hidden">
-          <img src="{{ asset('images/img/colection_2.png') }}" alt="colection" class="w-full h-full" />
+          <img src="{{ asset('images/img/colection_2.png') }}" alt="colection" class="w-full h-full object-cover" />
         </div>
       @else
         <div class="hidden md:block">
           <img src="{{ asset($collection->url_image . $collection->name_image) }}" alt="colection"
-            class="w-full h-full" />
+            class="w-full h-full object-cover" />
         </div>
 
         <div class="block md:hidden">
           <img src="{{ asset($collection->url_image2 . $collection->name_image2) }}" alt="colection"
-            class="w-full h-full" />
+            class="w-full h-full object-cover" />
         </div>
       @endif
 
@@ -74,11 +130,12 @@
           <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
             <div class="product_container">
               @foreach ($item->images as $image)
-                  @if($image->caratula == 1)
-                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full" />
-                  @endif
+                @if ($image->caratula == 1)
+                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
+                    class="w-full h-full object-cover" />
+                @endif
               @endforeach
-              
+
               <div class="addProduct text-center flex justify-center">
                 <a href="{{ route('producto', $item->id) }}"
                   class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 lg:px-5 flex-initial w-32 md:w-36 lg:py-3 lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
