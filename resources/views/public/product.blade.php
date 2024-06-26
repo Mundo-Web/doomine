@@ -254,7 +254,7 @@
 
     <section class="w-11/12 mx-auto flex flex-col gap-5 pt-10">
       <div>
-        <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine" class="w-full h-full hidden md:block" />
+        <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine" class="w-full h-full hidden md:block   " />
 
         <img src="{{ asset('images/img/mobile_foto.png') }}" alt="doomine" class="w-full h-full block md:hidden" />
       </div>
@@ -326,8 +326,10 @@
         images.forEach(element => {
           if (element.type_imagen == 'primary') {
             html += `
-                          <div class="flex flex-col gap-5 relative ">
-                            <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class=" w-full h-72 md:h-96  object-cover" />
+                          <div class="flex flex-col gap-5 relative  container-enlarge">
+                            <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" 
+                            class=" w-full h-72 md:h-96  object-cover" />
+                            <span><img class="shadow-2xl rounded-sm w-full h-75dvh md:h-75dvh object-cover " src="{{ asset('${element.name_imagen}') }}"></span>
                           </div>
                       `;
           }
@@ -336,7 +338,7 @@
             html += ` <div >
                         <div class="container-enlarge">
                           <img class="w-full h-72 md:h-96 object-cover" src="{{ asset('${element.name_imagen}') }}">
-                          <span><img class="w-full h-72 md:h-75dvh object-cover " src="{{ asset('${element.name_imagen}') }}"></span>
+                          <span><img class="shadow-2xl rounded-sm w-full h-75dvh md:h-75dvh object-cover " src="{{ asset('${element.name_imagen}') }}"></span>
                         </div>
                       </div>
                       `;
