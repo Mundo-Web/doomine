@@ -212,9 +212,9 @@ class SliderController extends Controller
     {
         $cantidad = $this->contarSliderVisible();
 
-        if ($cantidad >= 1 && $request->status == 1) {
+        /* if ($cantidad >= 1 && $request->status == 1) {
             return response()->json(['message' => 'Solo puedes hacer visible 1 slider'], 409);
-        }
+        } */
 
         $id = $request->id;
         $field = $request->field;
