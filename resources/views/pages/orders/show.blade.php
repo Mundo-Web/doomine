@@ -8,7 +8,7 @@
         <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl">Pedido #{{ $orders->codigo_orden }}
         </h2>
 
-        <button id="imprimirPedido" type="button" class="bg-blue-500 px-3 py-2 rounded text-white cursor-pointer">
+        {{-- <button id="imprimirPedido" type="button" class="bg-blue-500 px-3 py-2 rounded text-white cursor-pointer">
           Imprimir
           <div class="px-5"><svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -17,7 +17,7 @@
             </svg>
           </div>
 
-        </button>
+        </button> --}}
 
       </header>
       <div class="p-6">
