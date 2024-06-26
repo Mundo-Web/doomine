@@ -14,67 +14,84 @@
                 <div class="p-5 text-xl font-bold">No tienes sliders visibles</div>
             </div> --}}
     @else
-      @foreach ($slider as $item)
-        <section>
-          <div class="w-full md:w-11/12 mx-auto relative z-0">
-            <div class="grid grid-cols-1 md:grid-cols-2" data-aos="fade-up" data-aos-offset="150">
-              <div class="flex justify-center items-center">
-                <img src="{{ asset($item->url_image . $item->name_image) }}" alt="domine summer" class="w-full h-full" />
-              </div>
+      <section>
+        <div class=" ">
+          <div class="w-full md:w-11/12 mx-auto swiper slider__headers  ">
+            <div class="swiper-wrapper ">
+              @foreach ($slider as $item)
+                <div class="swiper-slide ">
+                  <div class="grid grid-cols-1 md:grid-cols-2" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center">
+                      <img src="{{ asset($item->url_image . $item->name_image) }}" alt="domine summer"
+                        class="w-full h-full" />
+                    </div>
 
-              <div class="hidden md:flex justify-center items-center">
-                <img src="{{ asset($item->url_image2 . $item->name_image2) }}" alt="domine summer"
-                  class="w-full h-full" />
-              </div>
-            </div>
+                    <div class="hidden md:flex justify-center items-center">
+                      <img src="{{ asset($item->url_image2 . $item->name_image2) }}" alt="domine summer"
+                        class="w-full h-full" />
+                    </div>
+                  </div>
 
-            <div class="absolute inset-0 flex items-center justify-center text-textWhite">
-              <div class="flex flex-col w-full md:w-2/3 lg:w-1/2" data-aos="zoom-out-right">
-                <p
-                  class="font-mediumDisplay text-text16 md:text-text20 lg:text-text24 xl:text-text36 italic leading-none w-5/6 mx-auto md:w-full md:mx-0">
-                  {{ $item->subtitle }}
-                </p>
-                <p
-                  class="uppercase font-regularDisplay text-text40 md:text-text48 lg:text-text60 xl:text-text80 italic leading-none w-full md:w-5/6 mx-auto lg:w-full md:mx-0 text-center md:text-left">
-                  {{ $item->title2 }}
-                </p>
-                <div class="w-5/6 mx-auto text-center md:text-left flex flex-col gap-5 lg:gap-10">
-                  <h1
-                    class="font-boldDisplay text-text68 md:text-text80 lg:text-text100 xl:text-text135 italic leading-none uppercase">
-                    {{ $item->title }}
-                  </h1>
+                  <div class="absolute inset-0 flex items-center justify-center text-textWhite">
+                    <div class="flex flex-col w-full md:w-2/3 lg:w-1/2" data-aos="zoom-out-right">
+                      <p
+                        class="font-mediumDisplay text-text16 md:text-text20 lg:text-text24 xl:text-text36 italic leading-none w-5/6 mx-auto md:w-full md:mx-0">
+                        {{ $item->subtitle }}
+                      </p>
+                      <p
+                        class="uppercase font-regularDisplay text-text40 md:text-text48 lg:text-text60 xl:text-text80 italic leading-none w-full md:w-5/6 mx-auto lg:w-full md:mx-0 text-center md:text-left">
+                        {{ $item->title2 }}
+                      </p>
+                      <div class="w-5/6 mx-auto text-center md:text-left flex flex-col gap-5 lg:gap-10">
+                        <h1
+                          class="font-boldDisplay text-text68 md:text-text80 lg:text-text100 xl:text-text135 italic leading-none uppercase">
+                          {{ $item->title }}
+                        </h1>
 
-                  <div class="lg:w-10/12 mx-auto text-center">
-                    <p class="font-regularDisplay text-text16 xl:text-text20">
-                      {{ $item->description }}
-                    </p>
+                        <div class="lg:w-10/12 mx-auto text-center">
+                          <p class="font-regularDisplay text-text16 xl:text-text20">
+                            {{ $item->description }}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="text-center mt-5 lg:mt-10">
+                        @if (!empty($item->botontext1))
+                          <a href="{{ $item->link1 }}"
+                            class="font-boldDisplay text-text16 xl:text-text24 italic inline-flex justify-center items-center py-2 px-5 border-2 border-white rounded-3xl max-w-xs gap-5 group hover:bg-bgWhite hover:text-textBlack md:duration-500">
+                            <span>{{ $item->botontext1 }}</span>
+                            <div>
+                              <svg width="40" height="40" viewBox="0 0 32 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="16.0004" cy="16" r="15.1928" transform="rotate(3.13121 16.0004 16)"
+                                  fill="white" class="group-hover:fill-bgBlack md:duration-500" />
+                                <path
+                                  d="M16.8349 12.6311L19.8902 16.2119M19.8902 16.2119L16.4626 19.4382M19.8902 16.2119L12.1107 15.7864"
+                                  stroke="black" stroke-width="1.55824" stroke-linecap="round" stroke-linejoin="round"
+                                  class="group-hover:stroke-strokeWithe md:duration-500" />
+                              </svg>
+                            </div>
+                          </a>
+                        @endif
+                      </div>
+                    </div>
                   </div>
                 </div>
+              @endforeach
 
-                <div class="text-center mt-5 lg:mt-10">
-                  @if (!empty($item->botontext1))
-                    <a href="{{ $item->link1 }}"
-                      class="font-boldDisplay text-text16 xl:text-text24 italic inline-flex justify-center items-center py-2 px-5 border-2 border-white rounded-3xl max-w-xs gap-5 group hover:bg-bgWhite hover:text-textBlack md:duration-500">
-                      <span>{{ $item->botontext1 }}</span>
-                      <div>
-                        <svg width="40" height="40" viewBox="0 0 32 32" fill="none"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="16.0004" cy="16" r="15.1928" transform="rotate(3.13121 16.0004 16)"
-                            fill="white" class="group-hover:fill-bgBlack md:duration-500" />
-                          <path
-                            d="M16.8349 12.6311L19.8902 16.2119M19.8902 16.2119L16.4626 19.4382M19.8902 16.2119L12.1107 15.7864"
-                            stroke="black" stroke-width="1.55824" stroke-linecap="round" stroke-linejoin="round"
-                            class="group-hover:stroke-strokeWithe md:duration-500" />
-                        </svg>
-                      </div>
-                    </a>
-                  @endif
-                </div>
-              </div>
             </div>
+
           </div>
-        </section>
-      @endforeach
+        </div>
+
+      </section>
+
+
+
+
+
+
+
     @endif
 
     @if ($category->isEmpty())
@@ -404,6 +421,28 @@
       </section>
     @endif
   </main>
+  <script>
+    $(document).ready(function() {
+      var swiper = new Swiper(".slider__headers", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        grabCursor: true,
+        centeredSlides: false,
+        initialSlide: 0,
+        allowTouchMove: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false
+        },
+      });
+
+    })
+
+
+    console.log(swiper)
+  </script>
 
 @section('scripts_importados')
   <script></script>
