@@ -227,7 +227,7 @@
                               @foreach ($item->attributeValues->chunk(4) as $chunk)
                                 <div class="flex flex-row  items-center gap-2">
                                   @foreach ($chunk as $valores)
-                                    <div class="flex flex-col justify-center items-center">
+                                    <div class="flex flex-col justify-center items-center text-center">
                                       <span class="">{{ $valores->valor }}</span>
                                       <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full"
                                         data-val="0" style="background-color:{{ $valores->color }};">
