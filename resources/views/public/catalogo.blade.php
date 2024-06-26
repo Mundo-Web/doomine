@@ -225,9 +225,9 @@
                           <div class="group-open:animate-fadeIn mt-5">
                             <div class="grid grid-rows-1 gap-2 place-items-center">
                               @foreach ($item->attributeValues->chunk(4) as $chunk)
-                                <div class="flex flex-row  items-center">
+                                <div class="flex flex-row  items-center gap-2">
                                   @foreach ($chunk as $valores)
-                                    <div class="flex flex-col  items-center">
+                                    <div class="flex flex-col justify-center items-center">
                                       <span class="">{{ $valores->valor }}</span>
                                       <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full"
                                         data-val="0" style="background-color:{{ $valores->color }};">
