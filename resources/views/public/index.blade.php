@@ -117,11 +117,11 @@
               <div class="col-span-1 md:col-span-2 row-span-1  flex flex-col justify-between">
                 <div class="product_container " data-aos="fade-up" data-aos-offset="150">
                   @if ($item->name_image)
-                    <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
-                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                    <a href=""><img src="{{ asset($item->url_image . $item->name_image) }}"
+                        alt="{{ $item->name }}" class="w-full h-[270px] md:h-[500px] object-cover" /></a>
                   @else
-                    <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                    <a href=""> <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                        class="w-full h-[270px] md:h-[500px] object-cover" /></a>
                   @endif
                   <div class="addProduct text-center flex justify-center">
                     <a href="{{ route('catalogo', $item->id) }}"
@@ -149,11 +149,15 @@
               <div class="col-span-1 row-span-1  flex flex-col justify-between">
                 <div class="product_container" data-aos="fade-up" data-aos-offset="150">
                   @if ($item->name_image)
-                    <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
-                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                    <a href="{{ route('catalogo', $item->id) }}">
+                      <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
+                        class="w-full h-[270px] md:h-[500px] object-cover" />
+                    </a>
                   @else
-                    <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                      class="w-full h-[270px] md:h-[500px] object-cover" />
+                    <a href="{{ route('catalogo', $item->id) }}">
+                      <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                        class="w-full h-[270px] md:h-[500px] object-cover" />
+                    </a>
                   @endif
                   <div class="addProduct text-center flex justify-center">
                     <a href="{{ route('catalogo', $item->id) }}"
@@ -182,11 +186,15 @@
                 class="col-span-1 @if ($loop->iteration == 2) row-span-2 @else row-span-1 @endif flex flex-col justify-between">
                 <div class="product_container" data-aos="fade-up" data-aos-offset="150">
                   @if ($item->name_image)
-                    <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
-                      class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                    <a href="{{ route('catalogo', $item->id) }}">
+                      <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
+                        class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                    </a>
                   @else
-                    <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                      class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                    <a href="{{ route('catalogo', $item->id) }}">
+                      <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                        class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                    </a>
                   @endif
                   <div class="addProduct text-center flex justify-center">
                     <a href="{{ route('catalogo', $item->id) }}"
