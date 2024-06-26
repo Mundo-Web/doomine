@@ -3,25 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\AddressUser;
-use App\Models\DetalleOrden;
 use App\Models\Ordenes;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PedidosController extends Controller
+use Barryvdh\DomPDF\Facade\Pdf;
+
+    
+
+class DescargarPdfController extends Controller
 {
-    public function listadoPedidos()
+    //
+    public function __invoke(Request $request, string $id)
     {
-        
-        $orders = Ordenes::with('usuarioPedido')->with('statusOrdenes')->get();
-        
-        return view('pages.orders.index', compact('orders'));  
-    }
 
+        $orders = Ordenes::findOrFail($id);
 
-    public function verPedido($id)
-    {
         $orders = Ordenes::where('id',  $id)->with('usuarioPedido')->with('statusOrdenes')->with('DetalleOrden')->first();
         
         $direccion = AddressUser::where('id', '=', $orders->address_id)->first();
@@ -41,8 +39,21 @@ class PedidosController extends Controller
                         ->where('detalle_ordens.orden_id', '=', $id)
                         ->where('imagen_productos.caratula', '=', 1)
                         ->get();
-        
-        return view('pages.orders.show', compact('orders','direccion','producto', 'subtotal', 'departamentos','provincias','distritos'));
 
+                        
+       $pdf =  Pdf::loadView('pages.orders.show', [
+            'orders'=> $orders ,
+            'direccion' => $direccion ,
+            'departamentos'=> $departamentos,
+            'provincias'=>$provincias,
+            'distritos'=>$distritos,
+            'subtotal'=>$subtotal,
+            'producto'=>$producto
+       ])->setOptions(['defaultFont' => 'sans-serif']);;
+           
+       return $pdf->download('orden.pdf');
     }
+
+    
+    
 }

@@ -1,4 +1,5 @@
 <x-app-layout>
+
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
     <div
@@ -6,10 +7,22 @@
       <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
         <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl">Pedido #{{ $orders->codigo_orden }}
         </h2>
+
+        <button id="imprimirPedido" type="button" class="bg-blue-500 px-3 py-2 rounded text-white cursor-pointer">
+          Imprimir
+          <div class="px-5"><svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+            </svg>
+          </div>
+
+        </button>
+
       </header>
       <div class="p-6">
 
-        <div class="flex flex-col gap-2 ">
+        <div class="flex flex-col gap-2 " id="containerImprimir">
           <div class="flex gap-2 p-3 ">
 
             <div class="basis-0 md:basis-3/5">
@@ -45,7 +58,7 @@
                     <div class="-m-1.5 overflow-x-auto">
                       <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="border rounded-lg overflow-hidden">
-                          <table class="min-w-full divide-y divide-gray-200">
+                          <table class="min-w-full ">
                             <thead>
                               <tr>
                                 <th></th>
@@ -59,7 +72,7 @@
                                   Total</th>
                               </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200">
+                            <tbody class="">
                               @foreach ($orders->DetalleOrden as $item)
                                 <tr>
                                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
@@ -118,9 +131,14 @@
             <div class="basis-0 md:basis-2/5">
               <div class="rounded shadow-lg p-4">
 
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-md ml-1">Direccion
-                  de envio:</h2>
-                <p class="ml-1 text-slate-800 dark:text-slate-100 text-sm">
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-md ml-1">Direccion de envio:</h2>
+                <p class="ml-1 text-slate-800 dark:text-slate-100 text-smclass="ml-1 text-slate-800 dark:text-slate-100
+                  text-sm>{{ $departamentos[0]->description }} -
+                  {{ $provincias[0]->description }} -
+                  {{ $distritos[0]->description }}</p>
+                <p class="ml-1
+                text-slate-800 dark:text-slate-100 text-sm">
+
                   {{ $direccion->dir_av_calle ?? '' }} - {{ $direccion->dir_numero ?? '' }}</p>
                 <p class="ml-1 text-slate-800 dark:text-slate-100 text-sm">
                   {{ $direccion->dir_bloq_lote ?? '' }}</p>
@@ -147,7 +165,54 @@
         </div>
       </div>
     </div>
+    {{-- <script>
+      document.getElementById('imprimirPedido').addEventListener('click', function() {
+        // Obtén el div que deseas convertir a PDF
+        var element = document.getElementById('containerImprimir');
+
+        // Usa html2canvas para capturar el div como una imagen
+        html2canvas(element).then(function(canvas) {
+          // Crea una instancia de jsPDF
+          const {
+            jsPDF
+          } = window.jspdf;
+          const pdf = new jsPDF();
+
+          // Obtén la imagen del canvas en formato de datos URL
+          const imgData = canvas.toDataURL('image/png');
+
+          // Agrega la imagen al PDF
+          pdf.addImage(imgData, 'PNG', 10, 10);
+
+          // Guarda el PDF
+          pdf.save('pedido.pdf');
+        });
+      });
+    </script> --}}
 
 
 </x-app-layout>
-<script></script>
+<script>
+  $('#imprimirPedido').on("click", function() {
+    $.ajax({
+      url: "{{ route('descargarPdf.ordenes', $orders->id) }}",
+      method: 'POST',
+      data: {
+        _token: $('input[name="_token"]').val(),
+
+      },
+      success: function(data) {
+        var blob = new Blob([data], {
+          type: 'application/pdf'
+        });
+        var url = window.URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        window.URL.revokeObjectURL(url);
+      },
+      error: function(error) {
+        console.log(error)
+
+      },
+    })
+  })
+</script>

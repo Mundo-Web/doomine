@@ -223,23 +223,31 @@
                           </summary>
 
                           <div class="group-open:animate-fadeIn mt-5">
-                            <div
-                              class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 place-items-center">
-                              @foreach ($item->attributeValues as $valores)
-                                <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full"
-                                  data-val="0" style="background-color:{{ $valores->color }};">
-                                  <span class="block w-12 h-12 rounded-full transition"><span
-                                      class="hidden">{{ $valores->valor }}</span></span>
-                                </a>
+                            <div class="grid grid-rows-1 gap-2 place-items-center">
+                              @foreach ($item->attributeValues->chunk(4) as $chunk)
+                                <div class="flex flex-row  items-center">
+                                  @foreach ($chunk as $valores)
+                                    <div class="flex flex-col  items-center">
+                                      <span class="">{{ $valores->valor }}</span>
+                                      <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full"
+                                        data-val="0" style="background-color:{{ $valores->color }};">
+                                        <span class="block w-12 h-12 rounded-full transition"></span>
+                                      </a>
+                                    </div>
+                                  @endforeach
 
-                                {{-- <div class="relative">
+
+                                </div>
+                              @endforeach
+
+                              {{-- <div class="relative">
                               <input type="checkbox" name="{{ $item->titulo }}[]" value="{{ $valores->valor }}" 
                                      id="color_{{ $valores->id }}" class="hidden colores">
                               <label for="color_{{ $valores->id }}" 
                                      style="background-color: {{ $valores->color }};" 
                                      class="block w-12 h-12 rounded-full cursor-pointer border-2 transition labelcolor"></label>
                             </div> --}}
-                              @endforeach
+
                             </div>
                           </div>
                         </details>
