@@ -81,7 +81,7 @@ class Products extends Model
     }
 
 
-  public static function obtenerProductos($categoria_id = ''){
+  public static function obtenerProductos($categoria_id = '', $paginado){
     $return = Products::select('products.*','categories.name as category_name')->join('categories', 'categories.id', '=', 'products.categoria_id');
 
     if(!empty($categoria_id)){
@@ -152,7 +152,7 @@ class Products extends Model
           ->with('tags')
           ->groupBy('products.id')
           ->orderBy('products.order', 'ASC')
-          ->paginate(8);
+          ->paginate($paginado);
 
     return $return;
 
