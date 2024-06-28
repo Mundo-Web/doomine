@@ -35,11 +35,12 @@
         </div>
         <form id="FilterForm" method="post" action="" class="hidden">
           @csrf
-          <input type="hidden" name="categories_id" id="get_categories">
-          <input type="hidden" name="precio_id" id="get_precios">
-          <input type="hidden" name="talla_id" id="get_tallas">
-          <input type="hidden" name="color_id" id="get_colores">
-          <input type="hidden" name="coleccion_id" id="get_colecciones">
+          <input type="hidden" name="categories_id" value="{{ $filtro }}" id="get_categories"
+            data-filtro=".changeCategory">
+          <input type="hidden" name="precio_id" id="get_precios" data-filtro=".changePrice">
+          <input type="hidden" name="talla_id" id="get_tallas" data-filtro=".changeTallas">
+          <input type="hidden" name="color_id" id="get_colores" data-filtro=".changeCollection">
+          <input type="hidden" name="coleccion_id" id="get_colecciones" data-filtro=".changeColor">
         </form>
         <div class="md:pl-9 order-1 md:order-2 flex items-center">
           <h3 class="font-boldItalicDisplay text-text20 md:text-text24 text-left w-full lg:w-auto">
@@ -149,11 +150,7 @@
 
                       <div class="group-open:animate-fadeIn mt-5">
                         <div class="flex flex-col gap-2 text-text18 xl:text-text20">
-                          {{-- <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=0"
-                            class="font-regularDisplay  @if ($rangefrom == 0 && $rangeto == 0) font-semibold underline
-                                                    @else
-                                                    font-normal @endif">Todos
-                            los precios</a> --}}
+
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
                             <input type="checkbox" value="0_50" class="changePrice" id="price_0_50">
                             <label for="price_0_50" class="cursor-pointer">
@@ -389,35 +386,52 @@
     $(document).ready(function() {
 
 
+
+    });
+  </script>
+
+  <script>
+    var appUrl = '{{ env('APP_URL') }}';
+  </script>
+
+
+  <script src="{{ asset('js/carrito.js') }}"></script>
+
+  <script>
+    function pintarOpcionesChecked() {
+
+      $('[data-filtro]').each(function() {
+        const values = $(this).val().split(',')
+        const selector = $(this).attr('data-filtro')
+        $(selector).each(function() {
+          if (values.includes(this.value)) {
+            $(this).prop('checked', true);
+          }
+        });
+      })
+
+    }
+
+    $(document).ready(function() {
       // Captura el click de abrir
-      /*  const openModal = document.querySelector(".mostrar-modal"); */
-      // Captura al modal que se quiere mostrar
       const modal = document.querySelector(".modal-filtros");
-      //Captura el evento de cierre
       const closeModal = document.querySelector(".modal__close-filtro");
-      // Captura el body para bloqueo
       const body = document.querySelector(".body");
 
-      const hiddenCategoriaPrecio = document.querySelector(
-        ".hidden-categoria-precio"
-      );
-
+      const hiddenCategoriaPrecio = document.querySelector(".hidden-categoria-precio");
       const open = document.querySelector(".open");
       const showCategoriaPrecio = document.querySelector(".show-categoria-precio");
       const addCategoriaPrecio = document.querySelector(".addCategoriaPrecio");
       let openModal = null;
 
       function getWidth() {
-        // Corregir el modal !importante
         let width = window.innerWidth;
         if (width < 768) {
-          //Habilita el click para modal
           open.classList.add("mostrar-modal", "cursor-pointer");
           openModal = document.querySelector(".mostrar-modal");
           openModal.addEventListener("click", showModal);
           hiddenCategoriaPrecio.innerHTML = "";
         } else {
-          // Quita la opcion de click
           open.classList.remove("mostrar-modal", "cursor-pointer");
           if (openModal) {
             openModal.removeEventListener("click", showModal);
@@ -429,20 +443,20 @@
 
       function showModal(e) {
         e.preventDefault();
-
         if (showCategoriaPrecio) {
           addCategoriaPrecio.innerHTML = showCategoriaPrecio.innerHTML;
         }
-
         hiddenCategoriaPrecio.innerHTML = "";
 
         modal.classList.add("modal--show-filtro");
         body.classList.add("overflow-hidden");
 
         modal.style.display = "flex";
+        pintarOpcionesChecked();
+        updateCategoriesField();
       }
 
-      getWidth(); // Se ejecuta por primera vez
+      getWidth();
       window.addEventListener("resize", getWidth);
 
       closeModal.addEventListener("click", (e) => {
@@ -455,44 +469,25 @@
         if (event.target === modal) {
           modal.classList.remove("modal--show-filtro");
           body.classList.remove("overflow-hidden");
-          /* hiddenCategoriaPrecio.innerHTML = addCategoriaPrecio.innerHTML; */
         }
       }
 
       window.addEventListener("click", closeModa);
-    });
-  </script>
 
-  <script>
-    var appUrl = '{{ env('APP_URL') }}';
-  </script>
-
-
-  <script src="{{ asset('js/carrito.js') }}"></script>
-
-  <script>
-    $(document).ready(function() {
-      let urlCatalogo = window.location.href;
-      let lastSegment = urlCatalogo.split('/').pop();
-
-      $('.changeCategory').each(function() {
-        if ($(this).val() == lastSegment) {
-          $(this).prop('checked', true);
-          return false; // Termina el bucle each después de encontrar el primer elemento coincidente
-        }
-      });
+      pintarOpcionesChecked();
 
       function updateCategoriesField() {
-
         var selectedCategories = [];
-
-
         $('.changeCategory:checked').each(function() {
           selectedCategories.push($(this).val());
         });
-        $('#get_categories').val(selectedCategories.join(','));
+        const values = selectedCategories.join(',');
+        // history.pushState(null, null, `/catalogo/${values}`);
+        $('#get_categories').val(values);
       }
-      updateCategoriesField();
+
+      // updateCategoriesField();
+
       $(document).on('change', '.changeCategory', function() {
         updateCategoriesField();
         FilterForm();
@@ -505,7 +500,8 @@
         });
         $('#get_precios').val(selectedPrice.join(','));
       }
-      updatePriceField();
+
+      // updatePriceField();
       $(document).on('change', '.changePrice', function() {
         updatePriceField();
         FilterForm();
@@ -518,7 +514,8 @@
         });
         $('#get_tallas').val(selectedTallas.join(','));
       }
-      updateTallaField();
+
+      // updateTallaField();
       $(document).on('change', '.changeTallas', function() {
         updateTallaField();
         FilterForm();
@@ -531,12 +528,12 @@
         });
         $('#get_colecciones').val(selectedCollection.join(','));
       }
-      updateCollectionField();
+
+      // updateCollectionField();
       $(document).on('change', '.changeCollection', function() {
         updateCollectionField();
         FilterForm();
       });
-
 
       $(document).on('change', '.colores', function() {
         if ($(this).is(':checked')) {
@@ -549,7 +546,6 @@
       $('.colores:checked').each(function() {
         $(this).next('labelcolor').addClass('border-black');
       });
-
 
       $('.changeColor').click(function() {
         var id = $(this).attr('id');
@@ -581,7 +577,6 @@
           data: $('#FilterForm').serialize(),
           dataType: "json",
           success: function(response) {
-
             $('#getProductAjax').html(response.success);
             $('.cargarMas').attr('data-page', response.page);
 
@@ -590,12 +585,10 @@
             } else {
               $('.cargarMas').show();
             }
-            // $('.pagination').html(response.pagination)
           },
           error: function(error) {}
         });
       }
-
 
       $('body').delegate('.cargarMas', 'click', function() {
         var page = $(this).attr('data-page');
@@ -606,7 +599,6 @@
           data: $('#FilterForm').serialize(),
           dataType: "json",
           success: function(response) {
-
             $('#getProductAjax').append(response.success);
             $('.cargarMas').attr('data-page', response.page);
             $('.cargarMas').html('Cargar más modelos');
@@ -618,7 +610,7 @@
           },
           error: function(error) {}
         });
-      })
+      });
     });
   </script>
 @stop
