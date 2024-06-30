@@ -147,7 +147,9 @@
           </div>
         </form>
         <div class="flex justify-center items-center">
-          <img src="{{ asset('images/img/mapa.png') }}" alt="ubicacion" />
+          {{-- <img src="{{ asset('images/img/mapa.png') }}" alt="ubicacion" /> --}}
+          {!! $general[0]->url_maps !!}
+
         </div>
       </div>
     </section>

@@ -69,6 +69,7 @@ class GeneralController extends Controller
   public function update(Request $request, $id)
   {
     $data = $request->all();
+    dump($data);
     try {
       if (isset($data['is_active_discount'])) {
         if ($data['is_active_discount'] == 'on') {

@@ -376,6 +376,47 @@
 
                             </div>
                           </div>
+                          <div class="md:col-span-2">
+                            <label for="inside">Url Google Maps</label>
+                            <div class="relative mb-2">
+                              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48"
+                                  viewBox="0 0 48 48">
+                                  <linearGradient id="iu22Zjf0u3e5Ts0QLZZhJa_uzeKRJIGwbBY_gr1" x1="11.274"
+                                    x2="36.726" y1="9.271" y2="34.723" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#d43a02"></stop>
+                                    <stop offset="1" stop-color="#b9360c"></stop>
+                                  </linearGradient>
+                                  <path fill="url(#iu22Zjf0u3e5Ts0QLZZhJa_uzeKRJIGwbBY_gr1)"
+                                    d="M36.902,34.536C40.052,31.294,42,26.877,42,22c0-9.94-8.06-18-18-18S6,12.06,6,22	c0,4.877,1.948,9.294,5.098,12.536c0.018,0.019,0.03,0.04,0.048,0.059l0.059,0.059c0.047,0.048,0.094,0.095,0.142,0.142	l11.239,11.239c0.781,0.781,2.047,0.781,2.828,0l11.239-11.239c0.048-0.047,0.095-0.094,0.142-0.142l0.059-0.059	C36.873,34.576,36.885,34.554,36.902,34.536z">
+                                  </path>
+                                  <radialGradient id="iu22Zjf0u3e5Ts0QLZZhJb_uzeKRJIGwbBY_gr2" cx="24"
+                                    cy="22.5" r="9.5" gradientUnits="userSpaceOnUse">
+                                    <stop offset=".177"></stop>
+                                    <stop offset="1" stop-opacity="0"></stop>
+                                  </radialGradient>
+                                  <circle cx="24" cy="22.5" r="9.5"
+                                    fill="url(#iu22Zjf0u3e5Ts0QLZZhJb_uzeKRJIGwbBY_gr2)"></circle>
+                                  <circle cx="24" cy="22" r="8" fill="#f9f9f9"></circle>
+                                  <radialGradient id="iu22Zjf0u3e5Ts0QLZZhJc_uzeKRJIGwbBY_gr3" cx="23.842"
+                                    cy="43.905" r="13.637" gradientUnits="userSpaceOnUse">
+                                    <stop offset=".177"></stop>
+                                    <stop offset="1" stop-opacity="0"></stop>
+                                  </radialGradient>
+                                  <path fill="url(#iu22Zjf0u3e5Ts0QLZZhJc_uzeKRJIGwbBY_gr3)"
+                                    d="M24,30c-4.747,0-8.935,2.368-11.467,5.982l10.052,10.052c0.781,0.781,2.047,0.781,2.828,0	l10.052-10.052C32.935,32.368,28.747,30,24,30z">
+                                  </path>
+                                  <path fill="#de490d"
+                                    d="M24,32c-4.196,0-7.884,2.157-10.029,5.42l8.615,8.615c0.781,0.781,2.047,0.781,2.828,0l8.615-8.615	C31.884,34.157,28.196,32,24,32z">
+                                  </path>
+                                </svg>
+                              </div>
+                              <input type="text" id="url_maps" name="url_maps" value="{{ $general->url_maps }}"
+                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Url Google maps">
+                            </div>
+                          </div>
                           <!-- <div class="md:col-span-2">
                                             <label for="city">City</label>
                                             <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
