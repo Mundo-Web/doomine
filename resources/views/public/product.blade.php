@@ -269,6 +269,7 @@
 
 
   <script>
+    var ItemVisibleStock = 0
     $(document).ready(function() {
 
       PintarCarrito()
@@ -290,10 +291,14 @@
     })
     // cantidadSpan
     $('#aumentar').on('click', function() {
-      console.log('aumentando')
+
+      console.log('aumentando', ItemVisibleStock)
       let cantidad = Number($('#cantidadSpan span').text())
-      cantidad++
-      $('#cantidadSpan span').text(cantidad)
+      if (cantidad < ItemVisibleStock) {
+        cantidad++
+        $('#cantidadSpan span').text(cantidad)
+      }
+
 
     })
   </script>
@@ -319,6 +324,7 @@
 
   <script>
     $(document).ready(function() {
+
 
       function llenarImagenes(images) {
 
@@ -353,7 +359,7 @@
         tallas.forEach(element => {
           if (element) {
             html += `
-                          <div class="tallas flex justify-center items-center border-2 w-full rounded-lg cursor-pointer">
+                          <div class="tallas flex justify-center items-center border-2 w-full rounded-lg cursor-pointer" data-combinacion="${element.id}">
                               <p class="tallasombreado py-5 px-4 w-full text-center transition">
                                 ${element.talla.valor}
                               </p>
@@ -397,9 +403,26 @@
             }
 
             $('#llenadoTallas').html(llenadotallas);
-            console.log(response.tallas[0].stock)
+            console.log('respouesta stock val', Number(response.tallas[0].stock) > 0)
 
-            $('#textoStock').text(response.tallas[0].stock !== null ? "Con Stock" : '')
+            if (Number(response.tallas[0].stock) > 0) {
+              console.log('numero mayora a 0 ')
+              $('#textoStock').text(`Con Stock: ${response.tallas[0].stock}`)
+              $('#btnAgregarCarrito')
+                .removeClass('opacity-50 cursor-not-allowed')
+                .attr('disabled', false);
+
+              ItemVisibleStock = Number(response.tallas[0].stock)
+            } else {
+              $('#textoStock').text(`No hay Stock`)
+              $('#btnAgregarCarrito')
+                .addClass('opacity-50 cursor-not-allowed')
+                .attr('disabled', true);
+              ItemVisibleStock = Number(response.tallas[0].stock)
+            }
+
+            console.log(ItemVisibleStock)
+
 
 
 

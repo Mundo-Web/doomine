@@ -179,7 +179,8 @@ let articulosCarrito = [];
 
       let color = $(".color").data('id');
       let talla = $('.tallaSelected').text()
-      console.log(talla)
+      let combinacionId =  $('.tallaSelected').attr('data-combinacion')
+      console.log(combinacionId)
       // id='nodescuento'
       if(talla == ''){
         Swal.fire({
@@ -194,7 +195,7 @@ let articulosCarrito = [];
 
       }
 
-      console.log(color)
+      
 
 
       $.ajax({
@@ -235,7 +236,8 @@ let articulosCarrito = [];
               hex:  success.valorAtributo.color
             },
             caratula: success.caratula.images[0].name_imagen,
-            talla: talla.trim()
+            talla: talla.trim(), 
+            combinacionId
           }
 
          
