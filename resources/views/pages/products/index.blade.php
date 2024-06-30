@@ -310,29 +310,116 @@
           text: '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn btn-success',
+          exportOptions: {
+            columns: [0, 1, 2, 3, 4, 7, 8, 9,
+              10
+            ], // Aquí especificas los índices de las columnas que quieres exportar
+            format: {
+              body: function(data, row, column, node) {
+                // Si la columna es la que contiene el checkbox, exportar su valor
+                if (column === 7 || column === 8 || column === 9 || column ===
+                  10) { // Suponiendo que la columna del checkbox es la 7
+
+                  return $(node).find('input[type="checkbox"]').prop('checked') ? 'Si' : 'No';
+                }
+                // Para el resto de las columnas, devolver el texto tal cual
+                return $(node).text();
+              }
+            }
+          },
+
+
         },
         {
           extend: 'pdfHtml5',
           text: '<i class="fas fa-file-pdf"></i> ',
           titleAttr: 'Exportar a PDF',
+          exportOptions: {
+            columns: [0, 1, 2, 3, 4, 7, 8, 9,
+              10
+            ], // Aquí especificas los índices de las columnas que quieres exportar
+            format: {
+              body: function(data, row, column, node) {
+                // Si la columna es la que contiene el checkbox, exportar su valor
+                if (column === 7 || column === 8 || column === 9 || column ===
+                  10) { // Suponiendo que la columna del checkbox es la 7
+
+                  return $(node).find('input[type="checkbox"]').prop('checked') ? 'Si' : 'No';
+                }
+                // Para el resto de las columnas, devolver el texto tal cual
+                return $(node).text();
+              }
+            }
+          },
         },
         {
           extend: 'csvHtml5',
           text: '<i class="fas fa-file-csv"></i> ',
           titleAttr: 'Imprimir',
           className: 'btn btn-info',
+          exportOptions: {
+            columns: [0, 1, 2, 3, 4, 7, 8, 9,
+              10
+            ], // Aquí especificas los índices de las columnas que quieres exportar
+            format: {
+              body: function(data, row, column, node) {
+                // Si la columna es la que contiene el checkbox, exportar su valor
+                if (column === 7 || column === 8 || column === 9 || column ===
+                  10) { // Suponiendo que la columna del checkbox es la 7
+
+                  return $(node).find('input[type="checkbox"]').prop('checked') ? 'Si' : 'No';
+                }
+                // Para el resto de las columnas, devolver el texto tal cual
+                return $(node).text();
+              }
+            }
+          },
         },
         {
           extend: 'print',
           text: '<i class="fa fa-print"></i> ',
           titleAttr: 'Imprimir',
           className: 'btn btn-info',
+          exportOptions: {
+            columns: [0, 1, 2, 3, 4, 7, 8, 9,
+              10
+            ], // Aquí especificas los índices de las columnas que quieres exportar
+            format: {
+              body: function(data, row, column, node) {
+                // Si la columna es la que contiene el checkbox, exportar su valor
+                if (column === 7 || column === 8 || column === 9 || column ===
+                  10) { // Suponiendo que la columna del checkbox es la 7
+
+                  return $(node).find('input[type="checkbox"]').prop('checked') ? 'Si' : 'No';
+                }
+                // Para el resto de las columnas, devolver el texto tal cual
+                return $(node).text();
+              }
+            }
+          },
         },
         {
           extend: 'copy',
           text: '<i class="fas fa-copy"></i> ',
           titleAttr: 'Copiar',
           className: 'btn btn-success',
+          exportOptions: {
+            columns: [0, 1, 2, 3, 4, 7, 8, 9,
+              10
+            ], // Aquí especificas los índices de las columnas que quieres exportar
+            format: {
+              body: function(data, row, column, node) {
+                // Si la columna es la que contiene el checkbox, exportar su valor
+                if (column === 7 || column === 8 || column === 9 || column ===
+                  10) { // Suponiendo que la columna del checkbox es la 7
+
+                  return $(node).find('input[type="checkbox"]').prop('checked') ? 'Si' : 'No';
+                }
+                // Para el resto de las columnas, devolver el texto tal cual
+                return $(node).text();
+              }
+            }
+          },
         },
       ]
     });
