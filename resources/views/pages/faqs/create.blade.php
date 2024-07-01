@@ -77,7 +77,8 @@
 
               <div class="md:col-span-5 text-right mt-6 flex justify-between">
                 <div class="inline-flex items-end">
-                  <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+                  <a href="{{ URL::previous() }}"
+                    class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
                 </div>
                 <div class="inline-flex items-end">
                   <button type="submit"
@@ -111,7 +112,27 @@
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
       });
 
+      $('form').on('submit', function(event) {
+        var titulo = document.getElementById("titulo");
+        var pregunta = document.getElementById("pregunta");
+        var textArea = document.getElementById("respuesta");
+
+        if (!textArea.value || !titulo.value || !pregunta.value) {
+          Swal.fire({
+
+            icon: "warning",
+            title: 'Debe ingresar un Titulo , Pregunta y su Respuesta',
+
+          });
+          event.preventDefault(); // Detener el envío del formulario
+        }
+      });
+
     })
+    $(document).ready(function() {
+
+    });
   </script>
+
 
 </x-app-layout>
