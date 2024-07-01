@@ -89,12 +89,31 @@
                     s/{{ $productos[0]->precio }}
                   </p>
                 @else
-                  <p class="text-text14 md:text-text20 font-boldDisplay">
-                    s/{{ $productos[0]->descuento }}
-                  </p>
-                  <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay">
-                    s/{{ $productos[0]->precio }}
-                  </p>
+                  <div class="flex flex-col  items-center">
+                    <div>
+                      <p class="text-text14 md:text-text20 font-boldDisplay">
+                        s/{{ $productos[0]->descuento }}
+                      </p>
+                      <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay">
+                        s/{{ $productos[0]->precio }}
+                      </p>
+                    </div>
+                    <div class="flex justify-end content-end">
+
+                      <span
+                        class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
+                        LIQUIDACION
+                      </span>
+
+                      <span
+                        class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
+                        {{ number_format((($productos[0]->precio - $productos[0]->descuento) * 100) / $productos[0]->precio, 2) }}%
+                      </span>
+
+                    </div>
+
+
+                  </div>
                 @endif
               </div>
             </div>
