@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AddressUser;
+use App\Models\Message;
 use App\Models\Ordenes;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -53,6 +54,16 @@ class DescargarPdfController extends Controller
            
        return $pdf->stream('orden.pdf');
     }
+
+    public function mensajes( string $id){
+        $message = Message::find($id);
+        $pdf =  Pdf::loadView('pages.message.plantillasPDF.imprimirDetalleMensaje', [
+            'message' => $message, 
+            'title' => 'Detalle de Mensaje '
+       ])->setOptions(['defaultFont' => 'sans-serif']);;
+           
+       return $pdf->stream('detalleMensaje.pdf');
+    } 
 
     
     

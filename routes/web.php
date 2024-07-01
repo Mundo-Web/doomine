@@ -240,6 +240,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/politica-cambio/guardar/{id}',[PoliticasdeCambioController::class, 'guardar'])->name('politicadeCambio.guardar');
 
         Route::get('/descargarpdf/detalleOrdenes/{id}',[DescargarPdfController::class, '__invoke'])->name('descargarPdf.ordenes');
+        Route::get('/descargarpdf/mensajes/{id}',[DescargarPdfController::class, 'mensajes'])->name('descargarPdf.mensaje');
 
         Route::fallback(function() {
             return view('pages/utility/404');

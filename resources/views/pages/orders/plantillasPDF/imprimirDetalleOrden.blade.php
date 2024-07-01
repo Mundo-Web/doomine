@@ -277,17 +277,23 @@
                                 <td colspan="5"></td>
                               </tr>
                               <tr>
-                                <td colspan="4"class="celda_right title">Subtotal:</td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2"class="celda_right title">Subtotal:</td>
                                 <td colspan="1" class="celda_center ">S/{{ $subtotal }}</td>
 
                               </tr>
                               <tr>
-                                <td colspan="4"class="celda_right title">Costo de envio::</td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2"class="celda_right title">Costo de envio::</td>
                                 <td colspan="1" class="celda_center ">S/{{ $orders->precio_envio }}</td>
 
                               </tr>
                               <tr>
-                                <td colspan="4"class="celda_right title">Total:</td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2" class="celda_right title">Total:</td>
                                 <td colspan="1" class="celda_center ">S/{{ $orders->monto }}</td>
 
                               </tr>
