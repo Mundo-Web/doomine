@@ -12,6 +12,7 @@
           @endforeach
 
           <div class="addProduct text-center flex justify-center">
+
             <a href="{{ route('producto', $item->id) }}"
               class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 2lg:px-5 flex-initial w-32 md:w-36 2lg:py-3 2lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
               Ver producto
@@ -41,19 +42,6 @@
                   </p>
 
                 </div>
-
-                <div>
-                  <p> <span
-                      class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
-                      LIQUIDACION
-                    </span>
-                    <span
-                      class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
-                      {{ number_format((($item->precio - $item->descuento) * 100) / $item->precio, 2) }}%
-                    </span>
-                  </p>
-
-                </div>
               @endif
 
             </div>
@@ -70,8 +58,12 @@
           </div>
         </div>
 
-        <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
+        <div class="absolute top-[10px] left-[10px] md:top-[10px] md:left-[10px]">
           <div class="flex gap-3 flex-wrap">
+            <span
+              class="bg-red-800 text-white  me-2 px-2.5 py-1 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-2xl">
+              {{ number_format((($item->precio - $item->descuento) * 100) / $item->precio, 2) }}% OFF
+            </span>
             {{--  @foreach ($item->tags as $tag)
               <div class="bg-white  rounded-md py-1 px-2">
                 <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">

@@ -101,14 +101,11 @@
                     <div class="flex justify-end content-end">
 
                       <span
-                        class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
-                        LIQUIDACION
+                        class="bg-red-800 text-white  me-2 px-2.5 py-1 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-2xl">
+                        {{ number_format((($productos[0]->precio - $productos[0]->descuento) * 100) / $productos[0]->precio, 2) }}%
+                        OFF
                       </span>
 
-                      <span
-                        class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
-                        {{ number_format((($productos[0]->precio - $productos[0]->descuento) * 100) / $productos[0]->precio, 2) }}%
-                      </span>
 
                     </div>
 

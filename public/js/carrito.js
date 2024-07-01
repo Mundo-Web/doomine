@@ -262,6 +262,7 @@ let articulosCarrito = [];
             articulosCarrito = [...articulosCarrito, detalleProducto]
 
           }
+          console.log(detalleProducto)
 
           Local.set('carrito', articulosCarrito)
           let itemsCarrito = $('#itemsCarrito')

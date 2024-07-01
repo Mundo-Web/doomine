@@ -666,7 +666,8 @@
             color,
             tipo_envio: 0,
             caratula: success.caratula.images[0].name_imagen,
-            talla: talla.trim()
+            talla: talla.trim(),
+
           }
           let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id)
           if (existeArticulo) {
@@ -728,7 +729,9 @@
           color: item.color,
           tipo_envio: Number(valorSeleccionado),
           talla: item.talla,
-          caratula: item.caratula
+          caratula: item.caratula,
+          combinacionId: item.combinacionId
+
         };
         return obj
       })

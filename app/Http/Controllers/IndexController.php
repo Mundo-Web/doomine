@@ -889,7 +889,7 @@ class IndexController extends Controller
     //creamos detalle de orden
     foreach ($carrito as $key => $value) {
 
-
+      dump($value);
       DetalleOrden::create([
         'producto_id' => $value['id'],
         'cantidad' => $value['cantidad'],
