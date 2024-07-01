@@ -15,7 +15,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class DescargarPdfController extends Controller
 {
     //
-    public function __invoke(Request $request, string $id)
+    public function __invoke( string $id)
     {
 
         $orders = Ordenes::findOrFail($id);
@@ -40,18 +40,18 @@ class DescargarPdfController extends Controller
                         ->where('imagen_productos.caratula', '=', 1)
                         ->get();
 
-                        
-       $pdf =  Pdf::loadView('pages.orders.show', [
+       $pdf =  Pdf::loadView('pages.orders.plantillasPDF.imprimirDetalleOrden', [
             'orders'=> $orders ,
             'direccion' => $direccion ,
             'departamentos'=> $departamentos,
             'provincias'=>$provincias,
             'distritos'=>$distritos,
             'subtotal'=>$subtotal,
-            'producto'=>$producto
+            'producto'=>$producto,
+            'title' => 'Detalle de orden #'
        ])->setOptions(['defaultFont' => 'sans-serif']);;
            
-       return $pdf->download('orden.pdf');
+       return $pdf->stream('orden.pdf');
     }
 
     

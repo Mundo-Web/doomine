@@ -55,6 +55,19 @@
     border-radius: 92px;
   }
 
+  @media (max-width: 700px) {
+
+    /* Coloca aquí tus reglas CSS específicas para pantallas pequeñas */
+    .kr-field-element .kr-pan {
+      /* Asegura que cada hijo tome un tercio del ancho del contenedor */
+      flex: none !important;
+      /* Añade algo de espacio entre los elementos si es necesario */
+      margin: 0 5px !important;
+    }
+
+
+  }
+
   .kr-card-form {
 
     min-width: 300px !important;

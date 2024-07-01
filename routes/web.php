@@ -239,7 +239,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/politica-cambio',[PoliticasdeCambioController::class, 'index'])->name('politicadeCambio.index');
         Route::post('/politica-cambio/guardar/{id}',[PoliticasdeCambioController::class, 'guardar'])->name('politicadeCambio.guardar');
 
-        Route::post('/descargarpdf/detalleOrdenes/{id}',[DescargarPdfController::class, '__invoke'])->name('descargarPdf.ordenes');
+        Route::get('/descargarpdf/detalleOrdenes/{id}',[DescargarPdfController::class, '__invoke'])->name('descargarPdf.ordenes');
 
         Route::fallback(function() {
             return view('pages/utility/404');
