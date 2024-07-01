@@ -62,7 +62,7 @@
           <div class="flex gap-3 flex-wrap">
             <span
               class="bg-red-800 text-white  me-2 px-2.5 py-1 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-2xl">
-              {{ number_format((($item->precio - $item->descuento) * 100) / $item->precio, 2) }}% OFF
+              {{ number_format((($item->precio - $item->descuento) * 100) / $item->precio, 0) }}% OFF
             </span>
             {{--  @foreach ($item->tags as $tag)
               <div class="bg-white  rounded-md py-1 px-2">

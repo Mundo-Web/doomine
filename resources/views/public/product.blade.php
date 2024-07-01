@@ -102,7 +102,7 @@
 
                       <span
                         class="bg-red-800 text-white  me-2 px-2.5 py-1 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-2xl">
-                        {{ number_format((($productos[0]->precio - $productos[0]->descuento) * 100) / $productos[0]->precio, 2) }}%
+                        {{ number_format((($productos[0]->precio - $productos[0]->descuento) * 100) / $productos[0]->precio, 0) }}%
                         OFF
                       </span>
 
