@@ -25,28 +25,35 @@
             <p class="text-text14 md:text-text16 xl:text-text20">
               {{ $item->producto }}
             </p>
-            <div class="flex font-boldDisplay text-black items-center gap-1">
+            <div class="flex flex-col md:flex-row font-boldDisplay text-black items-start gap-1">
 
               @if ($item->descuento == 0)
                 <p class="text-text14 md:text-text16 xl:text-text20">
                   s/{{ $item->precio }}
                 </p>
               @else
-                <p class="text-text14 md:text-text16 xl:text-text20">
-                  s/{{ $item->descuento }}
-                </p>
-                <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
-                  s/{{ $item->precio }}
-                </p>
-                <p> <span
-                    class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
-                    LIQUIDACION
-                  </span>
-                  <span
-                    class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
-                    {{ number_format((($item->precio - $item->descuento) * 100) / $item->precio, 2) }}%
-                  </span>
-                </p>
+                <div class="flex flex-row gap-2 ">
+                  <p class="text-text14 md:text-text16 xl:text-text20">
+                    s/{{ $item->descuento }}
+                  </p>
+                  <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
+                    s/{{ $item->precio }}
+                  </p>
+
+                </div>
+
+                <div>
+                  <p> <span
+                      class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
+                      LIQUIDACION
+                    </span>
+                    <span
+                      class="bg-yellow-300 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 shadow-lg">
+                      {{ number_format((($item->precio - $item->descuento) * 100) / $item->precio, 2) }}%
+                    </span>
+                  </p>
+
+                </div>
               @endif
 
             </div>
