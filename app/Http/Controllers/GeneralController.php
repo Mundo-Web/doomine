@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateGeneralRequest;
 use App\Models\General;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Str;
 
 
 class GeneralController extends Controller
@@ -69,8 +72,19 @@ class GeneralController extends Controller
   public function update(Request $request, $id)
   {
     $data = $request->all();
-    
+    dump($data);
     try {
+      if ($request->hasFile("img_login")) {
+        $file = $request->file('img_login');
+        $routeImg = 'storage/images/productos/';
+        $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+        $this->saveImg($file, $routeImg, $nombreImagen);
+
+        $data['img_login'] = $routeImg . $nombreImagen;
+        // $AboutUs->name_image = $nombreImagen;
+      }
+
       if (isset($data['is_active_discount'])) {
         if ($data['is_active_discount'] == 'on') {
           $data['is_active_discount'] = true;
@@ -91,7 +105,20 @@ class GeneralController extends Controller
       return back()->with('success', 'Registro actualizado correctamente');
     } catch (\Throwable $th) {
       //throw $th;
+      dump ($th) ; 
     }
+  }
+  public function saveImg($file, $route, $nombreImagen)
+  {
+    $manager = new ImageManager(new Driver());
+    $img =  $manager->read($file);
+    $img->coverDown(900, 900, 'center');
+
+    if (!file_exists($route)) {
+      mkdir($route, 0777, true);
+    }
+
+    $img->save($route . $nombreImagen);
   }
 
   /**

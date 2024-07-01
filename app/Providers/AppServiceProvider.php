@@ -43,6 +43,15 @@ class AppServiceProvider extends ServiceProvider
                     ->with('generalinfo', $generalinfo)
                  ->with('submenucolecciones', $submenucolecciones);
         });
+        
+        View::composer('auth.login', function ($view) {
+            // Obtener los datos del footer
+            
+            $generalinfo = General::first();
+            // Pasar los datos a la vista
+            $view->with('generalinfo', $generalinfo)
+                 ;
+        });
 
         View::composer('components.app.sidebar', function ($view) {
             // Obtener los datos del footer

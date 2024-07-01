@@ -11,7 +11,7 @@
 
   @endphp
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <form action="{{ route('datosgenerales.update', $general->id) }}" method="POST">
+    <form action="{{ route('datosgenerales.update', $general->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div
@@ -417,6 +417,27 @@
                                 placeholder="Url Google maps">
                             </div>
                           </div>
+                          <div class="md:col-span-5">
+                            <div class="flex flex-row content-between justify-between items-baseline">
+                              <div><label for="img_login">Imagen Login</label></div>
+
+                              <div class="md:col-span-1">
+                                <img class="w-20" src="{{ asset($general->img_login) }}" alt="">
+                              </div>
+                            </div>
+
+                            <div class="relative mb-2">
+                              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <img width="30" height="30"
+                                  src="https://img.icons8.com/ios-glyphs/30/full-image.png" alt="full-image" />
+                              </div>
+                              <input type="file" id="img_login" name="img_login" value=""
+                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Url Google maps">
+                            </div>
+
+                          </div>
+
                           <!-- <div class="md:col-span-2">
                                             <label for="city">City</label>
                                             <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
