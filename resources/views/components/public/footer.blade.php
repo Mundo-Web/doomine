@@ -78,6 +78,7 @@
           <a href="/terminos-y-condiciones">Términos y condiciones</a>
           <a href="/politicas-de-devolucion">Política de devolucion</a>
           <a href="/politica-cambio">Política de cambios</a>
+          <a href="/politica-envio">Política de Envios</a>
           <a href="/preguntasFrecuentes">Preguntas Frecuentes</a>
           <a href="/libro-de-reclamaciones">Libro de
             Reclamaciones</a>

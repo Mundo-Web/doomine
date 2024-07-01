@@ -33,6 +33,7 @@ use App\Http\Controllers\LibroReclamacionesController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PoliticasdeCambioController;
+use App\Http\Controllers\PoliticasEnvioController;
 use App\Http\Controllers\PolyticsConditionController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
@@ -104,6 +105,8 @@ Route::get('/obtenerProvincia/{departmentId}', [IndexController::class, 'obtener
 Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDistritos'])->name('obtenerDistritos');
 Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
 Route::get('/politica-cambio/', [IndexController::class, 'politicaDeCambio'])->name('politicaDeCambio');
+Route::get('/politica-envio/', [IndexController::class, 'pliticaDeEnvio'])->name('politicaDeEnvio');
+
 
 
 
@@ -238,6 +241,12 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         Route::get('/politica-cambio',[PoliticasdeCambioController::class, 'index'])->name('politicadeCambio.index');
         Route::post('/politica-cambio/guardar/{id}',[PoliticasdeCambioController::class, 'guardar'])->name('politicadeCambio.guardar');
+
+        Route::get('/politica-envio',[PoliticasEnvioController::class, 'index'])->name('PoliticadeEnvio.index');
+        Route::post('/politica-envio/guardar/{id}',[PoliticasEnvioController::class, 'guardar'])->name('PoliticadeEnvio.guardar');
+
+        
+
 
         Route::get('/descargarpdf/detalleOrdenes/{id}',[DescargarPdfController::class, '__invoke'])->name('descargarPdf.ordenes');
         Route::get('/descargarpdf/mensajes/{id}',[DescargarPdfController::class, 'mensajes'])->name('descargarPdf.mensaje');

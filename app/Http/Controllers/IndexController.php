@@ -715,6 +715,12 @@ class IndexController extends Controller
     $politicasCambio =  DB::select('select * from politicas_de_cambio  limit 1');
     return view("public.politicadeCambio", compact('politicasCambio'));
   }
+  public function pliticaDeEnvio()
+  {
+    // 
+    $politicasEnvio =  DB::select('select * from politicas_de_envio  limit 1');
+    return view("public.politicasdeenvio", compact('politicasEnvio'));
+  }
 
   /**
    * Store a newly created resource in storage.
@@ -897,7 +903,7 @@ class IndexController extends Controller
   public function politicasDevolucion()
   {
     $politicDev = PolyticsCondition::first();
-    return view('public.politicasdeenvio', compact('politicDev'));
+    return view('public.politicasdevolucion', compact('politicDev'));
   }
 
   public function TerminosyCondiciones()
