@@ -30,8 +30,7 @@
                       </g>
                     </svg>
                   </div>
-                  <x-textarea name="content" value="{!! $politicasEnvio[0]->content ?? '' !!}" />
-
+                  <x-textarea name="content" value="{!! isset($politicasEnvio[0]) ? $politicasEnvio[0]->content : '' !!}" />
 
                 </div>
               </div>
