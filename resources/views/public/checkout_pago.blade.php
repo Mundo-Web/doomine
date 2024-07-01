@@ -65,6 +65,40 @@
       margin: 0 5px !important;
     }
 
+    .kr-embedded .flex-container {
+      flex-direction: column !important;
+
+      justify-content: space-between;
+      width: 100%;
+      display: flex;
+      gap: 5px;
+
+      /* Hace que los elementos se apilen verticalmente */
+
+      /* Añade espacio entre los elementos */
+
+    }
+
+    .kr-field-element {
+      width: 100%;
+      /* Asegura que los elementos ocupen todo el ancho disponible */
+      min-height: 40px;
+      /* Aumenta la altura para facilitar la interacción */
+    }
+
+    .kr-field-element.kr-pan,
+    .kr-field-element.kr-expiry,
+    .kr-field-element.kr-security-code {
+      font-size: 16px;
+      /* Aumenta el tamaño de la fuente para mejorar la legibilidad */
+    }
+
+    /* Ajustes específicos para los elementos de tamaño medio */
+    .kr-field-element.kr-size-half {
+      width: 100%;
+      /* En dispositivos móviles, usa todo el ancho en lugar de la mitad */
+    }
+
 
   }
 
