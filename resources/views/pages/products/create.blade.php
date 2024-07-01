@@ -410,7 +410,7 @@
           </h2>
         </header>
         <div class="flex flex-col gap-2 p-3 ">
-          <div class="flex gap-2 p-3 ">
+          <div class="flex flex-col md:flex-row gap-2 p-3 ">
 
             <div class="basis-0 md:basis-3/5">
               <div class="rounded shadow-lg p-4 px-4 ">
@@ -418,7 +418,7 @@
 
                 <div id='general' class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 ">
 
-                  <div class="md:col-span-5 mt-2">
+                  <div class="col-span-1 md:col-span-5 mt-2">
 
                     <label for="producto">Producto<span class="text-red-500"> (Obligatorio) </span></label>
 
@@ -445,7 +445,7 @@
 
                     </div>
                   </div>
-                  <div class="md:col-span-5 mt-2">
+                  <div class="col-span-1 md:col-span-5 mt-2">
 
                     <label for="order">Campo a tomar en cuenta para ordenar (el numero mas pequeño es el primero que
                       se mostrara
@@ -474,7 +474,7 @@
                     </div>
                   </div>
 
-                  <div class="md:col-span-5 mt-2">
+                  <div class="col-span-1 md:col-span-5 mt-2">
 
                     <label for="extract">Extracto</label>
 
@@ -501,7 +501,7 @@
                     </div>
                   </div>
 
-                  <div class="md:col-span-5">
+                  <div class="col-span-1 md:col-span-5">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
                       <textarea type="text" rows="2" id="description" name="description" value=""
@@ -510,7 +510,7 @@
                     </div>
                   </div>
 
-                  {{-- <div class="md:col-span-5">
+                  {{-- <div class="col-span-1 md:col-span-5">
                     <label for="imagen">Impagen Principal</label>
                     <div class="relative mb-2  mt-2">
                       <input id="imagen" name="imagen"
@@ -568,7 +568,7 @@
             <div class="basis-0 md:basis-2/5">
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
 
-                <div class="md:col-span-5 flex justify-between gap-4">
+                <div class="col-span-1 md:col-span-5 flex justify-between gap-4">
 
                   <div class="w-full">
                     <label for="precio">Precio <span class="text-red-500"> (Obligatorio) </span></label>
@@ -615,11 +615,11 @@
 
                 </div>
 
-                <div class="md:col-span-5">
+                <div class="col-span-1 md:col-span-5">
 
                 </div>
                 {{--
-                <div class="md:col-span-5">
+                <div class="col-span-1 md:col-span-5">
                   <label for="costo_x_art">Costo por articulo</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -637,7 +637,7 @@
                 </div>
                 --}}
 
-                <div class="md:col-span-5">
+                <div class="col-span-1 md:col-span-5">
                   <label for="costo_x_art">Categoria</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -663,7 +663,7 @@
                 </div>
 
 
-                <div class="md:col-span-5">
+                <div class="col-span-1 md:col-span-5">
                   <label for="costo_x_art">Colección</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -686,7 +686,7 @@
                 </div>
 
 
-                <div class="md:col-span-5 mt-2">
+                <div class="col-span-1 md:col-span-5 mt-2">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="especificacion">Especificacion </label>
                     <button type="button" id="AddEspecifiacion"
@@ -742,7 +742,7 @@
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
                   Inventario</h4>
-                <div class="md:col-span-5 flex justify-between gap-4">
+                <div class="col-span-1 md:col-span-5 flex justify-between gap-4">
 
                   {{--
                   <div class="w-full">
@@ -841,7 +841,7 @@
               </div>
 
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
-                <div class="md:col-span-5 mt-2 ">
+                <div class="col-span-1 md:col-span-5 mt-2 ">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="">Combinaciones </label>
                     <button type="button" id="AddCombinacion"
@@ -862,7 +862,7 @@
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
                   Tags</h4>
-                <div class="md:col-span-5 flex justify-between gap-4">
+                <div class="col-span-1 md:col-span-5 flex justify-between gap-4">
 
                   <div class="w-full">
                     <div class="relative mb-2  mt-2">
@@ -885,7 +885,7 @@
 
           </div>
 
-          <div class="md:col-span-5 text-right mt-6 flex justify-between px-4 pb-4">
+          <div class="col-span-1 md:col-span-5 text-right mt-6 flex justify-between px-4 pb-4">
             <div class="inline-flex items-end">
               <a href="{{ URL::previous() }}"
                 class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>

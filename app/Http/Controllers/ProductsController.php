@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\File;
 use SoDe\Extend\File as ExtendFile;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use App\Exports\ProductosExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductsController extends Controller
 {
@@ -550,4 +552,8 @@ class ProductsController extends Controller
 
     }
   }
+  public function export()
+    {
+        return Excel::download(new ProductosExport, 'productos.xlsx');
+    }
 }

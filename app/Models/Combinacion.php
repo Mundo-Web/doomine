@@ -20,10 +20,10 @@ class Combinacion extends Model
     //     return $this->belongsTo(Products::class, 'product_id');
     // }
 
-    // public function color()
-    // {
-    //     return $this->belongsTo(AttributesValues::class, 'color_id');
-    // }
+    public function color()
+    {
+        return $this->belongsTo(AttributesValues::class, 'color_id');
+    }
 
     public function talla()
     {

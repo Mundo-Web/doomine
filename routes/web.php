@@ -242,6 +242,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/descargarpdf/detalleOrdenes/{id}',[DescargarPdfController::class, '__invoke'])->name('descargarPdf.ordenes');
         Route::get('/descargarpdf/mensajes/{id}',[DescargarPdfController::class, 'mensajes'])->name('descargarPdf.mensaje');
 
+        Route::get('/productos/export', [ProductsController::class, 'export'])->name('productos.export');
+
         Route::fallback(function() {
             return view('pages/utility/404');
         });

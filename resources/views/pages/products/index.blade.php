@@ -9,7 +9,7 @@
       </a>
       <div class="flex justify-end mt-3">
         <button id="imprimirPedido" type="button"
-          class="bg-blue-500 w-48  px-4 py-2 rounded text-white flex justify-between align-content-center content-center items-center ">
+          class="bg-blue-500  hover:bg-blue-700 w-48  px-4 py-2 rounded text-white flex justify-between align-content-center content-center items-center ">
           Detalle Productos
           <div class="w-4 justify-center align-content-center">
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -525,4 +525,13 @@
     });
 
   })
+</script>
+<script>
+  $('#imprimirPedido').on("click", function() {
+    // Obtén la URL usando Blade
+    var url = "{{ route('productos.export') }}";
+
+    // Redirige en una nueva pestaña
+    window.open(url, '_blank');
+  });
 </script>
