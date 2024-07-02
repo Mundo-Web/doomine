@@ -41,6 +41,7 @@
           <input type="hidden" name="talla_id" id="get_tallas" data-filtro=".changeTallas">
           <input type="hidden" name="color_id" id="get_colores" data-filtro=".changeCollection">
           <input type="hidden" name="coleccion_id" id="get_colecciones" data-filtro=".changeColor">
+          <input type="hidden" name="orderPrice" id="orderPrice">
         </form>
         <div class="md:pl-9 order-1 md:order-2 flex items-center">
           <h3 class="font-boldItalicDisplay text-text20 md:text-text24 text-left w-full lg:w-auto">
@@ -66,7 +67,7 @@
           </div>
           <div class="list z-[10]">
             <div class="w-full">
-              <input type="radio" name="drop1" id="id11" class="radio" />
+              <input type="radio" name="drop1" id="id11" class="radio" value="price_high" />
 
               <label for="id11"
                 class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white ordenar">
@@ -75,7 +76,7 @@
             </div>
 
             <div class="w-full">
-              <input type="radio" name="drop1" id="id12" class="radio" />
+              <input type="radio" name="drop1" id="id12" class="radio" value="price_low" />
               <label for="id12"
                 class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white ordenar">
                 <span class="name inline-block w-full">
@@ -85,7 +86,7 @@
             </div>
 
             <div class="w-full">
-              <input type="radio" name="drop1" id="id13" class="radio" />
+              <input type="radio" name="drop1" id="id13" class="radio" value="more_old" />
               <label for="id13"
                 class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white comentar">
                 <span class="name inline-block w-full"> Antiguo </span>
@@ -571,6 +572,12 @@
       });
 
       function FilterForm() {
+        //Valida si hay un query en la url para agregar el valor al orderPrice
+
+
+
+
+
         $.ajax({
           url: '{{ route('catalogo_filtro_ajax') }}',
           method: 'POST',
@@ -591,6 +598,15 @@
       }
 
       $('body').delegate('.cargarMas', 'click', function() {
+        var url = window.location.href;
+        var query = url.split('?');
+        if (query != '') {
+          console.log('entro here')
+          var query = query[1].split('=');
+          if (query[0] == 'priceOrder') {
+            $('#orderPrice').val(query[1]);
+          }
+        }
         var page = $(this).attr('data-page');
         $('.cargarMas').html('Cargando...');
         $.ajax({
@@ -611,6 +627,26 @@
           error: function(error) {}
         });
       });
+    });
+  </script>
+  <script>
+    $('input[type="radio"][name="drop1"]').change(function() {
+      // Obtén el valor del radio seleccionado
+      var selectedValue = $(this).val();
+      // Acción a realizar con el valor, por ejemplo, mostrar en consola
+      var currentUrl = window.location.href;
+
+      // Acción a realizar con la URL, por ejemplo, mostrar en consola
+      console.log("URL actual: " + currentUrl);
+
+      $("#orderPrice").val(selectedValue);
+
+      // Opcional: Modificar la URL con el valor seleccionado y recargar la página
+      // Esto es solo un ejemplo, ajusta según tus necesidades
+      var newUrl = new URL(currentUrl);
+      newUrl.searchParams.set('priceOrder', selectedValue); // Añade o actualiza el parámetro 'priceOrder'
+      window.location.href = newUrl.toString(); // Cambia la URL y recarga la página
+
     });
   </script>
 @stop

@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var input = document.querySelector(".input-box");
   
     input.onclick = function () {
-      console.log("click");
+      
       this.classList.toggle("open");
       let list = this.nextElementSibling;
       if (list.style.maxHeight) {
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var rad = document.querySelectorAll(".radio");
     rad.forEach((item) => {
       item.addEventListener("change", () => {
-        console.log("change");
+        
         input.innerHTML = item.nextElementSibling.innerHTML;
         input.click();
       });

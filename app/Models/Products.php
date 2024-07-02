@@ -81,7 +81,7 @@ class Products extends Model
     }
 
 
-  public static function obtenerProductos($categoria_id = '', $paginado){
+  public static function obtenerProductos($categoria_id = '', $paginado, $orden = ''){
     $return = Products::select('products.*','categories.name as category_name')->join('categories', 'categories.id', '=', 'products.categoria_id');
 
     if(!empty($categoria_id)){
@@ -144,6 +144,16 @@ class Products extends Model
             }
         });
        
+    }
+
+    if ($orden !== '') {
+        if ($orden == 'price_high') {
+            $return = $return->orderBy('precio', 'desc');
+        } elseif ($orden == 'price_low') {
+            $return = $return->orderBy('precio', 'asc');
+        } elseif ($orden == 'oldest') {
+            $return = $return->orderBy('created_at', 'asc');
+        }
     }
 
 
