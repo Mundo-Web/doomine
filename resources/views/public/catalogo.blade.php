@@ -600,8 +600,9 @@
       $('body').delegate('.cargarMas', 'click', function() {
         var url = window.location.href;
         var query = url.split('?');
-        if (query != '') {
-          console.log('entro here')
+        console.log(query.length)
+        if (query > 1) {
+
           var query = query[1].split('=');
           if (query[0] == 'priceOrder') {
             $('#orderPrice').val(query[1]);

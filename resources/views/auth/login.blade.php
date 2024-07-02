@@ -10,9 +10,7 @@
           style="background-image: url('{{ asset($generalinfo->img_login) }}')" @endif
           <div style="background-image: url('{{ asset($generalinfo->img_login) }}')"
             class="bg-cover bg-center bg-no-repeat w-full h-full">
-            <h1 class=" font-mediumItalicDisplay xl:text-text28 py-10 bg-black bg-opacity-25 text-center text-white">
-              Doomine
-            </h1>
+
           </div>
         </div>
 
