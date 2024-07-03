@@ -86,7 +86,12 @@
                     @endforeach
 
                     <!-- Después del bucle, puedes usar la variable totalStock -->
-                    <p>{{ $totalStock }}</p>
+                    <p>
+                    <div class="cursor-pointer bg-blue-500 px-3 py-2 rounded text-white hover:bg-blue-700 w-10"
+                      onclick="openModalStock({{ $item->id }} )">
+                      {{ $totalStock }}
+                    </div>
+                    </p>
                   </td>
                   {{-- <td>{{ $item->peso }}</td> --}}
                   <td class="px-3 py-2">
@@ -270,8 +275,146 @@
 
 </div>
 
+<div id="modalStock" class="hidden">
+  <div class=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <!-- Modal -->
+  <div class=" fixed inset-0 z-30 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start w-full">
+
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+              <h2 class="text-lg font-bold leading-6 text-gray-900 mb-2" id="modal-title">Actualizar Stock por
+                combinacion</h2>
+              <div class="mt-2 " id="containerStock">
+                {{--  @foreach ($imagenes as $item)
+                  <img src="{{ asset($item['name_imagen']) }}" alt="{{ asset($item['name_imagen']) }}"
+                    class="w-10 h-10 object-cover">
+                @endforeach --}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6">
+
+
+          <button type="button" onclick="updateStock()"
+            class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto">Actualizar</button>
+          <button onclick="closeModalStock()" type="button"
+            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 
 <script>
+  function openModalStock(id) {
+    $.ajax({
+      url: "{{ route('products.buscaCombinacion') }}",
+      method: 'POST',
+      data: {
+        _token: $('input[name="_token"]').val(),
+
+        id: id,
+
+      },
+      success: function(data) {
+        console.log(data)
+        $('#modalStock').removeClass('hidden');
+        let countainer = document.createElement('div');
+        let table = `<table class="min-w-full divide-y divide-gray-200 p-2 w-full" id="tableStockCombinacion">
+                        <thead>
+                          <tr>
+                            
+                            
+                            <th class="w-1/4">Color</th>
+                            <th class="w-1/4 text-center">Talla</th>
+                            <th class="text-center w-1/4" >Stock</th>
+                          </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 p-3">`;
+        data.forEach(function(item) {
+          table += `<tr class="odd:bg-gray-100 even:bg-gray-200">
+                      
+                      
+                      <td class="text-center">${item.color.valor}</td>
+                      <td class="text-center">${item.talla.valor}</td>
+
+                      <td class="flex justify-center items-center gap-5 text-center sm:text-right">
+                        <form onsubmit="updateStock(event, ${item.id})" >
+                          <div class="flex flex-row gap-2 p-2 ">
+                            <input data-id="${item.id}" type="number" value="${item.stock}" placeholder="Nuevo Stock" name="newStock" min="0" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-28 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                           
+                            
+                          </div> 
+                          
+                        </form>
+                      </td>
+                    </tr>`;
+        });
+        table += `</tbody></table>`;
+        countainer.innerHTML = table;
+        $('#containerStock').html(countainer);
+
+
+      }
+    })
+
+
+  }
+
+  function updateStock() {
+    event.preventDefault();
+    let stockData = [];
+
+    // Seleccionar todos los campos de entrada en la tabla y construir el array de datos
+    $('#tableStockCombinacion input').each(function() {
+      let input = $(this); // El campo de entrada actual en la iteración
+      stockData.push({
+        id: input.data('id'), // Asume que cada input tiene un atributo data-id con el ID del stock
+        stock: input.val() // El valor actual del campo de entrada
+      });
+    });
+
+    // Ahora stockData contiene todos los datos de stock de la tabla
+
+    $.ajax({
+      url: "{{ route('products.actualizarStock') }}", // Asegúrate de definir esta ruta en tu archivo de rutas de Laravel
+      method: 'POST',
+      data: {
+        _token: $('input[name="_token"]').val(),
+        stockData: stockData, // Envía el array de datos como parte de la solicitud
+      },
+      success: function(response) {
+        console.log(response);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Stock actualizado",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        // Aquí puedes agregar código para manejar la respuesta, como cerrar el modal o mostrar un mensaje de éxito.
+        closeModalStock()
+      },
+      error: function(error) {
+        console.log(error);
+        // Manejo de errores
+      }
+    });
+  }
+
+  function closeModalStock() {
+    $('#modalStock').addClass('hidden');
+  }
+
   function openModal(imagenes, app_url) {
     // Aquí puedes usar los parámetros `id` y `imagenes` si necesitas personalizar el modal
 

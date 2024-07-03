@@ -72,7 +72,6 @@ class GeneralController extends Controller
   public function update(Request $request, $id)
   {
     $data = $request->all();
-    dump($data);
     try {
       if ($request->hasFile("img_login")) {
         $file = $request->file('img_login');
@@ -105,7 +104,6 @@ class GeneralController extends Controller
       return back()->with('success', 'Registro actualizado correctamente');
     } catch (\Throwable $th) {
       //throw $th;
-      dump ($th) ; 
     }
   }
   public function saveImg($file, $route, $nombreImagen)

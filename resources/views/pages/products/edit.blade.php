@@ -488,9 +488,8 @@
                   <div class="col-span-1 md:col-span-5">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
-                      <textarea type="text" rows="2" id="description" name="description"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Descripción">{{ $product->description }}</textarea>
+                      <x-textarea id="description" name="description" value="{!! $product->description !!}" />
+
                     </div>
                   </div>
 
@@ -743,18 +742,26 @@
                 </div>
               </div>
               <div class="col-span-1 md:col-span-5 mt-2">
-                <div class="flex justify-between gap-5">
+                <div class="grid grid-cols-3  gap-5 m-2">
                   @foreach ($product->images as $item)
-                    <div id="portada-{{ $item->id }}">
-                      <i onclick="borrarImg({{ $item->id }})" class=" w-5 cursor-pointer"
-                        style="position: absolute;"><svg xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                          <path
-                            d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
-                        </svg></i>
+                    <div id="portada-{{ $item->id }}" class="relative group shadow-xl">
+                      <div class="absolute top-0 left-0 bottom-0 right-0 hover:backdrop-blur-md transition-all ">
+                        <i onclick="borrarImg({{ $item->id }})" data-tippy-content="Eliminar Imagen" tippy
+                          class="hidden group-hover:block absolute top-0 right-0 m-2 w-5 cursor-pointer fa-regular fa-trash-can z-10  transition-all"></i>
+
+                        <!-- Botón de editar (Agrega tu propia función de onclick y ajusta el icono según necesites) -->
+                        <label for="input-file-{{ $item->id }}" data-tippy-content="Editar Imagen" tippy
+                          class="hidden group-hover:block absolute top-0 right-8 m-2 w-5 cursor-pointer fa-solid fa-camera-rotate z-10  transition-all"></label>
+                      </div>
+
+                      <input type="file" id="input-file-{{ $item->id }}"
+                        name="input-file-{{ $item->id }}" style="display: none;"
+                        data-img="#portada-{{ $item->id }} img">
+                      <!-- Botón de eliminar -->
 
 
-                      <img src="{{ asset($item->name_imagen) }}" alt="" class="w-24">
+                      <!-- Imagen -->
+                      <img src="{{ asset($item->name_imagen) }}" alt="" class="w-24  hover:blur-sm ">
                     </div>
                   @endforeach
 
@@ -786,9 +793,11 @@
                         <input type="radio" name="caratula" value="{{ $item->id }}">
                       </div>
 
-                      <input id="imagen" name="imagenP-{{ $item->id }}"
+                      <img id="imagePreview-{{ $item->id }}" src="#" alt="Image preview"
+                        class="h-20 w-20 object-cover" style="display: none;" />
+                      <input id="imagen-{{ $item->id }}" name="imagenP-{{ $item->id }}" type="file"
                         class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                        aria-describedby="user_avatar_help" id="user_avatar">
                       <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
                         name="attrid-{{ $item->id }}">
                       </div>
@@ -818,8 +827,8 @@
                             'name' => 'conbinacion-' . $item->id . '[color]',
                             'id' => 1,
                             'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
                             'options' => $valorAtributo,
                             'defaultValue' => 1,
                             'value' => 'id',
@@ -834,8 +843,8 @@
                             'name' => 'conbinacion-' . $item->id . '[talla] ',
                             'id' => 1,
                             'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
                             'options' => $valorAtributo,
                             'defaultValue' => 1,
                             'value' => 'id',
@@ -991,7 +1000,6 @@
   </script>
   <script>
     function toggleMenu() {
-      console.log('cambiando toggle')
       var menuItems = document.getElementById('menu-items');
       var isExpanded = menuItems.classList.contains('hidden');
       menuItems.classList.toggle('hidden', !isExpanded);
@@ -1007,7 +1015,6 @@
       $("#AddEspecifiacion").on('click', function(e) {
         e.preventDefault()
         valorInput++
-        console.log('agregando especificacion')
         const addButton = document.getElementById("AddEspecifiacion");
         const divFlex = document.createElement("div");
         const dRelative = document.createElement("div");
@@ -1070,7 +1077,6 @@
 
   <script>
     $(document).on('click', '.eliminarConvinacion', function(e) {
-      console.log(e.target)
       e.preventDefault()
 
       let targetButton = e.target.closest('button.eliminarConvinacion');
@@ -1112,7 +1118,6 @@
 
             switchColor.each(function() {
               const idService = $(this).data('idservice');
-              console.log(idService, serviceId)
               if (idService === serviceId) {
                 optionElement.removeAttribute('hidden');
               }
@@ -1181,7 +1186,6 @@
     $("#AddCombinacion").on('click', function(e) {
       e.preventDefault()
       valorInput++
-      console.log('agregando especificacion')
       const addButton = document.getElementById("AddCombinacion");
       const divFlex = document.createElement("div");
       const dRelative = document.createElement("div");
@@ -1297,7 +1301,6 @@
             });
             let container = 0
             this.on('addedfile', async (file) => {
-              console.log('addedfile', file)
               if (container < 5) {
                 container++
                 console.log(container)
@@ -1339,7 +1342,6 @@
 
           let $element = $(this);
           let nameValue = $element.attr('name');
-          console.log(nameValue);
           initializeDropzone(this, nameValue);
         });
       }
@@ -1364,10 +1366,9 @@
   </script>
   <script>
     function borrarImg(id) {
-      console.log('borranmdo ', id)
 
       $.ajax({
-        url: "{{ route('activity.borrarimg') }}",
+        url: "{{ route('products.borrarimg') }}",
         method: 'POST',
         data: {
           _token: $('input[name="_token"]').val(),
@@ -1396,6 +1397,45 @@
 
 
     }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Selecciona todos los inputs de tipo archivo
+      document.querySelectorAll('input[type="file"]').forEach(function(fileInput) {
+        fileInput.addEventListener('change', function(event) {
+          var reader = new FileReader();
+          var itemId = this.id.split('-')[1]; // Obtiene el ID del item del atributo 'id' del input
+          var imagePreviewId = 'imagePreview-' +
+            itemId; // Construye el ID del elemento de previsualización de imagen
+
+          reader.onload = function(e) {
+            // Selecciona el elemento img correspondiente y actualiza su atributo 'src'
+            var imagePreview = document.getElementById(imagePreviewId);
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block'; // Muestra la imagen
+          };
+
+          // Lee el archivo seleccionado como una URL de datos
+          reader.readAsDataURL(event.target.files[0]);
+        });
+      });
+    });
+
+    function editarImg(itemId) {
+      document.getElementById(`input-file-${itemId}`).click();
+    }
+
+
+    $(document).on('change', "[id^='input-file-']", function() {
+      var file = this.files[0];
+      var uri = URL.createObjectURL(file);
+      var img = this.getAttribute('data-img');
+      $(img).attr('src', uri);
+    })
+
+    /* function previsualizarImagen(e) {
+
+    } */
   </script>
   @include('_layout.scripts')
 

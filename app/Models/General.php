@@ -10,6 +10,6 @@ class General extends Model
     use HasFactory;
 
     protected $fillable = ['address', 'inside', 'district', 'city', 'country', 'cellphone','office_phone', 'email', 'facebook', 'instagram',
-    'youtube', 'twitter', 'tiktok', 'whatsapp',  'form_email', 'business_hours', 'schedule', 'mensaje_whatsapp', 'aboutus', 'is_active_discount', 'url_maps' , 'img_login'];
+    'youtube', 'twitter', 'tiktok', 'whatsapp',  'form_email', 'business_hours', 'schedule', 'mensaje_whatsapp', 'aboutus', 'is_active_discount', 'url_maps' , 'img_login' ,'text_banner'];
 
 }

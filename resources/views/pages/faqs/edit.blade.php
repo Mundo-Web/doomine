@@ -7,7 +7,8 @@
       <div
         class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Editar pregunta y respuesta
+          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Editar pregunta y
+            respuesta
           </h2>
         </header>
 
@@ -69,16 +70,17 @@
                       </g>
                     </svg>
                   </div>
-                  <textarea type="text" id="respuesta" name="respuesta" 
-                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Respuesta">{{ $faqs->respuesta }}</textarea>
+                  <x-textarea id="respuesta" name="respuesta" value="{!! $faqs->respuesta !!}" />
+
+
                 </div>
               </div>
 
 
               <div class="md:col-span-5 text-right mt-6 flex justify-between">
                 <div class="inline-flex items-end">
-                  <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+                  <a href="{{ URL::previous() }}"
+                    class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
                 </div>
                 <div class="inline-flex items-end">
                   <button type="submit"

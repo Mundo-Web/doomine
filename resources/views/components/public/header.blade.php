@@ -2,7 +2,7 @@
   <div class="bg-bgBlack font-medium text-text14 xl:text-text18 italic">
     @if ($generalinfo->is_active_discount)
       <p class="text-textWhite py-5 text-center">
-        Regístrate y obtén un 20% de descuento en tu primer pedido.
+        {{ $generalinfo->text_banner }}
         <a href="{{ route('register') }}" class="underline font-bold">
           Regístrate ahora
         </a>

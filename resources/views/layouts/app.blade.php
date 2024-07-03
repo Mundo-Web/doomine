@@ -15,6 +15,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
+  <script src="https://unpkg.com/popper.js@1"></script>
+  <script src="https://unpkg.com/tippy.js@5/dist/tippy-bundle.iife.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@5/dist/backdrop.css" />
   <!-- funciones -->
 
   {{-- colorpicker  --}}
@@ -48,6 +51,7 @@
   <!-- Select2 -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
   <!-- Include the Quill library -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
@@ -106,7 +110,11 @@
 
   @livewireScripts
   @yield('scripts_importados')
-
+  <script>
+    tippy('[tippy]', {
+      arrow: true
+    })
+  </script>
 </body>
 
 </html>

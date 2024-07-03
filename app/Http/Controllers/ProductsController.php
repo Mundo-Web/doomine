@@ -74,17 +74,17 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $onlyOneCaratula = false;
 
-    if(is_null($request->input('descuento'))){
+    if (is_null($request->input('descuento'))) {
       $request->merge(['descuento' => 0]);
       $data['descuento'];
     }
- 
+
     // $valorprecio = $request->input('precio') - 0.1;
 
     try {
       $request->validate([
         'producto' => 'required',
-        'categoria_id' => 'required', 
+        'categoria_id' => 'required',
         'precio' => 'min:0|required|numeric',
         'descuento' => 'lt:' . $request->input('precio'),
       ]);
@@ -177,7 +177,7 @@ class ProductsController extends Controller
 
       $this->GuardarEspecificaciones($producto->id, $especificaciones);
 
-     /*  if (!is_null($tagsSeleccionados)) {
+      /*  if (!is_null($tagsSeleccionados)) {
         $this->TagsXProducts($producto->id, $tagsSeleccionados);
       } */
 
@@ -270,7 +270,7 @@ class ProductsController extends Controller
       $dataGalerie['type_imagen'] = 'secondary';
       $dataGalerie['caratula'] = 0;
       $dataGalerie['color_id'] = $colorId;
-      
+
       // $dataGalerie['type_img'] = 'gall';
       ImagenProducto::create($dataGalerie);
     } catch (\Throwable $th) {
@@ -358,7 +358,7 @@ class ProductsController extends Controller
    */
   public function update(Request $request, string $id)
   {
-    $onlyOneCaratula= false;
+    $onlyOneCaratula = false;
     $cleanGaleria = true;
     $especificaciones = [];
     $product = Products::find($id);
@@ -366,16 +366,16 @@ class ProductsController extends Controller
     $data = $request->all();
     $atributos = null;
 
-    
+
+
 
     $request->validate([
       'producto' => 'required',
     ]);
 
-    
+
 
     foreach ($request->all() as $key => $value) {
-
       if (strstr($key, ':')) {
         // Separa el nombre del atributo y su valor
         $atributos = $this->stringToObject($key, $atributos);
@@ -389,21 +389,21 @@ class ProductsController extends Controller
 
           $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
           $especificaciones[$num]['specifications'] = $value; // Agregar las especificaciones al array asociativo
-        }elseif(strpos($key, 'conbinacion-') === 0 ){
-           $num = substr($key, strrpos($key, '-') + 1);
-           $combinacion = Combinacion::find($num)->update([ 'color_id' => $value["color"] ,
-           'talla_id' => $value["talla"] ,
-           'stock' => $value["stock"] ,]);
-
- 
-        }elseif(strpos($key, 'updateComb-') === 0 ){
-          Combinacion::create([
-            "product_id" =>$id,
-            "color_id" =>$value["color"],
-            "talla_id" =>$value["talla"],
-            "stock" =>$value["stock"],
+        } elseif (strpos($key, 'conbinacion-') === 0) {
+          $num = substr($key, strrpos($key, '-') + 1);
+          $combinacion = Combinacion::find($num)->update([
+            'color_id' => $value["color"],
+            'talla_id' => $value["talla"],
+            'stock' => $value["stock"],
           ]);
-        }elseif (strpos($key, 'imagenP-') === 0) {
+        } elseif (strpos($key, 'updateComb-') === 0) {
+          Combinacion::create([
+            "product_id" => $id,
+            "color_id" => $value["color"],
+            "talla_id" => $value["talla"],
+            "stock" => $value["stock"],
+          ]);
+        } elseif (strpos($key, 'imagenP-') === 0) {
           $colorId = substr($key, strrpos($key, '-') + 1);
           $isCaratula = 0;
           if ($colorId == isset($data['caratula']) && $onlyOneCaratula == false) {
@@ -427,19 +427,26 @@ class ProductsController extends Controller
             $cleanGaleria = false ; 
             DB::delete('delete from imagen_productos where product_id = ?', [$id]);
           } */
-         
+
           ImagenProducto::create($dataGalerie);
-        }elseif(strpos($key, 'attrid-') === 0) {
+        } elseif (strpos($key, 'attrid-') === 0) {
           $colorId = substr($key, strrpos($key, '-') + 1);
           foreach ($value as $file) {
             $this->GuardarGaleria($file, $id, $colorId);
           }
         }
-        
+      }
+    }
+    foreach ($request->files as $key => $file) {
+      if (strpos($key, 'input-file-') === 0) {
+        $file = $request->file($key);
+        $number = substr($key, strpos($key, 'input-file-') + strlen('input-file-'));// Esto imprimirá "541" si $key es "input-file-541"
+
+        $this->actImg($file, $number);
       }
     }
 
-    
+
     $jsonAtributos = json_encode($atributos);
 
 
@@ -468,7 +475,7 @@ class ProductsController extends Controller
       $cleanedData['preciofiltro'] = $data['descuento'];
     }
 
-    
+
     $product->update($cleanedData);
 
     DB::delete('delete from attribute_product_values where product_id = ?', [$product->id]);
@@ -497,6 +504,30 @@ class ProductsController extends Controller
     }
     $this->actualizarEspecificacion($especificaciones);
     return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
+  }
+
+  /* Funcion para manejar la actualizacion de imagen  */
+  private function actImg($file, $id)
+  {
+   
+    try {
+      $imagenGaleria = ImagenProducto::find($id);
+      $rutaCompleta  = $imagenGaleria->name_imagen;
+  
+      $routeImg = 'storage/images/productos/';
+      $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+      if (file_exists($rutaCompleta)) {
+        // Intentar eliminar el archivo
+        if (unlink($rutaCompleta)) {
+          // Archivo eliminado con éxito
+          $imagenGaleria->update(['name_imagen' => $routeImg . $nombreImagen]);
+        }
+      }
+      $this->saveImg($file, $routeImg, $nombreImagen);
+    } catch (\Throwable $th) {
+      //throw $th;
+      
+    }
   }
 
   /**
@@ -532,7 +563,8 @@ class ProductsController extends Controller
     return response()->json(['message' => 'registro actualizado']);
   }
 
-  public function borrarimg(Request $request){
+  public function borrarimg(Request $request)
+  {
     try {
       //code...
       $imagenGaleria = ImagenProducto::find($request->id);
@@ -540,20 +572,39 @@ class ProductsController extends Controller
       if (file_exists($rutaCompleta)) {
         // Intentar eliminar el archivo
         if (unlink($rutaCompleta)) {
-            // Archivo eliminado con éxito
-           
-        } 
+          // Archivo eliminado con éxito
+
+        }
       }
       $imagenGaleria->delete();
-      return response()->json(['message'=>'imagen eliminada con exito ']);
+      return response()->json(['message' => 'imagen eliminada con exito ']);
     } catch (\Throwable $th) {
       //throw $th;
-      return response()->json(['message'=>'no se ha podido eliminar la imagen '], 400);
-
+      return response()->json(['message' => 'no se ha podido eliminar la imagen '], 400);
     }
   }
   public function export()
-    {
-        return Excel::download(new ProductosExport, 'productos.xlsx');
+  {
+    return Excel::download(new ProductosExport, 'productos.xlsx');
+  }
+  
+  public function buscaCombinacion(Request $request){
+    $combinacion = Combinacion::with(['color', 'talla'])
+    ->where('product_id', $request->id)
+    ->get();
+    return response()->json($combinacion);
+  }
+
+  public function actualizarStock(Request $request){
+    dump($request->all());
+
+    foreach($request->stockData as $stock){
+      $combinacion = Combinacion::find($stock['id']);
+      $combinacion->stock = $stock['stock'];
+      $combinacion->save();
     }
+    
+   
+    return response()->json(['message' => 'Stock actualizado']);
+  }
 }

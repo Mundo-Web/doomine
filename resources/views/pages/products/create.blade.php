@@ -504,9 +504,10 @@
                   <div class="col-span-1 md:col-span-5">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
-                      <textarea type="text" rows="2" id="description" name="description" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Descripción"></textarea>
+
+                      <x-textarea id="description" name="description" value="" />
+
+
                     </div>
                   </div>
 
@@ -829,9 +830,11 @@
                         <input type="radio" name="caratula" value="{{ $item->id }}">
                       </div>
 
-                      <input id="imagen" name="imagenP-{{ $item->id }}"
+                      <img id="imagePreview-{{ $item->id }}" src="#" alt="Image preview"
+                        class="h-20 w-20" style="display: none;" />
+                      <input id="imagen-{{ $item->id }}" name="imagenP-{{ $item->id }}" type="file"
                         class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                        aria-describedby="user_avatar_help" id="user_avatar">
                       <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
                         name="attrid-{{ $item->id }}">
                       </div>
@@ -1040,20 +1043,7 @@
 
       let valorInput = 1
 
-      tinymce.init({
-        selector: 'textarea#description',
-        height: 500,
-        plugins: [
-          'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
-          'searchreplace', 'visualblocks', 'code', 'fullscreen',
-          'insertdatetime', 'table'
-        ],
-        toolbar: 'undo redo | blocks | ' +
-          'bold italic backcolor | alignleft aligncenter ' +
-          'alignright alignjustify | bullist numlist outdent indent | ' +
-          'removeformat | help',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
-      });
+
 
       $("#AddEspecifiacion").on('click', function(e) {
         e.preventDefault()
@@ -1342,6 +1332,29 @@
       });
       console.log('realizando guardado')
     })
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Selecciona todos los inputs de tipo archivo
+      document.querySelectorAll('input[type="file"]').forEach(function(fileInput) {
+        fileInput.addEventListener('change', function(event) {
+          var reader = new FileReader();
+          var itemId = this.id.split('-')[1]; // Obtiene el ID del item del atributo 'id' del input
+          var imagePreviewId = 'imagePreview-' +
+            itemId; // Construye el ID del elemento de previsualización de imagen
+
+          reader.onload = function(e) {
+            // Selecciona el elemento img correspondiente y actualiza su atributo 'src'
+            var imagePreview = document.getElementById(imagePreviewId);
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block'; // Muestra la imagen
+          };
+
+          // Lee el archivo seleccionado como una URL de datos
+          reader.readAsDataURL(event.target.files[0]);
+        });
+      });
+    });
   </script>
 
   @include('_layout.scripts')
