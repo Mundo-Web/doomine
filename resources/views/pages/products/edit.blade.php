@@ -409,7 +409,7 @@
 
                 <div id='general' class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 ">
 
-                  <div class="col-span-1 col-span-1 md:col-span-5 mt-2">
+                  <div class="col-span-1  md:col-span-5 mt-2">
 
                     <label for="producto">Producto</label>
 

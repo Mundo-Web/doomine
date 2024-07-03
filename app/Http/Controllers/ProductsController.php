@@ -596,7 +596,7 @@ class ProductsController extends Controller
   }
 
   public function actualizarStock(Request $request){
-    dump($request->all());
+    
 
     foreach($request->stockData as $stock){
       $combinacion = Combinacion::find($stock['id']);
