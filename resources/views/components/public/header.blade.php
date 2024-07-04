@@ -136,7 +136,7 @@
       <input type="text" placeholder="Buscar" id="buscarProducto2"
         class="w-full xl:max-w-sm outline-none bg-[#F5F5F5] font-medium text-text16 border-x-0 border-y-0  border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[0px]" />
       <div id="resultados2" class="bg-white p-[1px] rounded-xl  overflow-y-auto max-h-[300px] shadow-2xl"
-        style="  position: absolute; z-index: 10;
+        style="  position: absolute; z-index: 50;
   top: 226px;"></div>
 
     </div>
@@ -264,11 +264,11 @@
   </div>
 
   <!-- search -->
-  <div id="myOverlay" class="overlay">
+  <div id="myOverlay" class="overlay" style="z-index: 200;">
     <span class="closebtn" onclick="closeSearch()">×</span>
-    <div class="overlay-content w-3/4 md:w-1/2">
+    <div class="overlay-content w-3/4 md:w-1/2 z-30">
       <form>
-        <input type="text" placeholder="Buscar.." name="search" id="buscarproducto" class="rounded-2xl">
+        <input type="text" placeholder="Buscar.." name="search" id="buscarproducto" class="rounded-2xl ">
       </form>
       <div id="resultados" class="bg-white p-[1px] rounded-xl  overflow-y-auto max-h-[300px]"></div>
     </div>

@@ -32,7 +32,7 @@
                     </div>
                   </div>
 
-                  <div class="absolute inset-0 flex items-center justify-center text-textWhite">
+                  <div class="absolute inset-0 flex items-center justify-center text-textWhite" style="z-index: 1">
                     <div class="flex flex-col w-full md:w-2/3 lg:w-1/2" data-aos="zoom-out-right">
                       <p
                         class="font-mediumDisplay text-text16 md:text-text20 lg:text-text24 xl:text-text36 italic leading-none w-5/6 mx-auto md:w-full md:mx-0">
@@ -439,11 +439,11 @@
         centeredSlides: false,
         initialSlide: 0,
         allowTouchMove: true,
-        autoplay: {
+        /* autoplay: {
           delay: 3500,
           disableOnInteraction: false,
           pauseOnMouseEnter: false
-        },
+        }, */
       });
 
     })
