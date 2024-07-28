@@ -59,10 +59,12 @@ class TermsAndConditionController extends Controller
      */
     public function update(Request $request , $id)
     {
+    
         $request->validate([
             'content' => 'required',
         ]);
     
+        
         $terms = TermsAndCondition::findOrfail($id); 
         $terms->update($request->all());
         $terms->save();
