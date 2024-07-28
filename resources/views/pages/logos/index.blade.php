@@ -122,7 +122,7 @@
 
       /*
 
-         $(".btn_swithc").on("change", function() {
+         $(document).on("change", ".btn_swithc", function() {
 
            var status = 0;
            var id = $(this).attr('data-idService');

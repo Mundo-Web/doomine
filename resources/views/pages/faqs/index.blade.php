@@ -100,7 +100,7 @@
       responsive: true
     });
 
-    $(".btn_swithc").on("change", function() {
+    $(document).on("change", ".btn_swithc", function() {
 
       let status = 0;
       let id = $(this).attr('data-idService');

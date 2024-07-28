@@ -96,7 +96,7 @@
       responsive: true
     });
 
-    $(".btn_swithc").on("change", function() {
+    $(document).on("change", ".btn_swithc", function() {
 
       console.log('swithc')
 

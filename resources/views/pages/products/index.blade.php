@@ -582,7 +582,7 @@
       ]
     });
 
-    $(".btn_swithc").on("change", function() {
+    $(document).on("change", ".btn_swithc", function() {
 
 
 
