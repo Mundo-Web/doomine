@@ -351,7 +351,7 @@
                       <label for="bordered-radio-2"
                           class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
                           <span> Recojo GRATIS en tienda </span>
-                          <span>S/ 0.00</span>
+                          <span>S/ 0</span>
                       </label>
                   </div>`
 
