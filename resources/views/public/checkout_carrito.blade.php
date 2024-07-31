@@ -137,12 +137,13 @@
 
               <div class="text-[#151515] flex justify-between items-center">
                 <p class="font-normal text-[14px]">SubTotal</p>
-                <span id="itemSubtotal" class="font-semibold text-[14px]">s/ 0.00</span>
+                <span id="itemSubtotal" class="font-semibold text-[14px] mr-4">
+                  s/ 0.00</span>
               </div>
 
               <div class="text-[#151515] flex justify-between items-center">
                 <p class="font-semibold text-[20px]">Total</p>
-                <span id="itemsTotalCheck" class="font-semibold text-[20px]">s/ 0.00</span>
+                <span id="itemsTotalCheck" class="font-semibold text-[20px] mr-4">s/ 0.00</span>
               </div>
 
               <button id="btnSiguiente" type="button"
