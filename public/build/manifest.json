@@ -1,23 +1,14 @@
 {
-  "_client-arTRzdXe.js": {
-    "file": "assets/client-arTRzdXe.js"
-  },
-  "resources/js/Catalogo.jsx": {
-    "file": "assets/Catalogo-gd3iEunB.js",
-    "imports": [
-      "_client-arTRzdXe.js"
-    ],
+  "resources/css/app.css": {
+    "file": "assets/app-Kr7lZ26F.css",
     "isEntry": true,
-    "src": "resources/js/Catalogo.jsx"
+    "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
     "css": [
       "assets/app-dGvTjJ5y.css"
     ],
-    "file": "assets/app-70WAhShR.js",
-    "imports": [
-      "_client-arTRzdXe.js"
-    ],
+    "file": "assets/app-R_rIer-D.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
