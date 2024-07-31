@@ -258,15 +258,11 @@ export default function Catalogo(props) {
       if (filter.maxPrice && filter.minPrice) {
         filterBody.push([
           [
-            ['precio', '>=', filter.minPrice],
-            'or',
-            ['descuento', '>=', filter.minPrice]
+            ['preciofiltro', '>=', filter.minPrice]
           ],
           'and',
           [
-            ['precio', '<=', filter.maxPrice],
-            'or',
-            ['descuento', '<=', filter.maxPrice]
+            ['preciofiltro', '<=', filter.maxPrice]
           ]
         ]);
       } else if (filter.minPrice) {
