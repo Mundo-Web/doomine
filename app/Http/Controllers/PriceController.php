@@ -142,8 +142,8 @@ class PriceController extends Controller
     }
     public function borrar(Request $request){
         $price = Price::find($request->id);
-        $price->status = 0;
-        $price->save();
+        $price->delete();
+        // $price->save();
         return response()->json(['message'=> 'Borrado correctamente', 'price'=> $price]);
     }
 }
