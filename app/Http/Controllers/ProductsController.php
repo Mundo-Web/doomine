@@ -23,6 +23,8 @@ use SoDe\Extend\File as ExtendFile;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Exports\ProductosExport;
+use App\Http\Classes\dxResponse;
+use App\Models\dxDataGrid;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductsController extends Controller
@@ -440,7 +442,7 @@ class ProductsController extends Controller
     foreach ($request->files as $key => $file) {
       if (strpos($key, 'input-file-') === 0) {
         $file = $request->file($key);
-        $number = substr($key, strpos($key, 'input-file-') + strlen('input-file-'));// Esto imprimirá "541" si $key es "input-file-541"
+        $number = substr($key, strpos($key, 'input-file-') + strlen('input-file-')); // Esto imprimirá "541" si $key es "input-file-541"
 
         $this->actImg($file, $number);
       }
@@ -509,11 +511,11 @@ class ProductsController extends Controller
   /* Funcion para manejar la actualizacion de imagen  */
   private function actImg($file, $id)
   {
-   
+
     try {
       $imagenGaleria = ImagenProducto::find($id);
       $rutaCompleta  = $imagenGaleria->name_imagen;
-  
+
       $routeImg = 'storage/images/productos/';
       $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
       if (file_exists($rutaCompleta)) {
@@ -526,7 +528,7 @@ class ProductsController extends Controller
       $this->saveImg($file, $routeImg, $nombreImagen);
     } catch (\Throwable $th) {
       //throw $th;
-      
+
     }
   }
 
@@ -587,24 +589,108 @@ class ProductsController extends Controller
   {
     return Excel::download(new ProductosExport, 'productos.xlsx');
   }
-  
-  public function buscaCombinacion(Request $request){
+
+  public function buscaCombinacion(Request $request)
+  {
     $combinacion = Combinacion::with(['color', 'talla'])
-    ->where('product_id', $request->id)
-    ->get();
+      ->where('product_id', $request->id)
+      ->get();
     return response()->json($combinacion);
   }
 
-  public function actualizarStock(Request $request){
-    
+  public function actualizarStock(Request $request)
+  {
 
-    foreach($request->stockData as $stock){
+
+    foreach ($request->stockData as $stock) {
       $combinacion = Combinacion::find($stock['id']);
       $combinacion->stock = $stock['stock'];
       $combinacion->save();
     }
-    
-   
+
+
     return response()->json(['message' => 'Stock actualizado']);
+  }
+  public function paginate(Request $request)
+  {
+    $response =  new dxResponse();
+
+    try {
+      $instance = Products::select([
+        DB::raw('DISTINCT products.*')
+      ])
+        ->with(['categoria', 'images', 'combinations'])
+
+        ->leftJoin('categories', 'categories.id', 'products.categoria_id')
+        ->leftJoin('attribute_product_values', 'attribute_product_values.product_id', 'products.id')
+        ->leftJoin('combinaciones', 'combinaciones.product_id', 'products.id')
+        ->where('categories.visible', 1);
+
+      if ($request->group != null) {
+        [$grouping] = $request->group;
+        $selector = \str_replace('.', '__', $grouping['selector']);
+        $instance = Products::select([
+          "{$selector} AS key"
+        ])
+          ->groupBy($selector);
+      }
+
+      if ($request->filter) {
+        $instance->where(function ($query) use ($request) {
+          dxDataGrid::filter($query, $request->filter ?? [], false);
+        });
+      }
+
+      if ($request->sort != null) {
+        foreach ($request->sort as $sorting) {
+          // $selector = \str_replace('.', '__', $sorting['selector']);
+          $selector = $sorting['selector'];
+          $instance->orderBy(
+            $selector,
+            $sorting['desc'] ? 'DESC' : 'ASC'
+          );
+        }
+      } else {
+        $instance->orderBy('products.id', 'DESC');
+      }
+
+      $totalCount = 0;
+      if ($request->requireTotalCount) {
+        $instanceClone = clone $instance;
+
+        // Obtén los IDs utilizando pluck
+        $ids = $instanceClone->pluck('products.id');
+        // $totalCount = $instance->count('*');
+        $totalCount = $ids->count();
+      }
+
+      $jpas = [];
+      if (!$request->ignoreData) {
+        $jpas = $request->isLoadingAll
+          ? $instance->get()
+          : $instance
+          ->skip($request->skip ?? 0)
+          ->take($request->take ?? 10)
+          ->get();
+      }
+
+      // $results = [];
+
+      // foreach ($jpas as $jpa) {
+      //   $result = JSON::unflatten($jpa->toArray(), '__');
+      //   $results[] = $result;
+      // }
+
+      $response->status = 200;
+      $response->message = 'Operación correcta';
+      $response->data = $jpas;
+      $response->totalCount = $totalCount;
+
+      return response()->json(['message' => 'Operación correcta', 'data' => $jpas, 'totalCount' => $totalCount], 200);
+    } catch (\Throwable $th) {
+      $response->status = 400;
+      $response->message = $th->getMessage() . " " . $th->getFile() . ' Ln.' . $th->getLine();
+      return response()->json(['message' => $th->getMessage() . " " . $th->getFile() . ' Ln.' . $th->getLine()], 400);
+    }
   }
 }

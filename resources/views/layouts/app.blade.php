@@ -56,6 +56,7 @@
   <!-- Include the Quill library -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
   <!-- Scripts -->
+  @viteReactRefresh
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <!-- Styles -->

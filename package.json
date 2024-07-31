@@ -16,14 +16,31 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@inertiajs/react": "^1.1.0",
+        "@preline/select": "^2.3.0",
+        "@tailwindcss/line-clamp": "^0.4.4",
+        "@tippyjs/react": "^4.2.6",
         "aos": "^2.3.4",
         "chart.js": "^4.4.1",
         "chartjs-adapter-moment": "^1.0.1",
         "datatables.net-dt": "^2.0.3",
         "flatpickr": "^4.6.13",
+        "flowbite": "^2.4.1",
+        "fs": "^0.0.1-security",
+        "jsencrypt": "^3.3.2",
+        "laravel-mix": "^6.0.49",
+        "laravel-vite-plugin": "^1.0.4",
         "moment": "^2.30.1",
-        "sweetalert2": "^11.10.7",
+        "preline": "^2.3.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-google-recaptcha": "^3.1.0",
+        "react-modal": "^3.16.1",
+        "react-router-dom": "^6.25.1",
+        "sode-extend-react": "^1.1.111",
+        "sweetalert2": "^11.11.1",
         "swiper": "^11.1.1",
-        "tailwindcss-animated": "^1.1.1"
+        "tailwindcss-animated": "^1.1.2",
+        "tippy": "^0.0.0"
     }
 }

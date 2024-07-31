@@ -66,73 +66,12 @@
                 class="block md:hidden"> OFF
             </span>
 
-            {{--  @foreach ($item->tags as $tag)
-              <div class="bg-white  rounded-md py-1 px-2">
-                <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
-                  {{ $tag->name }}
-                </p>
-              </div>
-            @endforeach --}}
+
           </div>
         </div>
       </div>
     @endforeach
   </div>
 
-  {{-- <div class="hidden md:block">
-                <nav class="mb-4 flex justify-between" aria-label="Pagination">
-                    <a class="px-4 py-2 flex gap-2 border-[1.5px] border-gray-300 rounded-lg group items-center hover:bg-black md:duration-500"
-                        href="/page/1">
-                        <div>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M15.8332 10.0013H4.1665M4.1665 10.0013L9.99984 15.8346M4.1665 10.0013L9.99984 4.16797"
-                                    stroke="black" stroke-width="1.67" stroke-linecap="round"
-                                    stroke-linejoin="round" class="group-hover:stroke-strokeWithe md:duration-500" />
-                            </svg>
-                        </div>
-                        <span
-                            class="font-mediumDisplay text-[16px] xl:text-text20 text-[#000000] group-hover:text-textWhite md:duration-500">Anterior</span>
-                    </a>
 
-                    <div class="flex text-[#000000] font-mediumDisplay items-end">
-                        <a class="rounded-lg px-4 py-2 hover:bg-[#F5F5F5] duration-300 active:bg-[#F5F5F5] text-text20"
-                            href="/page/2">1
-                        </a>
-
-                        <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
-                            href="/page/2">2
-                        </a>
-
-                        <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
-                            href="/page/3">3
-                        </a>
-
-                        <p>.....</p>
-
-                        <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
-                            href="/page/3">4
-                        </a>
-                    </div>
-
-                    <a class="px-4 py-2 flex gap-2 border-[1.5px] border-gray-300 rounded-lg group items-center hover:bg-black md:duration-500"
-                        href="/page/1">
-                        <span
-                            class="font-mediumDisplay text-[16px] xl:text-text20 text-[#000000] group-hover:text-textWhite md:duration-500">
-                            Próxima
-                        </span>
-
-                        <div>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M4.1665 10.0013H15.8332M15.8332 10.0013L9.99984 4.16797M15.8332 10.0013L9.99984 15.8346"
-                                    stroke="black" stroke-width="1.67" stroke-linecap="round"
-                                    stroke-linejoin="round" class="group-hover:stroke-strokeWithe md:duration-500" />
-                            </svg>
-                        </div>
-                    </a>
-                </nav>
-    </div> --}}
 </section>

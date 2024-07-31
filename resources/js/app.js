@@ -21,7 +21,7 @@ Aos.init();
 // import './vendor/livewire-ui/modal'
 // import '../../vendor/livewire-ui/modal/resources/js/modal'
 
-
+import './Catalogo'
 
 
 // import component from './components/component';
