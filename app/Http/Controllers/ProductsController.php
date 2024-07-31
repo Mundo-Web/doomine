@@ -624,6 +624,7 @@ class ProductsController extends Controller
         ->leftJoin('categories', 'categories.id', 'products.categoria_id')
         ->leftJoin('attribute_product_values', 'attribute_product_values.product_id', 'products.id')
         ->leftJoin('combinaciones', 'combinaciones.product_id', 'products.id')
+        ->where('products.status', 1)
         ->where('categories.visible', 1);
 
       if ($request->group != null) {
