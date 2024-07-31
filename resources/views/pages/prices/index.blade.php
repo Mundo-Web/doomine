@@ -132,7 +132,7 @@
 
             $.ajax({
 
-              url: '{{ route('tags.deleteTags') }}',
+              url: '{{ route('prices.borrar') }}',
               method: 'POST',
               data: {
                 _token: $('input[name="_token"]').val(),

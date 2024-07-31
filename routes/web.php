@@ -197,6 +197,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Precios
         Route::resource('/prices', PriceController::class);
+        Route::post('/prices/borrar', [PriceController::class, 'borrar'])->name('prices.borrar');
+
        
 
         //Productos
