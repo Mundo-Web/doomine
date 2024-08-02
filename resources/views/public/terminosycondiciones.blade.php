@@ -14,7 +14,7 @@
       </h2>
       <div class="font-poppins text-[#151515] flex flex-col gap-16">
 
-        <div class="grid grid-cols-1 ">
+        <div class="grid grid-cols-1 text-start">
 
           {!! $termsAndCondicitions->content ?? '' !!}
 
