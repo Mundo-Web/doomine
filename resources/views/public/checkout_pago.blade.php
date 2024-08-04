@@ -560,7 +560,7 @@
       })
       const suma = total.reduce((total, elemento) => total + elemento, 0);
 
-      $('#itemSubtotal').text(`S/. ${suma} `)
+      $('#itemSubtotal').text(`S/. ${suma.toFixed(2)} `)
       const opciones = document.getElementsByName('bordered-radio');
 
       // Iterar sobre los radio buttons para encontrar el que está seleccionado
@@ -590,7 +590,7 @@
 
       $('#tipoEnvioDesc').text(textEnvio)
 
-      $('#itemTotal').text(`S/. ${total} `)
+      $('#itemTotal').text(`S/. ${total.toFixed(2)} `)
 
     }
 

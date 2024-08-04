@@ -351,7 +351,7 @@
                       <label for="bordered-radio-2"
                           class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
                           <span> Recojo GRATIS en tienda </span>
-                          <span>S/ 0</span>
+                          <span>S/ 0.00</span>
                       </label>
                   </div>`
 
@@ -379,7 +379,7 @@
                             <label for="bordered-radio-2"
                                 class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
                                 <span>${envio.local == 1 ? 'Envio a domicilio': 'Envio Courier'}</span>
-                                <span>S/ ${envio.price}</span>
+                                <span>S/ ${envio.price.toFixed(2)}</span>
                             </label>
                         </div>
                   `
@@ -392,7 +392,7 @@
                           <label for="bordered-radio-2"
                               class="w-full py-4 ms-2 text-[16px] font-normal text-[#151515] flex justify-between items-center px-4">
                               <span>${envio.local == 1 ? 'Envio a domicilio': 'Envio Courier'}</span>
-                              <span>S/ ${envio.price}</span>
+                              <span>S/ ${envio.price.toFixed(2)}</span>
                           </label>
                       </div>
                 `
@@ -469,7 +469,7 @@
       })
       const suma = total.reduce((total, elemento) => total + elemento, 0);
 
-      $('#itemSubtotal').text(`S/ ${suma} `)
+      $('#itemSubtotal').text(`S/ ${suma.toFixed(2)} `)
       const opciones = document.getElementsByName('bordered-radio');
 
       // Iterar sobre los radio buttons para encontrar el que está seleccionado
@@ -489,7 +489,7 @@
       // carrito = [...carrito, carrito.total]
       Local.set("carrito", carrito)
 
-      $('#itemsTotalCheck').text(`S/ ${total} `)
+      $('#itemsTotalCheck').text(`S/ ${total.toFixed(2)} `)
       return {
         total,
         suma
