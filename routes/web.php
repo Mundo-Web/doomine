@@ -66,7 +66,7 @@ Route::get('/comentario', [IndexController::class, 'comentario'] )->name('coment
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
 Route::get('/preguntasFrecuentes', [IndexController::class, 'preguntasFrecuentes'] )->name('preguntasFrecuentes');
-Route::get('/landing', [IndexController::class, 'landing'] )->name('landing');
+Route::get('/madrid', [IndexController::class, 'landing'] )->name('landing');
 
 
 
