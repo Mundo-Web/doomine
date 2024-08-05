@@ -771,6 +771,31 @@ class IndexController extends Controller
     }
   }
 
+  public function guardarContactosLanding(Request $request)
+  {
+    $data = $request->all();
+    
+    try {
+      $reglasValidacion = [
+        'full_name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+      ];
+      $mensajes = [
+        'full_name.required' => 'El campo nombre es obligatorio.',
+        'email.required' => 'El campo correo electrónico es obligatorio.',
+        'email.email' => 'El formato del correo electrónico no es válido.',
+        'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+      ];
+      $request->validate($reglasValidacion, $mensajes);
+      $formlanding = Message::create($data);
+      // $this->envioCorreo($formlanding);
+
+      return response()->json(['message' => 'Mensaje enviado con exito']);
+    } catch (ValidationException $e) {
+      return response()->json(['message' => $e->validator->errors()], 400);
+    }
+  }
+
   public function saveImg($file, $route, $nombreImagen)
   {
     $manager = new ImageManager(new Driver());
@@ -889,5 +914,10 @@ class IndexController extends Controller
   {
     $termsAndCondicitions = TermsAndCondition::first();
     return view('public.terminosycondiciones', compact('termsAndCondicitions'));
+  }
+
+  public function landing()
+  {
+    return view('public.landing.setmadrid');
   }
 }

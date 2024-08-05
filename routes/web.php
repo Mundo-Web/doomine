@@ -66,7 +66,7 @@ Route::get('/comentario', [IndexController::class, 'comentario'] )->name('coment
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
 Route::get('/preguntasFrecuentes', [IndexController::class, 'preguntasFrecuentes'] )->name('preguntasFrecuentes');
-
+Route::get('/landing', [IndexController::class, 'landing'] )->name('landing');
 
 
 
@@ -91,6 +91,7 @@ Route::post('cambiogaleria', [IndexController::class, 'cambioGaleria'])->name('c
 Route::get('/404', [IndexController::class, 'error'] )->name('error');
 /* Formulario de contacto */
 Route::post('guardarContactos', [IndexController::class, 'guardarContacto'] )->name('guardarContactos');
+Route::post('guardarContactosLanding', [IndexController::class, 'guardarContactosLanding'] )->name('guardarContactosLanding');
 
 Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('prices.getProvincias');
 Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
@@ -106,6 +107,8 @@ Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDi
 Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
 Route::get('/politica-cambio/', [IndexController::class, 'politicaDeCambio'])->name('politicaDeCambio');
 Route::get('/politica-envio/', [IndexController::class, 'pliticaDeEnvio'])->name('politicaDeEnvio');
+
+
 
 
 

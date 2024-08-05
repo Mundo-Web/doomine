@@ -9,7 +9,8 @@
 
   {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}" /> --}}
   <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
   @stack('head')
 
   {{-- Aqui van los CSS --}}
@@ -26,7 +27,7 @@
   {{-- Sweet Alert --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+  
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>@yield('title', config('app.name', 'Laravel'))</title>
