@@ -16,8 +16,17 @@ class MessageController extends Controller
     public function index()
     {
         //
-        $mensajes = Message::where('status' , '=', 1 )->orderBy('created_at', 'DESC')->get();
+        $mensajes = Message::where('status' , '=', 1 )->where('source', '!=', 'Landing - Set Madrid')->orderBy('created_at', 'DESC')->get();
         return view('pages.message.index', compact('mensajes'));
+    
+        
+    }
+
+    public function mensajeslanding()
+    {
+        //
+        $mensajes = Message::where('status' , '=', 1 )->where('source' , '=', 'Landing - Set Madrid' )->orderBy('created_at', 'DESC')->get();
+        return view('pages.landingmessage.index', compact('mensajes'));
     
         
     }
@@ -66,6 +75,23 @@ class MessageController extends Controller
 
         return view('pages.message.show', compact('message'));
     }
+
+
+    public function mensajeslandingshow($id)
+    {
+        //
+        $message = Message::findOrFail($id);
+
+        $message->is_read = 1; 
+        $message->save();
+
+        return view('pages.landingmessage.show', compact('message'));
+    }
+
+
+
+
+
 
     /**
      * Show the form for editing the specified resource.
