@@ -1,3 +1,8 @@
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
 <header>
   <div id="top" class="bg-black py-2 text-white text-center italic w-full">
     Registrate y obtén un 30% de descuento en tu primer pedido <span class="font-bold underline"><a
@@ -16,3 +21,11 @@
     </div>
   </div>
 </header>
+<script>
+  document.querySelector('a[href="#formContactosLanding"]').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('#formContactosLanding').scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+</script>

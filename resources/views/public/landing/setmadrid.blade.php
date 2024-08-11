@@ -138,8 +138,10 @@
             </form>
             <div class="overflow-y-auto h-36 mx-auto w-10/12 mt-8 bg-scroll">
               <a href="https://doomine.com/terminos-y-condiciones"
-                class="cursor-pointer hover:text-blue-500 transition-colors"></a>
-              <h3>Política de Privacidad y Términos de Uso</h3>
+                class="cursor-pointer hover:text-blue-500 transition-colors">
+                <h3>Política de Privacidad y Términos de Uso</h3>
+              </a>
+
               <p class="text-[#6C7275] my-4">
                 Al registrarte para el descuento exclusivo del 30% en el Set Madrid, aceptas nuestras
                 políticas de privacidad y términos de uso. Usaremos tu información solo para procesar tu
