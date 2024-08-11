@@ -1,7 +1,7 @@
 <header>
   <div id="top" class="bg-black py-2 text-white text-center italic w-full">
     Registrate y obtén un 30% de descuento en tu primer pedido <span class="font-bold underline"><a
-        href="">Regístrate ahora</a></span>
+        href="#formContactosLanding">Regístrate ahora</a></span>
   </div>
   <div id="container" class="w-[93%] mx-auto ">
     <div id="buttonsTop"
