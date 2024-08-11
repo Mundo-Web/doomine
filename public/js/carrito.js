@@ -235,7 +235,7 @@ let articulosCarrito = [];
               valor: success.valorAtributo.valor , 
               hex:  success.valorAtributo.color
             },
-            caratula: success.caratula.images[0].name_imagen,
+            caratula: success.caratula?.images[0]?.name_imagen  ?? 'images/img/noimagen.jpg',
             talla: talla.trim(), 
             combinacionId
           }

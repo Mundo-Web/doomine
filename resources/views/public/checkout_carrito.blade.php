@@ -666,7 +666,7 @@
             cantidad,
             color,
             tipo_envio: 0,
-            caratula: success.caratula.images[0].name_imagen,
+            caratula: success.success.caratula?.images[0]?.name_imagen ?? 'images/img/noimagen.jpg' ?? '',
             talla: talla.trim(),
 
           }
