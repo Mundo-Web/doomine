@@ -15,10 +15,10 @@ return new class extends Migration
             // Asegúrate de que la columna 'user_id' exista y sea del tipo adecuado antes de agregar la clave foránea
             if (!Schema::hasColumn('address_users', 'user_id')) {
                 $table->unsignedBigInteger('user_id')->nullable();
+                $table->foreign('user_id')->references('id')->on('user_details')->onDelete('cascade');
             }
 
             // Agrega la clave foránea que referencia a la tabla 'user_details'
-            $table->foreign('user_id')->references('id')->on('user_details')->onDelete('cascade');
         });
     }
 
