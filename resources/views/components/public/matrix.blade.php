@@ -30,7 +30,7 @@
   
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>@yield('title', config('app.name', 'Laravel'))</title>
+  <title>{{env('APP_NAME')}}</title>
 </head>
 
 <body class="body">
